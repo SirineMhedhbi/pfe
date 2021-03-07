@@ -19,7 +19,7 @@ gem 'puma', '~> 5.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'rexml'
-  gem 'letter_opener_web', '~> 1.0'
+gem 'letter_opener_web', '~> 1.0'
 
 
 # Reduces boot times through caching; required in config/boot.rb
