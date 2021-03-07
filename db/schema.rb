@@ -13,7 +13,9 @@
 ActiveRecord::Schema.define(version: 2021_03_04_101838) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
