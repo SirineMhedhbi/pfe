@@ -1,7 +1,8 @@
 module Overrides
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
+        #skip_before_action :authenticate_api_user!
      def create
-      byebug
+      
       @resource = User.new(user_params) #This may vary based on your params and conditions you want
       unless @resource.save
        render json: { message: @resource.errors.full_messages.join(', ') }, status: :bad_request
