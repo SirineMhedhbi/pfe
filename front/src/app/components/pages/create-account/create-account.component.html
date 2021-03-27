@@ -23,8 +23,137 @@
                 <a routerLink="/login">Sign In</a>
             </div>
 
-            <form>
-                <div class="row align-items-center">
+            <form [formGroup]="form" (ngSubmit)="signUpUser()">
+                <div class="create-information">
+                    <h3>Basic Information</h3>
+
+                    <!-- <div class="create-information-btn">
+                    <a routerLink="/">Upload Cover Photo</a>
+                    <a routerLink="/">Upload Your CV</a>
+                </div> -->
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <span class="text-danger" *ngIf="f.name.errors && f.name.hasError('required')">*</span>
+                                <input type="text" class="form-control" formControlName="name">
+                                <div *ngIf="f.name.invalid && f.name.errors && f.name.dirty || f.name.touched">
+                                    <small class="text-danger" *ngIf="f.name.hasError('required')"> This field is required.</small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Your First Name</label>
+                                <span class="text-danger" *ngIf="f.nickname.errors && f.nickname.hasError('required')">*</span>
+                                <input type="text" class="form-control" formControlName="nickname">
+                                <div *ngIf="f.nickname.invalid && f.nickname.errors && f.nickname.dirty || f.nickname.touched">
+                                    <small class="text-danger" *ngIf="f.nickname.hasError('required')"> This field is required.</small>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Your Email</label>
+                                <span class="text-danger" *ngIf="f.email.errors && f.email.hasError('required')">*</span>
+                                <input type="email" class="form-control" formControlName="email">
+                                <div *ngIf="f.email.invalid && f.email.errors && f.email.dirty || f.email.touched">
+                                    <small class="text-danger" *ngIf="f.email.hasError('required')"> This field is required.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Your Password</label>
+                                <span class="text-danger" *ngIf="f.password.errors && f.password.hasError('required')">*</span>
+                                <input type="password" class="form-control" formControlName="password">
+                                <div *ngIf="f.password.invalid && f.password.errors && f.password.dirty || f.password.touched">
+                                    <small class="text-danger" *ngIf="f.password.hasError('required')"> This field is required.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <span class="text-danger" *ngIf="f.birthday.errors && f.birthday.hasError('required')">*</span>
+                                <input type="date" class="form-control" formControlName="birthday">
+                                <div *ngIf="f.birthday.invalid && f.birthday.errors && f.birthday.dirty || f.birthday.touched">
+                                    <small class="text-danger" *ngIf="f.birthday.hasError('required')"> This field is required.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Your Phone</label>
+                                <span class="text-danger" *ngIf="f.phone.errors && f.phone.hasError('required')">*</span>
+                                <input type="text" class="form-control" formControlName="phone">
+                                <div *ngIf="f.phone.invalid && f.phone.errors && f.phone.dirty || f.phone.touched">
+                                    <small class="text-danger" *ngIf="f.phone.hasError('required')"> This field is required.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Your Profession</label>
+                                <input type="text" class="form-control" formControlName="job">
+                            </div>
+                        </div> -->
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="gender-area">
+                                    <span>Profession</span>
+                                    <input type="radio" formControlName="role" id="candidat" value="candidat" checked>
+                                    <label for="candidat">Candidat</label>
+                                    <input type="radio" formControlName="role" id="recruteur" value="recruteur">
+                                    <label for="recruteur">Recruteur</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Address:</label>
+                                <span class="text-danger" *ngIf="f.address.errors && f.address.hasError('required')">*</span>
+                                <input type="text" class="form-control" formControlName="address">
+                                <div *ngIf="f.address.invalid && f.address.errors && f.address.dirty || f.address.touched">
+                                    <small class="text-danger" *ngIf="f.address.hasError('required')"> This field is required.</small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="gender-area">
+                                    <span>Gender</span>
+                                    <input type="radio" formControlName="gender" id="male" value="male" checked>
+                                    <label for="male">Male</label>
+                                    <input type="radio" formControlName="gender" id="female" value="female">
+                                    <label for="female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="your_message" class="form-control" rows="8" formControlName="description"></textarea>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- <div class="row align-items-center">
                     <div class="col-lg-4">
                         <div class="create-photo-item">
                             <div class="create-photo-left">
@@ -44,11 +173,11 @@
                         <div class="create-photo-item">
                             <div class="create-photo-right">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name Here">
+                                    <input type="text" class="form-control" placeholder="Your Name Here" formControlName="username">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Profession">
+                                    <input type="text" class="form-control" placeholder="Profession" formControlName="profession">
                                 </div>
 
                                 <div class="text-right">
@@ -57,85 +186,16 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+                <div class="text-left">
+                    <button type="submit" class="btn create-ac-btn" [disabled]="!form.valid">Save</button>
                 </div>
             </form>
         </div>
 
-        <div class="create-information">
-            <form>
-                <h3>Basic Information</h3>
 
-                <div class="create-information-btn">
-                    <a routerLink="/">Upload Cover Photo</a>
-                    <a routerLink="/">Upload Your CV</a>
-                </div>
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Your Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Your Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Your Phone</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Job Title</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Address:</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <div class="gender-area">
-                                <span>Gender</span>
-                                <input type="radio" name="gender" id="male" value="male" checked>
-                                <label for="male">Male</label>
-                                <input type="radio" name="gender" id="female" value="female">
-                                <label for="female">Female</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="your_message" class="form-control" rows="8"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="create-education">
+        <!-- <div class="create-education">
             <div class="create-education-wrap">
                 <div class="create-education-left">
                     <h3>Education</h3>
@@ -199,7 +259,7 @@
                             <input type="text" class="form-control">
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6">
                         <div class="skill">
                             <p>Percentage</p>
@@ -255,10 +315,8 @@
                     </div>
                 </div>
             </form>
-        </div>
-        
-        <div class="text-left">
-            <button type="submit" class="btn create-ac-btn">Save</button>
-        </div>
+        </div> -->
+
+
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,14 @@ import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privac
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { UserRequestInterceptor } from './user.request.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { map } from 'rxjs/operators';
+
+
+
 
 @NgModule({
   declarations: [
@@ -66,13 +75,26 @@ import { BlogComponent } from './components/pages/blog/blog.component';
     PrivacyPolicyComponent,
     ContactComponent,
     BlogDetailsComponent,
-    BlogComponent
+    BlogComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    
+    
+
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserRequestInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
