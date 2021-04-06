@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete "/company/destroy/:id" => "company#destroy"
 
   delete "/users/destroy/:id" => "users#destroy"
-  get "/users/show/:id" => "users#show"
+  get "/users/show" => "users#show"
   put "/users/update/:id" => "users#update"
 
 

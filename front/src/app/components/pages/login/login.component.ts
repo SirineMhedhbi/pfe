@@ -39,10 +39,12 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (result:any) => {
         if(result['status'] == 200){
-          localStorage.setItem("access", "access-token");
-          localStorage.setItem("cl", "client");
-          localStorage.setItem("id", "uid");
-          console.log(localStorage.length);
+          
+          console.log(result)
+          localStorage.setItem("cl", result.headers.get("client"));    
+          localStorage.setItem("uid", result.headers.get("uid"));          
+          localStorage.setItem("access", result.headers.get("access-token"));   
+                
           this.form.reset();
           this.router.navigate(['/']);
         }

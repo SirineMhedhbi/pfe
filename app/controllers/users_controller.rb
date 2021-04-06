@@ -25,12 +25,8 @@ class UsersController < ApplicationController
     end
 
     def show
-        if  !User.where(id:params[:id]).present?
-            render json: {message:"user not found"}
-        else 
-        @user  = User.find(params[:id])
-        render json: { user: @user}
-        end 
+      
+        render json: { user: current_api_user}
     end
     
       private

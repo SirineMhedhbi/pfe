@@ -15,16 +15,24 @@ export class UserRequestInterceptor implements HttpInterceptor {
     // get the users access token using our helper function
     req = req.clone({url: `${environment.baseUrl}${req.url}`})
 
-    const accessToken = this.authService.getAccessToken();
+    // const accessToken = this.authService.getAccessToken();
 
-    // in case it isn't set
-    if(isNullOrUndefined(accessToken))
-      return next.handle(req);
+ //   return next.handle(req);
 
     // set the header
+    // // in case it isn't set
+    if(isNullOrUndefined(localStorage.getItem('cl'))){
+      return next.handle(req);
+    }
+
+
+   
     req = req.clone({
       setHeaders: {
-        Authorization: "Bearer " + accessToken
+        client: localStorage.getItem('cl'), 
+        uid: localStorage.getItem('uid'), 
+        "access-token": localStorage.getItem('access'),
+        'Content-Type':  'application/json'
       }
     });
     return next.handle(req);
