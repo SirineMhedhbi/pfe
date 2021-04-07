@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("cl", result.headers.get("client"));    
           localStorage.setItem("uid", result.headers.get("uid"));          
           localStorage.setItem("access", result.headers.get("access-token"));   
-                
+          this.authService.loggedIn.next(true);
           this.form.reset();
           this.router.navigate(['/']);
         }

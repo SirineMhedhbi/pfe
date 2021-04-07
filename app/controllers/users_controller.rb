@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     def show
       
-        render json: { user: current_api_user}
+        render json: { user: User.find(current_api_user.id)}
     end
     
       private

@@ -96,17 +96,17 @@
                         <li class="nav-item"><a routerLink="/contact" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
                     </ul>
 
-                    <div class="common-btn">
+                    <div class="common-btn" *ngIf="!(isLoggedIn$ | async)">
                         <a class="login-btn" routerLink="/login"><i class="icofont-plus-square"></i> Login</a>
                     </div>
-                    <div class="common-btn">
+                    <div class="common-btn" *ngIf="!(isLoggedIn$ | async)">
                         <a class="sign-up-btn" routerLink="/create-account"><i class="icofont-user-alt-4"></i> Sign Up</a>
                     </div>
-                    <div class="common-btn">
-                        <a class="login-btn" routerLink="/login"><i class="icofont-plus-square"></i> Log Out</a>
+                    <div class="common-btn" *ngIf="isLoggedIn$ | async">
+                        <a class="login-btn" (click)="logout()"><i class="icofont-plus-square"></i> Log Out</a>
                     </div>
 
-                    <div class="common-btn">
+                    <div class="common-btn" *ngIf="isLoggedIn$ | async">
                         <a class="sign-up-btn" routerLink="/profile"><i class="icofont-user-alt-4"></i> Profile</a>
                     </div>
                 </div>

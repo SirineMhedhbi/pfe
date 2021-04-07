@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationCancel, NavigationEnd } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
 declare let $: any;
 
 @Component({
@@ -19,11 +20,17 @@ export class AppComponent implements OnInit {
     location: any;
     routerSubscription: any;
 
-    constructor(private router: Router) {
+    constructor(private router: Router , private authService: AuthService) {
     }
 
     ngOnInit(){
         this.recallJsFuntions();
+        console.log(this.authService.isAthenticated())
+        if ( !this.authService.isAthenticated()) {
+            this.authService.loggedIn.next(true);
+        }else{
+            this.authService.loggedIn.next(false);
+        }
     }
 
     recallJsFuntions() {
