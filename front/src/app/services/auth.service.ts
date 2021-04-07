@@ -1,21 +1,32 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private http:HttpClient ) { }
+  constructor(private http:HttpClient, private router: Router ) { }
 
 // JSON header
 jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
 
-  getAccessToken(){
-    return localStorage.getItem('user_access_token');
+  
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable(); // {2}
   }
 
+
+  isAthenticated(){
+    return isNullOrUndefined(localStorage.getItem('cl'))
+  
+  }
 
   signUp(registration){
     return this.http.post('/api/v1/auth',
@@ -35,6 +46,7 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
       this.jsonHeader
     );
   }
+
   signIn (registration){
     return this.http.post('/api/v1/auth/sign_in',
     {
@@ -45,5 +57,10 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
     ,{ observe: 'response'}
     );
 
+  }
+  logout() {                            // {4}
+    this.loggedIn.next(false);
+    this.router.navigate(['/login']);
+    localStorage.clear()
   }
 }

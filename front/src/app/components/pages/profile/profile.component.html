@@ -18,7 +18,7 @@
 <div class="dashboard-area pt-100">
     <div class="container">
         <div class="create-information">
-            <form>
+            <form [formGroup]="form" (ngSubmit)="updateUser()">
 
                 <h3>Basic Information</h3>
 
@@ -30,64 +30,93 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Your Name</label>
-                            <input type="text" class="form-control" placeholder="Aikin Ward" [(ngModel)]="user.name">
+                            <label>Your First Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Your Last Name</label>
+                            <input type="text" class="form-control" formControlName="nickname">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Your Email</label>
-                            <input type="email" class="form-control" placeholder="hello@gable.com" [(ngModel)]="user.email">
+                            <input type="email" class="form-control" formControlName="email">
                         </div>
                     </div>
 
+                    <!-- <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="text" class="form-control" formControlName="birthday">
+                        </div>
+                    </div> -->
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Date of Birth</label>
-                            <input type="text" class="form-control" placeholder="21 / 2 / 1997" [(ngModel)]="user.birthday">
+                            <input type="date" class="form-control" formControlName="birthday">
+                            <div *ngIf="f.birthday.invalid && f.birthday.errors && f.birthday.dirty || f.birthday.touched">
+                                <small class="text-danger" *ngIf="f.birthday.hasError('required')"> This field is required.</small>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Your Phone</label>
-                            <input type="text" class="form-control" placeholder="+12345678910" [(ngModel)]="user.phone">
+                            <input type="text" class="form-control" formControlName="phone">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="gender-area">
+                                <span>Profession</span>
+                                <input type="radio" formControlName="role" id="candidat" value="candidat" checked>
+                                <label for="candidat">Candidat</label>
+                                <input type="radio" formControlName="role" id="recruteur" value="company">
+                                <label for="recruteur">Recruteur</label>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <div class="form-group">
                             <label>Job Title</label>
-                            <input type="text" class="form-control" placeholder="UX/UI Designer" [(ngModel)]="user.jobtitle">
+                            <input type="text" class="form-control" placeholder="UX/UI Designer">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Address:</label>
-                            <input type="text" class="form-control" placeholder="210-27 Quadra, Market Street, Victoria Canada" [(ngModel)]="user.address">
+                            <input type="text" class="form-control" formControlName="address">
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <div class="gender-area">
                                 <span>Gender</span>
-                                <input type="radio" name="gender" id="male" value="male" checked ng-checked="user.gender=='male'">
+                                <input type="radio" formControlName="gender" id="male" value="male" checked>
                                 <label for="male">Male</label>
-                                <input type="radio" name="gender" id="female" value="female" ng-checked="user.gender=='female'">
+                                <input type="radio" formControlName="gender" id="female" value="female">
                                 <label for="female">Female</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12">
                         <div class="form-group">
                             <label>Description</label>
                             <textarea id="your_message" class="form-control" rows="8" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, quaerat aliquid. Aperiam reprehenderit, id dolorem reiciendis atque sit. Mollitia consequatur assumenda autem tempora cum quas blanditiis aspernatur dolore accusantium ipsam!"></textarea>
                         </div>
-                    </div>
+                    </div> -->
+                </div>
+                <div class="text-left">
+                    <button type="submit" class="btn create-ac-btn">Save</button>
                 </div>
             </form>
         </div>
@@ -231,8 +260,8 @@
             </form>
         </div>
 
-        <div class="text-left">
+        <!-- <div class="text-left">
             <button type="submit" class="btn create-ac-btn">Save</button>
-        </div>
+        </div> -->
     </div>
 </div>

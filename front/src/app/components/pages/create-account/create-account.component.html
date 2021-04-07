@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Your Name</label>
+                                <label>Your First Name</label>
                                 <span class="text-danger" *ngIf="f.name.errors && f.name.hasError('required')">*</span>
                                 <input type="text" class="form-control" formControlName="name">
                                 <div *ngIf="f.name.invalid && f.name.errors && f.name.dirty || f.name.touched">
@@ -47,7 +47,7 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Your First Name</label>
+                                <label>Your Last Name</label>
                                 <span class="text-danger" *ngIf="f.nickname.errors && f.nickname.hasError('required')">*</span>
                                 <input type="text" class="form-control" formControlName="nickname">
                                 <div *ngIf="f.nickname.invalid && f.nickname.errors && f.nickname.dirty || f.nickname.touched">

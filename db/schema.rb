@@ -10,12 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_151807) do
+ActiveRecord::Schema.define(version: 2021_04_07_140859) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
 
   create_table "companies", force: :cascade do |t|
     t.string "title"
@@ -114,6 +112,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_151807) do
     t.inet "last_sign_in_ip"
     t.integer "company_id"
     t.integer "role"
+    t.string "integer"
     t.string "jobtitle"
     t.string "phone"
     t.date "birthday"

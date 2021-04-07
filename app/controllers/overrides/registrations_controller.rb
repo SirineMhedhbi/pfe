@@ -15,7 +15,7 @@ module Overrides
      end
      private
      def user_params
-      params.require(:registration).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender)
+      params.require(:registration).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender, :birthday)
      end
     end
 
