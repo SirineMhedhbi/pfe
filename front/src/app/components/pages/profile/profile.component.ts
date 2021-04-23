@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EducationService } from 'src/app/services/education.service';
 
 
 
@@ -14,7 +15,9 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
   user
-  constructor(private usersService: UsersService,private fb: FormBuilder) {
+  education={title:"",degree: "", institute:"", year:""}
+  educations=[  ]
+  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -38,6 +41,8 @@ export class ProfileComponent implements OnInit {
 
 
    }
+  
+
 
   get f() { return this.form.controls; }
   ngOnInit(): void {
@@ -59,7 +64,32 @@ export class ProfileComponent implements OnInit {
       console.log(this.user)
     })
     
+    this.educationService.userEducations().subscribe((res:any)=>{
+      this.educations = res.educations
+    })
+  }
+
+  editEducation(item){
+
+    this.educationService.editEducation(item).subscribe((res:any)=>{
+      console.log(res)
+
+    })
+  }
+  addEducation(education){
+    this.educationService.addEducation(education).subscribe((res:any) =>{
+     this.educations.push(res.education)
+     this.education = {title:"",degree: "", institute:"", year:""}
+    })
     
+  }
+  removeEducation(id){
+    this.educationService.deleteEducation(id).subscribe((res:any)=>{
+      let index = this.educations.findIndex(x => x.id == id);
+      this.educations = this.educations.filter(function(el) { return el.id != id });
+      console.log(this.educations)
+    })
+   
   }
 
 }

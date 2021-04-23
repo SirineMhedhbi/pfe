@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   get "/offers/show/:id" => "offer#show"
   delete "/offers/destroy/:id" => "offer#destroy"
 
+
+  post "/educations/create"  => "educations#create"
+  put "/educations/update/:id" => "educations#update"
+  get "/educations/index" => "educations#index"
+  # get "/educations/show/:id" => "educations#show"
+  delete "/educations/destroy/:id" => "educations#destroy"
+
   post "/infos/create"  => "info#create"
 
 

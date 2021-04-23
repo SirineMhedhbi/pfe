@@ -128,42 +128,82 @@
                 </div>
 
                 <div class="create-education-right">
-                    <a routerLink="/">Edit</a>
-                    <a routerLink="/">Add Education</a>
+                    <!-- <a routerLink="/">Edit</a> -->
+                    <a (click)="addEducation(education)">Add Education</a>
                 </div>
             </div>
 
-            <form>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" placeholder="Under Graduate">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Degree</label>
-                            <input type="text" class="form-control" placeholder="BSC in Computer Science">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Institute</label>
-                            <input type="text" class="form-control" placeholder="Gable University of Design & Arts">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Year</label>
-                            <input type="text" class="form-control" placeholder="2016-2019">
-                        </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Under Graduate" [(ngModel)]="education.title">
                     </div>
                 </div>
-            </form>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Degree</label>
+                        <input type="text" class="form-control" placeholder="BSC in Computer Science" [(ngModel)]="education.degree">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Institute</label>
+                        <input type="text" class="form-control" placeholder="Gable University of Design & Arts" [(ngModel)]="education.institute">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input type="text" class="form-control" placeholder="2016-2019" [(ngModel)]="education.year">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="create-education create-education-two" *ngFor="let item of educations">
+            <div class="create-education-wrap">
+                <div class="create-education-left">
+                    <h3>Education</h3>
+                </div>
+
+                <div class="create-education-right">
+                    <a (click)="editEducation(item)">Edit</a>
+                    <a class="delete-btn" (click)="removeEducation(item.id)">Remove</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Under Graduate" [(ngModel)]="item.title">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Degree</label>
+                        <input type="text" class="form-control" placeholder="BSC in Computer Science" [(ngModel)]="item.degree">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Institute</label>
+                        <input type="text" class="form-control" placeholder="Gable University of Design & Arts" [(ngModel)]="item.institute">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input type="text" class="form-control" placeholder="2016-2019" [(ngModel)]="item.year">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="create-skills">
