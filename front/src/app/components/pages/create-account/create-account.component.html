@@ -113,9 +113,9 @@
                             <div class="form-group">
                                 <div class="gender-area">
                                     <span>Profession</span>
-                                    <input type="radio" formControlName="role" id="candidat" value="candidat" checked>
+                                    <input type="radio" formControlName="role" id="candidat" value="candidat" (change)="changeRole($event.target)">
                                     <label for="candidat">Candidat</label>
-                                    <input type="radio" formControlName="role" id="recruteur" value="company">
+                                    <input type="radio" formControlName="role" id="recruteur" value="company" (change)="changeRole($event.target)">
                                     <label for="recruteur">Recruteur</label>
                                 </div>
                             </div>
@@ -143,6 +143,11 @@
                                     <label for="female">Female</label>
                                 </div>
                             </div>
+                        </div>
+                        <div *ngIf="show">
+                            <label for="exampleFormControlSelect1">select company</label>
+                            <ng-select [items]="companies.companies" bindLabel="name" bindValue="id" formControlName="company_id">
+                            </ng-select>
                         </div>
 
                         <!-- <div class="col-lg-12">

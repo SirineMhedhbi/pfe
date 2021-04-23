@@ -43,8 +43,11 @@ export class LoginComponent implements OnInit {
           console.log(result)
           localStorage.setItem("cl", result.headers.get("client"));    
           localStorage.setItem("uid", result.headers.get("uid"));          
-          localStorage.setItem("access", result.headers.get("access-token"));   
+          localStorage.setItem("access", result.headers.get("access-token")); 
+          localStorage.setItem("role", result.body.data.role); 
+
           this.authService.loggedIn.next(true);
+          this.authService.role.next(localStorage.getItem("role"));
           this.form.reset();
           this.router.navigate(['/']);
         }

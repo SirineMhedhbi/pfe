@@ -1,18 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable, } from '@angular/core';
+import { Router, ActivatedRouteSnapshot, 
+  CanActivate,  RouterStateSnapshot} from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { isNullOrUndefined } from 'util';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   public loggedIn = new BehaviorSubject<boolean>(false);
+  public role = new BehaviorSubject<string>(localStorage.getItem("role") || "");
 
-  constructor(private http:HttpClient, private router: Router ) { }
 
+  constructor(private http:HttpClient, private router: Router ) { }  
 // JSON header
 jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
 
@@ -22,6 +28,9 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
     return this.loggedIn.asObservable(); // {2}
   }
 
+  get roleUser() {
+    return this.role.asObservable(); // {2}
+  }
 
   isAthenticated(){
     return isNullOrUndefined(localStorage.getItem('cl'))
@@ -42,6 +51,7 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
         "name":registration.name,
         "nickname":registration.nickname,
         "birthday":registration.birthday,
+        "company_id":registration.company_id
     },
       this.jsonHeader
     );
@@ -58,9 +68,13 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
     );
 
   }
+
   logout() {                            // {4}
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
     localStorage.clear()
   }
+  
 }
+
+

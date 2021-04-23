@@ -27,6 +27,7 @@ import { PrivacyPolicyComponent } from './components/pages/privacy-policy/privac
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
     {path: '', component: HomeOneComponent},
@@ -47,7 +48,7 @@ const routes: Routes = [
     {path: 'company-details', component: CompanyDetailsComponent},
     {path: 'login', component: LoginComponent},
     {path: 'create-account', component: CreateAccountComponent},
-    {path: 'profile', component: ProfileComponent},
+    {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard]},
     {path: 'single-profile', component: SingleProfileComponent},
     {path: '404', component: ErrorComponent},
     {path: 'faq', component: FaqComponent},
@@ -56,6 +57,7 @@ const routes: Routes = [
     {path: 'blog', component: BlogComponent},
     {path: 'blog-details', component: BlogDetailsComponent},
     {path: 'contact', component: ContactComponent},
+    
     // Here add new pages component
 
     {path: '**', component: ErrorComponent} // This line will remain down from the whole pages component list

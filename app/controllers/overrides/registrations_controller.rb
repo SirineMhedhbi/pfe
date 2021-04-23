@@ -4,6 +4,8 @@ module Overrides
      def create
       
       @resource = User.new(user_params) #This may vary based on your params and conditions you want
+      cv = Cv.create
+      @resource.cv = cv 
       unless @resource.save
        render json: { message: @resource.errors.full_messages.join(', ') }, status: :bad_request
        return
@@ -15,7 +17,7 @@ module Overrides
      end
      private
      def user_params
-      params.require(:registration).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender, :birthday)
+      params.require(:registration).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender, :birthday, :company_id)
      end
     end
 
