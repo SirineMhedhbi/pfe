@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducationService } from 'src/app/services/education.service';
+import { SkillsService } from 'src/app/services/skills.service';
 
 
 
@@ -17,7 +18,9 @@ export class ProfileComponent implements OnInit {
   user
   education={title:"",degree: "", institute:"", year:""}
   educations=[  ]
-  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService) {
+  skill={name:"",pourcentage:50}
+  skills=[]
+  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -67,6 +70,9 @@ export class ProfileComponent implements OnInit {
     this.educationService.userEducations().subscribe((res:any)=>{
       this.educations = res.educations
     })
+    this.skillsService.userSkills().subscribe((res:any)=>{
+      this.skills = res.skills
+    })
   }
 
   editEducation(item){
@@ -91,5 +97,29 @@ export class ProfileComponent implements OnInit {
     })
    
   }
+  editSkill(item){
 
+    this.skillsService.editSkill(item).subscribe((res:any)=>{
+      console.log(res)
+
+    })
+
+}
+
+addSkill(skill){
+  this.skillsService.addSkill(skill).subscribe((res:any) =>{
+   this.skills.push(res.skill)
+   this.skill = {name: "", pourcentage:50}
+   console.log(res.skill)
+  })
+  
+}
+removeSkill(id){
+  this.skillsService.deleteSkill(id).subscribe((res:any)=>{
+    // let index = this.skills.findIndex(x => x.id == id);
+    this.skills = this.skills.filter(function(el) { return el.id != id });
+    console.log(this.skills)
+  })
+ 
+}
 }

@@ -32,6 +32,12 @@ Rails.application.routes.draw do
   post "/cvs/create"  => "cv#create"
 
 
+  post "/skills/create"  => "skills#create"
+  put "/skills/update/:id" => "skills#update"
+  get "/skills/index" => "skills#index"
+  delete "/skills/destroy/:id" => "skills#destroy"
+
+
 
 
 
