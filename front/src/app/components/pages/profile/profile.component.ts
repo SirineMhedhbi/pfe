@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
    
   }
   editSkill(item){
-
+      console.log(item)
     this.skillsService.editSkill(item).subscribe((res:any)=>{
       console.log(res)
 

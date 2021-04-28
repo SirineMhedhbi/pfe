@@ -267,7 +267,7 @@
                     <div class="create-skills-right">
                         <!-- <a routerLink="/">Edit</a> -->
                         <!-- <a routerLink="/">Add Skill</a> -->
-                        <button (click)="editSkill(item)" [disabled]="skill.name == '' || skill.pourcentage == 0">Edit</button>
+                        <button (click)="editSkill(item)" [disabled]="item.name == '' || item.pourcentage == 0">Edit</button>
                         <button class="delete-btn" (click)="removeSkill(item.id)">Remove</button>
                     </div>
                 </div>
@@ -325,13 +325,21 @@
                 </div>
 
                 <div class="create-skills-right">
-                    <a routerLink="/">Edit</a>
-                    <a routerLink="/">Add New</a>
+                    <!-- <a routerLink="/">Edit</a>
+                    <a routerLink="/">Add New</a> -->
+                    <button>Add Social Links</button>
+
                 </div>
             </div>
 
             <form>
                 <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>LinkedIn</label>
+                            <input type="text" class="form-control" placeholder="https://www.linkedin,com">
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Facebook</label>
@@ -346,19 +354,14 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Linedin</label>
-                            <input type="text" class="form-control" placeholder="https://www.linkedin,com">
-                        </div>
-                    </div>
 
-                    <div class="col-lg-6">
+
+                    <!-- <div class="col-lg-6">
                         <div class="form-group">
                             <label>Dribbble</label>
                             <input type="text" class="form-control" placeholder="https://www.dribble,com">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </form>
         </div>

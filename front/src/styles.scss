@@ -2337,6 +2337,12 @@ footer {
                 &:hover {
                     background: linear-gradient(270deg, #38a745 0%, #4cce5b 63%);
                 }
+                &:disabled,
+                button[disabled] {
+                    border: 1px solid #89e490;
+                    background-color: #727c76;
+                    opacity: 0.6;
+                }
             }
             .delete-btn {
                 display: inline-block;
@@ -2408,8 +2414,16 @@ footer {
                 padding: 16px 25px;
                 margin-left: 15px;
                 cursor: pointer;
+                border: none;
+                margin-right: 15px;
                 &:hover {
                     background: linear-gradient(270deg, #38a745 0%, #4cce5b 63%);
+                }
+                &:disabled,
+                button[disabled] {
+                    border: 1px solid #89e490;
+                    background-color: #727c76;
+                    opacity: 0.6;
                 }
             }
             .delete-btn {
