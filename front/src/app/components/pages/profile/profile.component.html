@@ -70,7 +70,7 @@
                             <input type="text" class="form-control" formControlName="phone">
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <div class="form-group">
                             <div class="gender-area">
                                 <span>Profession</span>
@@ -80,7 +80,7 @@
                                 <label for="recruteur">Recruteur</label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="col-lg-6">
                         <div class="form-group">
@@ -120,57 +120,16 @@
                 </div>
             </form>
         </div>
-
-        <div class="create-education create-education-two">
-            <div class="create-education-wrap">
-                <div class="create-education-left">
-                    <h3>Educations</h3>
-                </div>
-
-                <div class="create-education-right">
-                    <!-- <a routerLink="/">Edit</a> -->
-                    <button (click)="addEducation(education)" [disabled]="education.title == '' || education.degree == '' || education.year == '' || education.institute == ''">Add Education</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" class="form-control" [(ngModel)]="education.title">
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Degree</label>
-                        <input type="text" class="form-control" [(ngModel)]="education.degree">
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Institute</label>
-                        <input type="text" class="form-control" [(ngModel)]="education.institute">
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Year</label>
-                        <input type="text" class="form-control" [(ngModel)]="education.year">
-                    </div>
-                </div>
-            </div>
-            <div class="create-education create-education-two" *ngFor="let item of educations">
+        <div *ngIf="user?.user.role == 'candidat'">
+            <div class="create-education create-education-two">
                 <div class="create-education-wrap">
                     <div class="create-education-left">
-                        <h3>Education</h3>
+                        <h3>Educations</h3>
                     </div>
 
                     <div class="create-education-right">
-                        <button type="submit" (click)="editEducation(item)" [disabled]="education.title == '' || education.degree == ''">Edit</button>
-                        <button class="delete-btn" (click)="removeEducation(item.id)">Remove</button>
+                        <!-- <a routerLink="/">Edit</a> -->
+                        <button (click)="addEducation(education)" [disabled]="education.title == '' || education.degree == '' || education.year == '' || education.institute == ''">Add Education</button>
                     </div>
                 </div>
 
@@ -178,49 +137,90 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Title</label>
-                            <input type="text" class="form-control" [(ngModel)]="item.title">
+                            <input type="text" class="form-control" [(ngModel)]="education.title">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Degree</label>
-                            <input type="text" class="form-control" [(ngModel)]="item.degree">
+                            <input type="text" class="form-control" [(ngModel)]="education.degree">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Institute</label>
-                            <input type="text" class="form-control" [(ngModel)]="item.institute">
+                            <input type="text" class="form-control" [(ngModel)]="education.institute">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Year</label>
-                            <input type="text" class="form-control" [(ngModel)]="item.year">
+                            <input type="text" class="form-control" [(ngModel)]="education.year">
+                        </div>
+                    </div>
+                </div>
+                <div class="create-education create-education-two" *ngFor="let item of educations">
+                    <div class="create-education-wrap">
+                        <div class="create-education-left">
+                            <h3>Education</h3>
+                        </div>
+
+                        <div class="create-education-right">
+                            <button type="submit" (click)="editEducation(item)" [disabled]="item.title == '' || item.degree == '' ">Edit </button>
+                            <button class="delete-btn" (click)="removeEducation(item.id)">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.title">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Degree</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.degree">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Institute</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.institute">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.year">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="create-skills">
-            <div class="create-skills-wrap">
-                <div class="create-skills-left">
-                    <h3>Skills </h3>
+            <div class="create-skills">
+                <div class="create-skills-wrap">
+                    <div class="create-skills-left">
+                        <h3>Skills </h3>
+                    </div>
+
+                    <div class="create-skills-right">
+                        <!-- <a routerLink="/">Edit</a> -->
+                        <!-- <a routerLink="/">Add Skill</a> -->
+                        <button (click)="addSkill(skill)" [disabled]="skill.name == '' || skill.pourcentage == 0">Add Skill</button>
+                    </div>
                 </div>
 
-                <div class="create-skills-right">
-                    <!-- <a routerLink="/">Edit</a> -->
-                    <!-- <a routerLink="/">Add Skill</a> -->
-                    <button (click)="addSkill(skill)" [disabled]="skill.name == '' || skill.pourcentage == 0">Add Skill</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- <div class="col-lg-6">
+                <div class="row">
+                    <!-- <div class="col-lg-6">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" class="form-control" [(ngModel)]="skill.title">
@@ -236,44 +236,44 @@
                     </div>
                 </div> -->
 
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="skill.name">
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <div>
-                            <p>Percentage</p>
-                            {{skill.pourcentage}}
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="skill.name">
                         </div>
-                        <input type="range" class="form-control" [(ngModel)]="skill.pourcentage">
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="create-education create-education-two" *ngFor="let item of skills">
-                <div class="create-skills-wrap">
-                    <div class="create-skills-left">
-                        <h3>Skill</h3>
                     </div>
 
-                    <div class="create-skills-right">
-                        <!-- <a routerLink="/">Edit</a> -->
-                        <!-- <a routerLink="/">Add Skill</a> -->
-                        <button (click)="editSkill(item)" [disabled]="item.name == '' || item.pourcentage == 0">Edit</button>
-                        <button class="delete-btn" (click)="removeSkill(item.id)">Remove</button>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div>
+                                <p>Percentage</p>
+                                {{skill.pourcentage}}
+                            </div>
+                            <input type="range" class="form-control" [(ngModel)]="skill.pourcentage">
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <!-- <div class="col-lg-6">
+
+
+
+                <div class="create-education create-education-two" *ngFor="let item of skills">
+                    <div class="create-skills-wrap">
+                        <div class="create-skills-left">
+                            <h3>Skill</h3>
+                        </div>
+
+                        <div class="create-skills-right">
+                            <!-- <a routerLink="/">Edit</a> -->
+                            <!-- <a routerLink="/">Add Skill</a> -->
+                            <button (click)="editSkill(item)" [disabled]="item.name == '' || item.pourcentage == 0">Edit</button>
+                            <button class="delete-btn" (click)="removeSkill(item.id)">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- <div class="col-lg-6">
                         <div class="form-group">
                             <label>Title</label>
                             <input type="text" class="form-control" [(ngModel)]="skill.title">
@@ -289,80 +289,85 @@
                         </div>
                     </div> -->
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="item.name">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <div>
-                                <p>Percentage</p>
-                                {{item.pourcentage}}
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.name">
                             </div>
-                            <input type="range" class="form-control" [(ngModel)]="item.pourcentage">
+                        </div>
 
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div>
+                                    <p>Percentage</p>
+                                    {{item.pourcentage}}
+                                </div>
+                                <input type="range" class="form-control" [(ngModel)]="item.pourcentage">
+
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-            </div>
 
 
 
 
-
-            <!-- <div class="text-left">
+                <!-- <div class="text-left">
             <button type="submit" class="btn create-ac-btn">Save</button>
         </div> -->
-        </div>
-        <div class="create-skills">
-            <div class="create-skills-wrap">
-                <div class="create-skills-left">
-                    <h3>Social Links</h3>
-                </div>
 
-                <div class="create-skills-right">
-                    <!-- <a routerLink="/">Edit</a>
-                    <a routerLink="/">Add New</a> -->
-                    <button>Add Social Links</button>
-
-                </div>
             </div>
 
-            <form>
+            <div class="create-skills">
+                <div class="create-skills-wrap">
+                    <div class="create-skills-left">
+                        <h3>Social Links</h3>
+                    </div>
+
+                    <div class="create-skills-right">
+                        <!-- <a routerLink="/">Edit</a>
+                    <a routerLink="/">Add New</a> -->
+                        <button (click)="addLink(link)" [disabled]="link.linkedin == '' ">Save Social Links</button>
+
+
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>LinkedIn</label>
-                            <input type="text" class="form-control" placeholder="https://www.linkedin,com">
+                            <span class="text-danger" *ngIf="link.linkedin == '' ">*</span>
+
+                            <input type="text" class="form-control" placeholder="https://www.linkedin.com" [(ngModel)]="link.linkedin">
+
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Facebook</label>
-                            <input type="text" class="form-control" placeholder="https://www.facebook,com">
+                            <input type="text" class="form-control" placeholder="https://www.facebook.com" [(ngModel)]="link.facebook">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Instagram</label>
-                            <input type="text" class="form-control" placeholder="https://www.instagram,com">
+                            <input type="text" class="form-control" placeholder="https://www.instagram.com" [(ngModel)]="link.instagram">
                         </div>
                     </div>
 
 
 
-                    <!-- <div class="col-lg-6">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Dribbble</label>
-                            <input type="text" class="form-control" placeholder="https://www.dribble,com">
+                            <label>Github</label>
+                            <input type="text" class="form-control" placeholder="https://www.github.com" [(ngModel)]="link.github">
                         </div>
-                    </div> -->
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>

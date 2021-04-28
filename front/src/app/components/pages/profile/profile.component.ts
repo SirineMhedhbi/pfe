@@ -3,7 +3,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducationService } from 'src/app/services/education.service';
 import { SkillsService } from 'src/app/services/skills.service';
-
+import { LinksService } from 'src/app/services/links.service';
 
 
 @Component({
@@ -20,7 +20,10 @@ export class ProfileComponent implements OnInit {
   educations=[  ]
   skill={name:"",pourcentage:50}
   skills=[]
-  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService) {
+  link={linkedin:"",facebook:"",instagram:"",github:""}
+  links=[]
+  role
+  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -73,6 +76,14 @@ export class ProfileComponent implements OnInit {
     this.skillsService.userSkills().subscribe((res:any)=>{
       this.skills = res.skills
     })
+
+    this.linksService.userLinks().subscribe((res:any)=>{
+      if (res.link){
+      this.link = res.link
+      console.log(res.link)}
+      console.log(this.link)
+    })
+    
   }
 
   editEducation(item){
@@ -122,4 +133,29 @@ removeSkill(id){
   })
  
 }
+editLink(item){
+  console.log(item)
+this.linksService.editLink(item).subscribe((res:any)=>{
+  console.log(res)
+
+})
+
+}
+addLink (link){
+  this.linksService.addLink(link).subscribe((res:any) =>{
+   this.links.push(res.link)
+  //  this.link = {linkedin: "", facebook:"", instagram:"", github:""}
+   console.log(res.link)
+  })
+
+}
+
+removeLink(id){
+  this.linksService.deleteLink(id).subscribe((res:any)=>{
+    this.links = this.links.filter(function(el) { return el.id != id });
+    console.log(this.links)
+  })
+ 
+}
+
 }

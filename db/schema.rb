@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_204127) do
+ActiveRecord::Schema.define(version: 2021_04_28_103539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_04_23_204127) do
     t.string "instagram"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cv_id"
+    t.string "github"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -131,6 +133,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_204127) do
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
   add_foreign_key "infos", "cvs"
+  add_foreign_key "links", "cvs"
   add_foreign_key "offers", "users"
   add_foreign_key "skills", "cvs"
   add_foreign_key "users", "companies"

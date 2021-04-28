@@ -38,8 +38,10 @@ Rails.application.routes.draw do
   delete "/skills/destroy/:id" => "skills#destroy"
 
 
-
-
+  post "/links/create"  => "links#create"
+  put "/links/update/:id" => "links#update"
+  get "/links/index" => "links#index"
+  delete "/links/destroy/:id" => "links#destroy"
 
 
 
