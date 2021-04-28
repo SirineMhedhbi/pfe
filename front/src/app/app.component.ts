@@ -3,6 +3,7 @@ import { Router, NavigationStart, NavigationCancel, NavigationEnd } from '@angul
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
+import { NgSelectConfig } from '@ng-select/ng-select';
 declare let $: any;
 
 @Component({
@@ -20,7 +21,15 @@ export class AppComponent implements OnInit {
     location: any;
     routerSubscription: any;
 
-    constructor(private router: Router , private authService: AuthService) {
+    constructor(private router: Router , private authService: AuthService, private config: NgSelectConfig) {
+        this.config.notFoundText = 'Custom not found';
+        this.config.appendTo = 'body';
+        // set the bindValue to global config when you use the same 
+        // bindValue in most of the place. 
+        // You can also override bindValue for the specified template 
+        // by defining `bindValue` as property
+        // Eg : <ng-select bindValue="some-new-value"></ng-select>
+        this.config.bindValue = 'value';
     }
 
     ngOnInit(){

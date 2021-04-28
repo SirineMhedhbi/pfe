@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { EducationService } from 'src/app/services/education.service';
+import { SkillsService } from 'src/app/services/skills.service';
+import { LinksService } from 'src/app/services/links.service';
 
 
 @Component({
@@ -14,7 +16,14 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
   user
-  constructor(private usersService: UsersService,private fb: FormBuilder) {
+  education={title:"",degree: "", institute:"", year:""}
+  educations=[  ]
+  skill={name:"",pourcentage:50}
+  skills=[]
+  link={linkedin:"",facebook:"",instagram:"",github:""}
+  links=[]
+  role
+  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -38,6 +47,8 @@ export class ProfileComponent implements OnInit {
 
 
    }
+  
+
 
   get f() { return this.form.controls; }
   ngOnInit(): void {
@@ -59,7 +70,92 @@ export class ProfileComponent implements OnInit {
       console.log(this.user)
     })
     
+    this.educationService.userEducations().subscribe((res:any)=>{
+      this.educations = res.educations
+    })
+    this.skillsService.userSkills().subscribe((res:any)=>{
+      this.skills = res.skills
+    })
+
+    this.linksService.userLinks().subscribe((res:any)=>{
+      if (res.link){
+      this.link = res.link
+      console.log(res.link)}
+      console.log(this.link)
+    })
     
   }
+
+  editEducation(item){
+
+    this.educationService.editEducation(item).subscribe((res:any)=>{
+      console.log(res)
+
+    })
+  }
+  addEducation(education){
+    this.educationService.addEducation(education).subscribe((res:any) =>{
+     this.educations.push(res.education)
+     this.education = {title:"",degree: "", institute:"", year:""}
+    })
+    
+  }
+  removeEducation(id){
+    this.educationService.deleteEducation(id).subscribe((res:any)=>{
+      let index = this.educations.findIndex(x => x.id == id);
+      this.educations = this.educations.filter(function(el) { return el.id != id });
+      console.log(this.educations)
+    })
+   
+  }
+  editSkill(item){
+      console.log(item)
+    this.skillsService.editSkill(item).subscribe((res:any)=>{
+      console.log(res)
+
+    })
+
+}
+
+addSkill(skill){
+  this.skillsService.addSkill(skill).subscribe((res:any) =>{
+   this.skills.push(res.skill)
+   this.skill = {name: "", pourcentage:50}
+   console.log(res.skill)
+  })
+  
+}
+removeSkill(id){
+  this.skillsService.deleteSkill(id).subscribe((res:any)=>{
+    // let index = this.skills.findIndex(x => x.id == id);
+    this.skills = this.skills.filter(function(el) { return el.id != id });
+    console.log(this.skills)
+  })
+ 
+}
+editLink(item){
+  console.log(item)
+this.linksService.editLink(item).subscribe((res:any)=>{
+  console.log(res)
+
+})
+
+}
+addLink (link){
+  this.linksService.addLink(link).subscribe((res:any) =>{
+   this.links.push(res.link)
+  //  this.link = {linkedin: "", facebook:"", instagram:"", github:""}
+   console.log(res.link)
+  })
+
+}
+
+removeLink(id){
+  this.linksService.deleteLink(id).subscribe((res:any)=>{
+    this.links = this.links.filter(function(el) { return el.id != id });
+    console.log(this.links)
+  })
+ 
+}
 
 }

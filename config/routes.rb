@@ -19,14 +19,29 @@ Rails.application.routes.draw do
   get "/offers/show/:id" => "offer#show"
   delete "/offers/destroy/:id" => "offer#destroy"
 
+
+  post "/educations/create"  => "educations#create"
+  put "/educations/update/:id" => "educations#update"
+  get "/educations/index" => "educations#index"
+  # get "/educations/show/:id" => "educations#show"
+  delete "/educations/destroy/:id" => "educations#destroy"
+
   post "/infos/create"  => "info#create"
 
 
   post "/cvs/create"  => "cv#create"
 
 
+  post "/skills/create"  => "skills#create"
+  put "/skills/update/:id" => "skills#update"
+  get "/skills/index" => "skills#index"
+  delete "/skills/destroy/:id" => "skills#destroy"
 
 
+  post "/links/create"  => "links#create"
+  put "/links/update/:id" => "links#update"
+  get "/links/index" => "links#index"
+  delete "/links/destroy/:id" => "links#destroy"
 
 
 

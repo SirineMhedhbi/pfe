@@ -39,6 +39,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { UserRequestInterceptor } from './user.request.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { AuthGuard } from './services/auth.guard';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -84,6 +86,7 @@ import { map } from 'rxjs/operators';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgSelectModule,
     
     
 
@@ -92,8 +95,9 @@ import { map } from 'rxjs/operators';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UserRequestInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

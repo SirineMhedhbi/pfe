@@ -1,6 +1,6 @@
 class CompanyController < ApplicationController
 
-    before_action :authenticate_api_user!
+    before_action :authenticate_api_user! ,except:[:index]
 
 
 
