@@ -34,6 +34,10 @@ export class ProfileComponent implements OnInit {
       address: new FormControl('', Validators.compose([Validators.required])),
       role: new FormControl('', Validators.compose([Validators.required])),
       gender: new FormControl('', Validators.compose([Validators.required])),
+      description: new FormControl('', Validators.compose([Validators.required])),
+      post: new FormControl('', Validators.compose([Validators.required])),
+
+
     });
    }
     
@@ -42,8 +46,6 @@ export class ProfileComponent implements OnInit {
     this.usersService.updateUser(this.form.value,this.user.user.id).subscribe(result =>{
       console.log(result)
     })
-
-    
 
 
    }
@@ -65,6 +67,10 @@ export class ProfileComponent implements OnInit {
         address: new FormControl(this.user.user.address, Validators.compose([Validators.required])),
         role: new FormControl(this.user.user.role, Validators.compose([Validators.required])),
         gender: new FormControl(this.user.user.gender, Validators.compose([Validators.required])),
+        description: new FormControl(this.user.user.description, Validators.compose([Validators.required])),
+        post: new FormControl(this.user.user.post, Validators.compose([Validators.required])),
+
+
       });
     
       console.log(this.user)

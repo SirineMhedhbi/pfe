@@ -24,8 +24,9 @@
                         <img src="assets/img/home-1/companies/1.png" alt="Logo">
 
                         <div class="company-logo-inner">
-                            <h3>Winbrans.com</h3>
-                            <p><i class="icofont-location-pin"></i>210-27 Quadra, Market Street, Victoria Canada</p>
+                            <h3>{{company?.company.title}}</h3>
+                            <p>
+                                <i class="icofont-location-pin"></i> {{company?.company.location}} </p>
                         </div>
                     </div>
 
@@ -44,17 +45,18 @@
                         <h3>Find Us:</h3>
 
                         <ul>
-                            <li><a href="#" target="_blank"><i class="icofont-web"></i> gable.com</a></li>
-                            <li><a href="#" target="_blank"><i class="icofont-facebook"></i> gable.com</a></li>
-                            <li><a href="#" target="_blank"><i class="icofont-linkedin"></i> gable.com</a></li>
-                            <li><a href="#" target="_blank"><i class="icofont-twitter"></i> gable.com</a></li>
-                            <li><a href="#" target="_blank"><i class="icofont-google-plus"></i> gable.com</a></li>
+                            <li><a href="#" target="_blank"><i class="icofont-web"></i>{{company?.company.site}}</a></li>
+                            <li><a href="#" target="_blank"><i class="icofont-facebook"></i> {{company?.company.facebook}}</a></li>
+                            <li><a href="#" target="_blank"><i class="icofont-linkedin"></i> {{company?.company.linkedin}}</a></li>
+                            <li><a href="#" target="_blank"><i class="icofont-twitter"></i> {{company?.company.twitter}}</a></li>
+                            <li><a href="#" target="_blank"><i class="icofont-google-plus"></i> {{company?.company.gmail}}</a></li>
+
                         </ul>
                     </div>
 
                     <div class="company-details-description">
                         <h3>Description</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p> {{company?.company.description}} </p>
                     </div>
 
                     <div class="text-center">
@@ -63,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <!-- <div class="col-lg-4">
                 <div class="company-details-item">
                     <div class="single-resume-category">
                         <h3>Job Categories</h3>
@@ -90,7 +92,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

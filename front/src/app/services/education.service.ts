@@ -21,6 +21,7 @@ export class EducationService {
   userEducations(){
     return this.http.get('/educations/index')
   }
+ 
 
   deleteEducation(id){
     return this.http.delete('/educations/destroy/'+ id)

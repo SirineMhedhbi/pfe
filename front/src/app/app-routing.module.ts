@@ -28,6 +28,9 @@ import { BlogComponent } from './components/pages/blog/blog.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { AuthGuard } from './services/auth.guard';
+import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
+import { EditJobComponent } from './services/edit-job/edit-job.component';
+import { MyCompanyComponent } from './components/my-company/my-company.component';
 
 const routes: Routes = [
     {path: '', component: HomeOneComponent},
@@ -39,13 +42,13 @@ const routes: Routes = [
     {path: 'job-details', component: JobDetailsComponent},
     {path: 'post-a-job', component: PostAJobComponent},
     {path: 'candidate-list', component: CandidateListComponent},
-    {path: 'candidate-details', component: CandidateDetailsComponent},
+    {path: 'candidate-details/:id', component: CandidateDetailsComponent},
     {path: 'single-resume', component: SingleResumeComponent},
     {path: 'submit-resume', component: SubmitResumeComponent},
     {path: 'pricing', component: PricingComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'company-list', component: CompanyListComponent},
-    {path: 'company-details', component: CompanyDetailsComponent},
+    {path: 'company-details/:id', component: CompanyDetailsComponent},
     {path: 'login', component: LoginComponent},
     {path: 'create-account', component: CreateAccountComponent},
     {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard]},
@@ -57,6 +60,10 @@ const routes: Routes = [
     {path: 'blog', component: BlogComponent},
     {path: 'blog-details', component: BlogDetailsComponent},
     {path: 'contact', component: ContactComponent},
+    {path: 'my-jobs', component: MyJobsComponent},
+    {path: 'edit-job/:id', component: EditJobComponent},
+    {path: 'my-company', component: MyCompanyComponent},
+
     
     // Here add new pages component
 

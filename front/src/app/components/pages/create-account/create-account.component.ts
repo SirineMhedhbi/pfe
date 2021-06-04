@@ -79,6 +79,8 @@ get f() { return this.form.controls; }
       address: new FormControl('', Validators.compose([Validators.required])),
       role: new FormControl('', Validators.compose([Validators.required])),
       gender: new FormControl('', Validators.compose([Validators.required])),
+      description: new FormControl('', Validators.compose([Validators.required])),
+      post: new FormControl('', Validators.compose([Validators.required])),
       company_id: new FormControl(''),
 
 

@@ -9,9 +9,14 @@ class CompanyController < ApplicationController
         if  !Company.where(id:params[:id]).present?
             render json: {message:"company not found"}
         else 
-        @Company  = Company.find(params[:id])
-        render json: { Company: @Company}
+        @company  = Company.find(params[:id])
+        render json: { company: @company}
         end
+    end
+    
+    def userCompany
+        @company= current_api_user.company
+        render json: { company: @company}
     end
 
 
@@ -35,6 +40,11 @@ class CompanyController < ApplicationController
         render json: {message: "success destroy"}
         end
      end
+
+     def updateCompany
+        @company = current_api_user.company.update(company_params)
+        render json: { company: @company}
+     end
      
  
     def update
@@ -52,7 +62,7 @@ class CompanyController < ApplicationController
 
     private
     def company_params
-    params.require(:company).permit(:title,:category,:location)
+    params.require(:company).permit(:title,:category,:location, :linkedin, :github, :facebook, :instagram, :description, :gmail, :site, :twitter)
     end
     
 end

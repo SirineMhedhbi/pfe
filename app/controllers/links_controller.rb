@@ -2,8 +2,9 @@ class LinksController < ApplicationController
     before_action :authenticate_api_user!
     
     def create
+
         if link_params[:id]==0
-            link = Link.create(link_params)
+            link = Link.create(link_params.except(:id))
             link.cv = current_api_user.cv
             link.save! 
         
