@@ -3,18 +3,21 @@ class OfferController < ApplicationController
 
 
     def create
+        
         offer = Offer.create(offer_params)
+        offer.user=current_api_user
         offer.save!
         render json: { Offer: offer, user: current_api_user}
     end
 
     def index
-        @offers= Offer.all
-        render json: { offers: @offers}
+        @offers = current_api_user.offers
+        render json: { offers: @offers, company: current_api_user.company }
 
     end
 
     def update
+        
         if  !Offer.where(id:params[:id]).present?
             render json: {message:"offer not found"}
         else 
@@ -45,7 +48,7 @@ class OfferController < ApplicationController
  
     private
      def offer_params
-      params.require(:offer).permit(:title, :category, :name, :location, :offer_type, :user_id, :job_experience, :job_level, :job_salary, :job_qualification)
+      params.require(:offer).permit(:title, :category, :company_name, :location, :job_experience, :description, :job_salary, :job_time)
      end
 
 end

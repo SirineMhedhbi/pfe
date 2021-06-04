@@ -1,5 +1,5 @@
 class EducationsController < ApplicationController
-    before_action :authenticate_api_user!
+    before_action :authenticate_api_user! 
 
 
     def create
@@ -14,6 +14,8 @@ class EducationsController < ApplicationController
         render json: { educations: @educations}
 
     end
+     
+    
 
     def update
         if  !Education.where(id:params[:id]).present?

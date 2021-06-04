@@ -51,7 +51,10 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
         "name":registration.name,
         "nickname":registration.nickname,
         "birthday":registration.birthday,
-        "company_id":registration.company_id
+        "company_id":registration.company_id,
+        "description":registration.description,
+        "post":registration.post,
+
     },
       this.jsonHeader
     );

@@ -26,6 +26,10 @@ export class UsersService {
         "name":user.name,
         "nickname":user.nickname,
         "birthday":user.birthday,
+        "description":user.description,
+        "post":user.post,
+
+
 
     },)
   }
@@ -35,5 +39,12 @@ export class UsersService {
   ShowUser (){
     return this.http.get('/users/show');
 
+  }
+
+  candidatList(){
+    return this.http.get('/users/index',)
+  }
+  cvUser(id){
+    return this.http.get('/cvs/cvUser/'+ id)
   }
 }

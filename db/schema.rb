@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_103539) do
+ActiveRecord::Schema.define(version: 2021_06_02_102756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 2021_04_28_103539) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "github"
+    t.string "linkedin"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "gmail"
+    t.string "site"
+    t.string "twitter"
   end
 
   create_table "cvs", force: :cascade do |t|
@@ -69,15 +76,15 @@ ActiveRecord::Schema.define(version: 2021_04_28_103539) do
   create_table "offers", force: :cascade do |t|
     t.string "title"
     t.string "category"
-    t.string "name"
+    t.string "company_name"
     t.string "location"
-    t.string "offer_type"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "job_salary"
     t.integer "job_experience"
-    t.integer "job_qualification"
+    t.integer "job_time"
     t.integer "job_level"
   end
 
@@ -124,6 +131,8 @@ ActiveRecord::Schema.define(version: 2021_04_28_103539) do
     t.string "gender"
     t.float "longitude"
     t.float "latitude"
+    t.string "description"
+    t.string "post"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

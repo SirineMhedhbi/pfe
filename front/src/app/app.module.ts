@@ -41,6 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { AuthGuard } from './services/auth.guard';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
+import { EditJobComponent } from './services/edit-job/edit-job.component';
+import { MyCompanyComponent } from './components/my-company/my-company.component';
 
 
 
@@ -78,6 +81,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ContactComponent,
     BlogDetailsComponent,
     BlogComponent,
+    MyJobsComponent,
+    EditJobComponent,
+    MyCompanyComponent,
     
   ],
   imports: [

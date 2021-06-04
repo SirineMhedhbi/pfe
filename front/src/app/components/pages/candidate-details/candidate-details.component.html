@@ -27,9 +27,9 @@
                             <h3>Contact Info</h3>
 
                             <ul>
-                                <li><i class="icofont-ui-call"></i> <a href="tel:+07554332322">Call : +07 554 332 322</a></li>
-                                <li><i class="icofont-email"></i> <a href="mailto:hello@peof.com">hello@peof.com</a></li>
-                                <li><i class="icofont-location-pin"></i> 4th Floor, 408 No Chamber</li>
+                                <li><i class="icofont-ui-call"></i> <a href="tel:+07554332322">{{user?.phone}}</a></li>
+                                <li><i class="icofont-email"></i> <a href="mailto:hello@peof.com">{{user?.email}}</a></li>
+                                <li><i class="icofont-location-pin"></i> {{user?.address}}</li>
                             </ul>
                         </div>
 
@@ -37,48 +37,51 @@
                             <h3>Social Links</h3>
 
                             <ul>
-                                <li><i class="icofont-facebook"></i> <a href="#" target="_blank">https://www.facebook.com</a></li>
-                                <li><i class="icofont-instagram"></i> <a href="#" target="_blank">https://www.instagram.com</a></li>
-                                <li><i class="icofont-linkedin"></i> <a href="#" target="_blank">https://www.linkedin.com</a></li>
-                                <li><i class="icofont-twitter"></i> <a href="#" target="_blank">https://www.twitter.com</a></li>
+                                <li><i class="icofont-facebook"></i> <a href="#" target="_blank">{{links?.facebook}}</a></li>
+                                <li><i class="icofont-instagram"></i> <a href="#" target="_blank">{{links?.instagram}}</a></li>
+                                <li><i class="icofont-linkedin"></i> <a href="#" target="_blank">{{links?.linkedin}}</a></li>
+                                <li><i class="icofont-twitter"></i> <a href="#" target="_blank">{{links?.github}}</a></li>
                             </ul>
                         </div>
 
                         <div class="single-profile-skills">
                             <h3>My Skills</h3>
 
-                            <div class="skill">
+                            <!-- <div class="skill" >
                                 <p>Frontend Design</p>
                                 <div class="skill-bar skill1 wow slideInLeft animated">
                                     <span class="skill-count1">70%</span>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="skill">
+                            <!-- <div class="skill">
                                 <p>Software Development</p>
                                 <div class="skill-bar skill1 skill2 wow slideInLeft animated">
                                     <span class="skill-count1">90%</span>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="skill">
-                                <p>UIUX Design</p>
+                            <div class="skill" *ngFor="let item of skills">
+                                <p>{{item.name}}</p>
                                 <div class="skill-bar skill1 skill3 wow slideInLeft animated">
-                                    <span class="skill-count1">75%</span>
+                                    <span class="skill-count1">{{item.pourcentage}}%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-lg-7">
                 <div class="single-profile-item">
                     <div class="single-profile-right">
                         <div class="single-profile-name">
-                            <h2>Jac Jacson</h2>
-                            <span>Web Consultant</span>
-                            <p>Bachelor of Business Administation university of Gable</p>
+                            <h2>{{user?.name}} {{user?.nickname}}</h2>
+                            <!-- <h2>{{user?.nickname}}</h2> -->
+
+
+                            <!-- <span>{{user?.nickname}}</span> -->
+                            <p>{{user?.post}}</p>
                             <a routerLink="/">View CV <i class="icofont-eye-alt"></i></a>
                             <a routerLink="/">Download CV <i class="icofont-download"></i></a>
                         </div>
@@ -90,8 +93,7 @@
                             </div>
 
                             <div class="single-profile-paragraph">
-                                <p class="single-profile-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                                <p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                <p class="single-profile-p">{{user?.description}}</p>
                             </div>
 
                             <div class="single-profile-heading">
@@ -99,29 +101,31 @@
                                 <h3>Education</h3>
                             </div>
 
-                            <div class="single-profile-paragraph">
+                            <div class="single-profile-paragraph" *ngFor="let item of educations">
                                 <ul>
-                                    <li>PHD degree in Criminal Law at University of Gable Internatinal (2006)</li>
-                                    <li>Master of Family Law  at University of Gable International  (2002)</li>
-                                    <li>MBBS LLB (Hon’s) in  at University of Gable International (2002)</li>
-                                    <li>Higher Secondary Certificate at Gable International collage  (1991)</li>
+                                    <li>
+                                        <h6>{{item.title}} :</h6>
+                                        <p>{{item.institute}}</p>
+
+                                    </li>
+
                                 </ul>
                             </div>
 
-                            <div class="single-profile-heading">
+                            <!-- <div class="single-profile-heading">
                                 <span></span>
                                 <h3>Research</h3>
-                            </div>
+                            </div> -->
 
-                            <div class="single-profile-paragraph">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra</p>
-                            </div>
+                            <!-- <div class="single-profile-paragraph">
+                                <p>{{item.institute}}</p>
+                            </div> -->
 
                             <div class="single-profile-heading">
                                 <span></span>
                                 <h3>Work Experiences</h3>
                             </div>
-                            
+
                             <div class="single-profile-paragraph">
                                 <ul>
                                     <li>Hand On experience with Wordpress</li>

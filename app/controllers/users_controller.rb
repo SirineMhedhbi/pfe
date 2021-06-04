@@ -23,6 +23,10 @@ class UsersController < ApplicationController
 
         
     end
+    def index
+        @users= User.candidat.all
+        render json: { users: @users}
+    end
 
     def show
       
@@ -31,7 +35,7 @@ class UsersController < ApplicationController
     
       private
      def user_params
-      params.require(:user).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender)
+      params.require(:user).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender, :description, :post)
      end
 
 end
