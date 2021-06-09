@@ -31,6 +31,8 @@ import { AuthGuard } from './services/auth.guard';
 import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
 import { EditJobComponent } from './services/edit-job/edit-job.component';
 import { MyCompanyComponent } from './components/my-company/my-company.component';
+import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
+
 
 const routes: Routes = [
     {path: '', component: HomeOneComponent},
@@ -39,7 +41,7 @@ const routes: Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'job-list', component: JobListComponent},
     {path: 'favourite-job', component: FavouriteJobComponent},
-    {path: 'job-details', component: JobDetailsComponent},
+    {path: 'job-details/:id', component: JobDetailsComponent},
     {path: 'post-a-job', component: PostAJobComponent},
     {path: 'candidate-list', component: CandidateListComponent},
     {path: 'candidate-details/:id', component: CandidateDetailsComponent},
@@ -63,6 +65,7 @@ const routes: Routes = [
     {path: 'my-jobs', component: MyJobsComponent},
     {path: 'edit-job/:id', component: EditJobComponent},
     {path: 'my-company', component: MyCompanyComponent},
+    {path: 'offers-details/:id', component: OffersDetailsComponent},
 
     
     // Here add new pages component

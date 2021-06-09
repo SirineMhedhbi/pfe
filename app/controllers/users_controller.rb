@@ -27,6 +27,11 @@ class UsersController < ApplicationController
         @users= User.candidat.all
         render json: { users: @users}
     end
+    
+    def companies
+        @companies= User.Company.all
+        render json: { companies: @companies}
+    end
 
     def show
       

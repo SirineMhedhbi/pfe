@@ -4,6 +4,7 @@ import { EducationService } from 'src/app/services/education.service';
 import { LinksService } from 'src/app/services/links.service';
 import { SkillsService } from 'src/app/services/skills.service';
 import { UsersService } from 'src/app/services/users.service';
+import { WorkService } from 'src/app/services/work.service';
 
 @Component({
   selector: 'app-candidate-details',
@@ -20,9 +21,10 @@ export class CandidateDetailsComponent implements OnInit {
   links
   infos 
   user
+  works
   
 
-  constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router) { }
+  constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router,private worksService: WorkService) { }
 
   ngOnInit(): void {
   //   this.usersService.candidatList().subscribe((res:any)=>{
@@ -46,17 +48,12 @@ export class CandidateDetailsComponent implements OnInit {
     console.log(this.educations)
     this.skills=res.skills
     console.log(this.skills)
+    this.works=res.works
+    console.log(this.works)
 
 
 
-    // this.educations = res
-    // console.log(this.educations)
-    // this.skills = res
-    // console.log(this.skills)
-    // this.links = res
-    // console.log(this.links)
-    // this.infos = res
-    // console.log(this.infos)
+
 
   })
   }

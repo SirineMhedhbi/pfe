@@ -18,7 +18,7 @@
 <section class="job-area job-area-two pt-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <div class="job-item">
                     <img src="assets/img/home-1/jobs/1.png" alt="Job">
 
@@ -40,33 +40,37 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-6">
+            <div class="col-lg-6" *ngFor="let item of offers">
                 <div class="job-item">
                     <img src="assets/img/home-1/jobs/2.png" alt="Job">
 
                     <div class="job-inner align-items-center">
                         <div class="job-inner-left">
-                            <h3>Android Developer</h3>
-                            <a routerLink="/company-details">Infiniza.com</a>
+                            <h3>{{item.title}}</h3>
+                            <a routerLink="/company-details/{{item.id}}">{{item.title}}.com</a>
                             <ul>
-                                <li><i class="icofont-money-bag"></i> $20k - $25k</li>
-                                <li><i class="icofont-location-pin"></i> Location 210-27 Quadra, Market Street, Victoria Canada</li>
+                                <li><i class="icofont-money-bag"></i>
+                                    <p> {{item.job_salary}} </p>
+                                </li>
+                                <li><i class="icofont-location-pin"></i>
+                                    <p>{{item.location}}</p>
+                                </li>
                             </ul>
                         </div>
 
                         <div class="job-inner-right">
                             <ul>
-                                <li><a routerLink="/create-account">Apply</a></li>
-                                <li><span>Part Time</span></li>
+                                <li><a routerLink="/job-details/{{item.id}}">See More</a></li>
+                                <li><span>{{item.job_time}}</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6"> 
+            <!-- <div class="col-lg-6"> 
                 <div class="job-item">
                     <img src="assets/img/home-1/jobs/3.png" alt="Job">
 
@@ -208,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { EducationService } from 'src/app/services/education.service';
 import { SkillsService } from 'src/app/services/skills.service';
 import { LinksService } from 'src/app/services/links.service';
+import { WorkService } from 'src/app/services/work.service';
 
 
 @Component({
@@ -23,7 +24,9 @@ export class ProfileComponent implements OnInit {
   link={linkedin:"",facebook:"",instagram:"",github:""}
   links=[]
   role
-  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService) {
+  work={title:"",begin_date:"",end_date:"",company:"",description:""}
+  works=[]
+  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private worksService: WorkService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -88,6 +91,10 @@ export class ProfileComponent implements OnInit {
       this.link = res.link
       console.log(res.link)}
       console.log(this.link)
+    })
+
+    this.worksService.userWorks().subscribe((res:any)=>{
+      this.works = res.works
     })
     
   }
@@ -160,6 +167,30 @@ removeLink(id){
   this.linksService.deleteLink(id).subscribe((res:any)=>{
     this.links = this.links.filter(function(el) { return el.id != id });
     console.log(this.links)
+  })
+ 
+}
+
+editWork(item){
+
+  this.worksService.editWork(item).subscribe((res:any)=>{
+    console.log(res)
+
+  })
+}
+addWork(work){
+  this.worksService.addWork(work).subscribe((res:any) =>{
+   this.works.push(res.work)
+   this.work =   work={title:"",begin_date:"",end_date:"",company:"",description:""}
+
+  })
+  
+}
+removeWork(id){
+  this.worksService.deleteWork(id).subscribe((res:any)=>{
+    let index = this.works.findIndex(x => x.id == id);
+    this.works = this.works.filter(function(el) { return el.id != id });
+    console.log(this.works)
   })
  
 }

@@ -1,6 +1,6 @@
-class CreateWorkExp < ActiveRecord::Migration[6.1]
+class CreateWork < ActiveRecord::Migration[6.1]
   def change
-    create_table :work_exps do |t|
+    create_table :works do |t|
       t.string :title
       t.date :begin_date
       t.date :end_date

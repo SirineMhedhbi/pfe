@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -44,6 +46,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
 import { EditJobComponent } from './services/edit-job/edit-job.component';
 import { MyCompanyComponent } from './components/my-company/my-company.component';
+import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
 
 
 
@@ -84,6 +87,7 @@ import { MyCompanyComponent } from './components/my-company/my-company.component
     MyJobsComponent,
     EditJobComponent,
     MyCompanyComponent,
+    OffersDetailsComponent,
     
   ],
   imports: [
@@ -93,6 +97,8 @@ import { MyCompanyComponent } from './components/my-company/my-company.component
     HttpClientModule,
     ReactiveFormsModule,
     NgSelectModule,
+    TagInputModule, 
+    BrowserAnimationsModule,
     
     
 

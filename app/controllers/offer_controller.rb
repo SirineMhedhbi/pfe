@@ -1,10 +1,10 @@
 class OfferController < ApplicationController
-    before_action :authenticate_api_user!
-
+    before_action :authenticate_api_user! ,except:[:offer]
 
     def create
         
         offer = Offer.create(offer_params)
+        
         offer.user=current_api_user
         offer.save!
         render json: { Offer: offer, user: current_api_user}
@@ -14,6 +14,11 @@ class OfferController < ApplicationController
         @offers = current_api_user.offers
         render json: { offers: @offers, company: current_api_user.company }
 
+    end
+
+    def offer
+        @offers = Offer.all
+        render json: { offers: @offers}
     end
 
     def update
@@ -41,14 +46,16 @@ class OfferController < ApplicationController
         if  !Offer.where(id:params[:id]).present?
             render json: {message:"offer not found"}
         else 
-        @offer = Offer.find(params[:id])
-        render json: { offer: @offer}
+            @offer = Offer.find(params[:id])
+            render json: @offer.to_json(
+                :include => {:user => {:only => [:phone ,:address, :email]}} )
+            
         end 
     end
  
     private
      def offer_params
-      params.require(:offer).permit(:title, :category, :company_name, :location, :job_experience, :description, :job_salary, :job_time)
+      params.require(:offer).permit(:title, :category, :company_name, :location, :job_experience, :description, :job_salary, :job_time, :qualification, :contract, offerSkills: [])
      end
 
 end
