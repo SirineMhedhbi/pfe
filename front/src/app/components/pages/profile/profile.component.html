@@ -331,6 +331,105 @@
         </div> -->
 
             </div>
+            <div class="create-education create-education-two">
+                <div class="create-education-wrap">
+                    <div class="create-education-left">
+                        <h3>Work Experience</h3>
+                    </div>
+
+                    <div class="create-education-right">
+                        <!-- <a routerLink="/">Edit</a> -->
+                        <button (click)="addWork(work)" [disabled]="work.title == '' || work.begin_date == '' || work.end_date == '' || work.company == ''">Add Work</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" [(ngModel)]="work.title">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" class="form-control" [(ngModel)]="work.company">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Begin Date</label>
+                            <input type="date" class="form-control" [(ngModel)]="work.begin_date">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" [(ngModel)]="work.end_date">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control" [(ngModel)]="work.description">
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="create-education create-education-two" *ngFor="let item of works">
+                    <div class="create-education-wrap">
+                        <div class="create-education-left">
+                            <h3>Work Experience</h3>
+                        </div>
+
+                        <div class="create-education-right">
+                            <button type="submit" (click)="editWork(item)" [disabled]="item.title == '' || item.company == '' ">Edit </button>
+                            <button class="delete-btn" (click)="removeWork(item.id)">Remove</button>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.title">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.company">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Begin Date</label>
+                                <input type="date" class="form-control" [(ngModel)]="item.begin_date">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" [(ngModel)]="item.end_date">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.description">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
 
             <div class="create-skills">
                 <div class="create-skills-wrap">
@@ -346,6 +445,8 @@
 
                     </div>
                 </div>
+
+
 
                 <div class="row">
                     <div class="col-lg-6">

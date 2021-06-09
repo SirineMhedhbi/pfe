@@ -13,6 +13,7 @@ class CompanyController < ApplicationController
         render json: { company: @company}
         end
     end
+   
     
     def userCompany
         @company= current_api_user.company

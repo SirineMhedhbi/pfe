@@ -12,6 +12,8 @@ import { UsersService } from '../users.service';
 export class EditJobComponent implements OnInit {
   form: FormGroup;
   job
+  autocompleteItems = ['Item1', 'item2', 'item3'];
+
   constructor(private usersService: UsersService,private jobsService: JobsService,private fb: FormBuilder,private router: ActivatedRoute,private route:Router) { 
     this.form = this.fb.group({
       title: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -22,6 +24,10 @@ export class EditJobComponent implements OnInit {
       job_salary: new FormControl("", Validators.compose([Validators.required])),
       job_time: new FormControl("", Validators.compose([Validators.required])),
       job_experience: new FormControl("", Validators.compose([Validators.required])),
+      offerSkills: new FormControl('', Validators.compose([Validators.required])),
+      contract: new FormControl('', Validators.compose([Validators.required])),
+      qualification: new FormControl('', Validators.compose([Validators.required])),
+
 
   });
  
@@ -47,6 +53,10 @@ get f() { return this.form.controls; }
         job_salary: new FormControl(this.job.offer.job_salary, Validators.compose([Validators.required])),
         job_time: new FormControl(this.job.offer.job_time, Validators.compose([Validators.required])),
         job_experience: new FormControl(this.job.offer.job_experience, Validators.compose([Validators.required])),
+        offerSkills: new FormControl(this.job.offer.offerSkills, Validators.compose([Validators.required])),
+        contract: new FormControl(this.job.offer.contract, Validators.compose([Validators.required])),
+        qualification: new FormControl(this.job.offer.qualification, Validators.compose([Validators.required])),
+  
   
     });
   })

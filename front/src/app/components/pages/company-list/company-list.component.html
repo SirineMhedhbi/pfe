@@ -18,16 +18,17 @@
 <section class="companies-area companies-area-two pt-100">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-3" *ngFor="let item of companies">
                 <div class="companies-item wow fadeInUp" data-wow-delay=".3s">
                     <img src="assets/img/home-1/companies/1.png" alt="Companies">
-                    <h3><a routerLink="/company-details">Winbrans.com</a></h3>
-                    <p><i class="icofont-location-pin"></i> Quadra, Street, Canada</p>
-                    <a class="companies-btn" routerLink="/create-account">Hiring</a>
+
+                    <h3>{{item.title}}</h3>
+                    <p><i class="icofont-location-pin"></i> {{item.location}}</p>
+                    <a class="companies-btn" routerLink="/company-details/{{item.id}}">See More About As</a>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
+            <!-- <div class="col-sm-6 col-lg-3">
                 <div class="companies-item wow fadeInUp" data-wow-delay=".4s">
                     <img src="assets/img/home-1/companies/2.png" alt="Companies">
                     <h3><a routerLink="/company-details">Infiniza.com</a></h3>
@@ -88,7 +89,7 @@
                     <p><i class="icofont-location-pin"></i> New DC, America</p>
                     <a class="companies-btn" routerLink="/create-account">Hiring</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

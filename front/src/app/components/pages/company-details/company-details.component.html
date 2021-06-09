@@ -59,8 +59,8 @@
                         <p> {{company?.company.description}} </p>
                     </div>
 
-                    <div class="text-center">
-                        <a class="job-details-btn" routerLink="/create-account">Apply Now</a>
+                    <div class="text-center" *ngIf="(role == 'candidat')">
+                        <a class="job-details-btn" routerLink="/job-list/{{company?.id}}"> See More About Our Offers</a>
                     </div>
                 </div>
             </div>

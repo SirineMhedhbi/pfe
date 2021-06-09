@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_102756) do
+ActiveRecord::Schema.define(version: 2021_06_08_140300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,9 @@ ActiveRecord::Schema.define(version: 2021_06_02_102756) do
     t.integer "job_salary"
     t.integer "job_experience"
     t.integer "job_time"
-    t.integer "job_level"
+    t.string "qualification"
+    t.string "contract"
+    t.string "offerSkills", default: [], array: true
   end
 
   create_table "skills", force: :cascade do |t|
@@ -139,6 +141,27 @@ ActiveRecord::Schema.define(version: 2021_06_02_102756) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "work_exps", force: :cascade do |t|
+    t.string "title"
+    t.date "begin_date"
+    t.date "end_date"
+    t.string "company"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.string "title"
+    t.date "begin_date"
+    t.date "end_date"
+    t.string "company"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "cv_id"
+  end
+
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
   add_foreign_key "infos", "cvs"
@@ -146,4 +169,5 @@ ActiveRecord::Schema.define(version: 2021_06_02_102756) do
   add_foreign_key "offers", "users"
   add_foreign_key "skills", "cvs"
   add_foreign_key "users", "companies"
+  add_foreign_key "works", "cvs"
 end

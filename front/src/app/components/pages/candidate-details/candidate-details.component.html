@@ -126,12 +126,17 @@
                                 <h3>Work Experiences</h3>
                             </div>
 
-                            <div class="single-profile-paragraph">
+                            <div class="single-profile-paragraph" *ngFor="let item of works">
                                 <ul>
-                                    <li>Hand On experience with Wordpress</li>
-                                    <li> Better knowledge of front-end technologies, including HTML5, CSS3, JavaScript, jQuery</li>
-                                    <li>Belief – believing in yourself and those around you</li>
-                                    <li>Experience designing and developing responsive design websites</li>
+                                    <li>
+                                        <h6>{{item.title}} :</h6>
+                                        <p>{{item.company}}</p>
+                                        <p>{{item.begin_date}}</p>
+                                        <p>{{item.end_date}}</p>
+                                        <p>{{item.company}}</p>
+                                        <p>{{item.description}}</p>
+                                    </li>
+
                                 </ul>
                             </div>
                         </div>

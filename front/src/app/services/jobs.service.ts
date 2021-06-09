@@ -11,49 +11,56 @@ export class JobsService {
 
   addJob(job) {
     console.log(job)
-    
+
     return this.http.post('/offers/create',
       {
-        "title":job.offer.title,
-        "category":job.offer.category,
-        "company_name":job.offer.company_name,
-        "location":job.offer.location,
-        "offer_type":job.offer.offer_type,
-        "job_experience":job.offer.job_experience,
-        "description":job.offer.description,
-        "job_salary":job.offer.job_salary,
-        "job_time":job.offer.job_time,
+        "title": job.offer.title,
+        "category": job.offer.category,
+        "company_name": job.offer.company_name,
+        "location": job.offer.location,
+        "offer_type": job.offer.offer_type,
+        "job_experience": job.offer.job_experience,
+        "description": job.offer.description,
+        "job_salary": job.offer.job_salary,
+        "job_time": job.offer.job_time,
+        "qualification": job.offer.qualification,
+        "offerSkills": job.offer.offerSkills,
+        "contract": job.offer.contract,
       })
   }
 
-  userJobs(){
-    
+  userJobs() {
+
     return this.http.get('/offers/index')
   }
 
-  deleteJob(id){
-    return this.http.delete('/offers/destroy/'+ id)
+  deleteJob(id) {
+    return this.http.delete('/offers/destroy/' + id)
   }
 
-  editJob(job,id){
+  editJob(job, id) {
     console.log(job)
-    return this.http.put('/offers/update/'+ id,
-    {
-      "title":job.title,
-      "category":job.category,
-      "company_name":job.company_name,
-      "location":job.location,
-      "offer_type":job.offer_type,
-      "job_experience":job.job_experience,
-      "description":job.description,
-      "job_salary":job.job_salary,
-      "job_time":job.job_time,
-      
-    })
+    return this.http.put('/offers/update/' + id,
+      {
+        "title": job.title,
+        "category": job.category,
+        "company_name": job.company_name,
+        "location": job.location,
+        "offer_type": job.offer_type,
+        "job_experience": job.job_experience,
+        "description": job.description,
+        "job_salary": job.job_salary,
+        "job_time": job.job_time,
+        "qualification": job.qualification,
+        "offerSkills": job.offerSkills,
+        "contract": job.contract,
+      })
   }
-  showJob (id){
-    return this.http.get('/offers/show/'+id);
-
+  showJob(id) {
+    return this.http.get('/offers/show/' + id);
+  }
+  offersList() {
+    return this.http.get('/offers/offer',)
   }
 }
 

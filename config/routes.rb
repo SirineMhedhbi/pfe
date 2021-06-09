@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   get "/company/userCompany" => "company#userCompany"
   put "/company/updateCompany" => "company#updateCompany"
 
+
   delete "/users/destroy/:id" => "users#destroy"
   get "/users/show" => "users#show"
   put "/users/update/:id" => "users#update"
   get "/users/index" => "users#index"
+  get "/users/companies" => "users#companies"
+
+
 
 
   post "/offers/create"  => "offer#create"
@@ -21,6 +25,8 @@ Rails.application.routes.draw do
   get "/offers/index" => "offer#index"
   get "/offers/show/:id" => "offer#show"
   delete "/offers/destroy/:id" => "offer#destroy"
+  get "/offers/offer" => "offer#offer"
+
 
 
   post "/educations/create"  => "educations#create"
@@ -53,6 +59,11 @@ Rails.application.routes.draw do
   get "/offers/index" => "offers#index"
   delete "/offers/destroy/:id" => "offers#destroy"
   get "/offers/show" => "offers#show"
+
+  post "/works/create"  => "works#create"
+  put "/works/update/:id" => "works#update"
+  get "/works/index" => "works#index"
+  delete "/works/destroy/:id" => "works#destroy"
 
 
 
