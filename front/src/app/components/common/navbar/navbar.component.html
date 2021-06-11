@@ -33,11 +33,11 @@
 
                                 <li class="nav-item"><a routerLink="/favourite-job" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'candidat')">Favourite Jobs</a></li>
 
-                                <li class="nav-item"><a routerLink="/job-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'candidat')">Job Details</a></li>
-
+                                <!-- <li class="nav-item"><a routerLink="/job-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'candidat')">Job Details</a></li> -->
                                 <li class="nav-item"><a routerLink="/post-a-job" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'company')">Post A Job</a></li>
                                 <li class="nav-item"><a routerLink="/my-jobs" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'company')">My Jobs</a></li>
                                 <li class="nav-item"><a routerLink="/my-company" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'company')">My Company</a></li>
+
                                 <li class="nav-item"><a routerLink="/candidate-list" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'company')">Candidate List</a></li>
 
 
@@ -49,9 +49,9 @@
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle" *ngIf="(role == 'candidat')">Candidates <i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/candidate-list" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Candidate List</a></li>
+                                <li class="nav-item"><a routerLink="/candidate-list" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'company')">Candidate List</a></li>
 
-                                <li class="nav-item"><a routerLink="/candidate-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Candidate Details</a></li>
+                                <li class="nav-item"><a routerLink="/candidate-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'company')">Candidate Details</a></li>
 
                                 <li class="nav-item"><a routerLink="/single-resume" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Single Resume</a></li>
 
