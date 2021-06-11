@@ -5,6 +5,8 @@ import { EducationService } from 'src/app/services/education.service';
 import { SkillsService } from 'src/app/services/skills.service';
 import { LinksService } from 'src/app/services/links.service';
 import { WorkService } from 'src/app/services/work.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,6 +15,10 @@ import { WorkService } from 'src/app/services/work.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+      public href: string = "";
+      public profil :string ="/profile";
+      test 
+
 
 
   form: FormGroup;
@@ -26,7 +32,7 @@ export class ProfileComponent implements OnInit {
   role
   work={title:"",begin_date:"",end_date:"",company:"",description:""}
   works=[]
-  constructor(private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private worksService: WorkService) {
+  constructor(private router: Router,private usersService: UsersService,private fb: FormBuilder,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private worksService: WorkService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -57,7 +63,7 @@ export class ProfileComponent implements OnInit {
 
   get f() { return this.form.controls; }
   ngOnInit(): void {
-   
+    
     this.usersService.ShowUser().subscribe(result =>{
       this.user=result
 
@@ -78,6 +84,10 @@ export class ProfileComponent implements OnInit {
     
       console.log(this.user)
     })
+    this.href = this.router.url
+    console.log(this.href)
+    this.test=this.href.includes(this.profil)
+    console.log(this.test)
     
     this.educationService.userEducations().subscribe((res:any)=>{
       this.educations = res.educations

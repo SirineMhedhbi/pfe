@@ -3,7 +3,7 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-text">
-                    <h2>Candidate Dashboard</h2>
+                    <h2>Welcome To Your Candidate Dashboard</h2>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
                         <li><i class="icofont-simple-right"></i></li>
@@ -21,8 +21,12 @@
             <div class="col-lg-4">
                 <div class="dashboard-img">
                     <img src="assets/img/dashboard/1.jpg" alt="Dashboard">
-                    <h3>Aikin Ward</h3>
-                    <p>UX/UI Designer</p>
+                    <br>
+                    <h3>
+                        {{user?.user.name}} {{user?.user.nickname}}
+
+                    </h3>
+                    <p>{{user?.user.post}}</p>
                 </div>
             </div>
 
@@ -32,7 +36,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">My Profile</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Change Password</a>
                         </li>
@@ -42,17 +46,22 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-logout-tab" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" aria-selected="false">Logout</a>
+                            <a class="nav-link" id="pills-logout-tab" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" aria-selected="false">My CV</a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" id="pills-logout-tab" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" aria-selected="false">Logout</a>
+                        </li> -->
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="tab-content" id="pills-tabContent">
+
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="create-information">
-                    <form>
+                    <app-profile></app-profile>
+                    <!-- <form>
                         <h3>Basic Information</h3>
 
                         <div class="create-information-btn">
@@ -122,10 +131,10 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
 
-                <div class="create-education create-education-two">
+                <!-- <div class="create-education create-education-two">
                     <div class="create-education-wrap">
                         <div class="create-education-left">
                             <h3>Education</h3>
@@ -263,10 +272,10 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="text-left">
                     <button type="submit" class="btn create-ac-btn">Save</button>
-                </div>
+                </div> -->
             </div>
 
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -347,7 +356,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6"> 
+                        <div class="col-lg-6">
                             <div class="job-item wow fadeInUp" data-wow-delay=".3s">
                                 <img src="assets/img/home-1/jobs/3.png" alt="Job">
 
@@ -399,7 +408,7 @@
             </div>
 
             <div class="tab-pane fade" id="pills-logout" role="tabpanel" aria-labelledby="pills-logout-tab">
-                <div class="login-area dashboard-logout-area">
+                <!-- <div class="login-area dashboard-logout-area">
                     <div class="login-wrap">
                         <div class="row">
                             <div class="col-sm-6 col-lg-6">
@@ -437,7 +446,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <form>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Username, Phone Number or Email">
@@ -447,7 +456,7 @@
                             <input type="password" class="form-control" placeholder="Password">
                         </div>
                     </form>
-    
+
                     <div class="login-sign-in">
                         <a href="#">Forgot Password?</a>
                         <ul>
@@ -458,12 +467,15 @@
                             <button type="submit" class="btn login-btn">Sign In</button>
                         </div>
                     </div>
-    
+
                     <div class="login-social">
                         <a href="#" target="_blank"><i class="icofont-facebook"></i> Login With Facebook</a>
                         <a class="login-google" href="#" target="_blank"><i class="icofont-google-plus"></i> Login With Google</a>
                     </div>
-                </div>
+
+                </div> -->
+                <app-candidate-details [id]="id"></app-candidate-details>
+
             </div>
         </div>
     </div>

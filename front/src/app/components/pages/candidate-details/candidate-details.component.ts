@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EducationService } from 'src/app/services/education.service';
 import { LinksService } from 'src/app/services/links.service';
@@ -6,11 +6,13 @@ import { SkillsService } from 'src/app/services/skills.service';
 import { UsersService } from 'src/app/services/users.service';
 import { WorkService } from 'src/app/services/work.service';
 
+
 @Component({
   selector: 'app-candidate-details',
   templateUrl: './candidate-details.component.html',
   styleUrls: ['./candidate-details.component.scss']
 })
+
 export class CandidateDetailsComponent implements OnInit {
 
   education={title:"",degree: "", institute:"", year:""}
@@ -22,11 +24,20 @@ export class CandidateDetailsComponent implements OnInit {
   infos 
   user
   works
+  @Input() id;
+
+  public href: string = "";
+  public candidat :string ="/candidate-details";
+  test 
   
 
   constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router,private worksService: WorkService) { }
 
   ngOnInit(): void {
+    this.href = this.route.url
+    console.log(this.href)
+    this.test=this.href.includes(this.candidat)
+    console.log(this.test)
   //   this.usersService.candidatList().subscribe((res:any)=>{
     
   //     this.users=res.users
@@ -36,7 +47,7 @@ export class CandidateDetailsComponent implements OnInit {
 
 
   
-  this.usersService.cvUser(this.router.snapshot.paramMap.get('id')).subscribe((res:any)=>{
+  this.usersService.cvUser(this.router.snapshot.paramMap.get('id')|| this.id).subscribe((res:any)=>{
     console.log(res)
     this.user=res.user
     if (res.links) {
@@ -51,12 +62,16 @@ export class CandidateDetailsComponent implements OnInit {
     this.works=res.works
     console.log(this.works)
 
+   
+
 
 
 
 
   })
+  
   }
+  
 
 }
 
