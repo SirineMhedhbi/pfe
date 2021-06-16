@@ -14,7 +14,7 @@ export class EditJobComponent implements OnInit {
   job
   autocompleteItems = ['Item1', 'item2', 'item3'];
 
-  constructor(private usersService: UsersService,private jobsService: JobsService,private fb: FormBuilder,private router: ActivatedRoute,private route:Router) { 
+  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: ActivatedRoute, private route: Router) {
     this.form = this.fb.group({
       title: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
       category: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -28,51 +28,42 @@ export class EditJobComponent implements OnInit {
       contract: new FormControl('', Validators.compose([Validators.required])),
       qualification: new FormControl('', Validators.compose([Validators.required])),
 
+    });
+  }
 
-  });
- 
-   
-}
-
-get f() { return this.form.controls; }
+  get f() { return this.form.controls; }
 
 
   ngOnInit(): void {
-    
-    this.jobsService.showJob(this.router.snapshot.paramMap.get('id')).subscribe(result =>{
-    
-      this.job=result
-      console.log(result)
+
+    this.jobsService.showJob(this.router.snapshot.paramMap.get('id')).subscribe(result => {
+
+      this.job = result
 
       this.form = this.fb.group({
-        title: new FormControl(this.job.offer.title, Validators.compose([Validators.required, Validators.minLength(3)])),
-        category: new FormControl(this.job.offer.category, Validators.compose([Validators.required, Validators.minLength(3)])),
-        location: new FormControl(this.job.offer.location, Validators.compose([Validators.required, Validators.minLength(3)])),
-        description: new FormControl(this.job.offer.description, Validators.compose([Validators.required, Validators.minLength(3)])),
-        company_name: new FormControl(this.job.offer.company_name, Validators.compose([Validators.required, Validators.minLength(3)])),
-        job_salary: new FormControl(this.job.offer.job_salary, Validators.compose([Validators.required])),
-        job_time: new FormControl(this.job.offer.job_time, Validators.compose([Validators.required])),
-        job_experience: new FormControl(this.job.offer.job_experience, Validators.compose([Validators.required])),
-        offerSkills: new FormControl(this.job.offer.offerSkills, Validators.compose([Validators.required])),
-        contract: new FormControl(this.job.offer.contract, Validators.compose([Validators.required])),
-        qualification: new FormControl(this.job.offer.qualification, Validators.compose([Validators.required])),
-  
-  
-    });
-  })
+        title: new FormControl(this.job.title, Validators.compose([Validators.required, Validators.minLength(3)])),
+        category: new FormControl(this.job.category, Validators.compose([Validators.required, Validators.minLength(3)])),
+        location: new FormControl(this.job.location, Validators.compose([Validators.required, Validators.minLength(3)])),
+        description: new FormControl(this.job.description, Validators.compose([Validators.required, Validators.minLength(3)])),
+        company_name: new FormControl(this.job.company_name, Validators.compose([Validators.required, Validators.minLength(3)])),
+        job_salary: new FormControl(this.job.job_salary, Validators.compose([Validators.required])),
+        job_time: new FormControl(this.job.job_time, Validators.compose([Validators.required])),
+        job_experience: new FormControl(this.job.job_experience, Validators.compose([Validators.required])),
+        offerSkills: new FormControl(this.job.offerSkills, Validators.compose([Validators.required])),
+        contract: new FormControl(this.job.contract, Validators.compose([Validators.required])),
+        qualification: new FormControl(this.job.qualification, Validators.compose([Validators.required])),
+
+
+      });
+    })
 
 
   }
-  editJob(){
-    console.log(this.form.value)
-  this.jobsService.editJob(this.form.value,this.job.offer.id).subscribe((res:any)=>{
-    console.log(res)
-    this.route.navigate(['my-jobs']);
-
-    
-  
-  })
-  } 
+  editJob() {
+    this.jobsService.editJob(this.form.value, this.job.offer.id).subscribe((res: any) => {
+      this.route.navigate(['my-jobs']);
+    })
+  }
 
 
 
@@ -80,5 +71,5 @@ get f() { return this.form.controls; }
 
 
 
-  
+
 }
