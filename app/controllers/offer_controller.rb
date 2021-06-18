@@ -21,6 +21,20 @@ class OfferController < ApplicationController
         render json: { offers: @offers}
     end
 
+
+    def recent_offers
+        @new_offers = Offer.order(updated_at: :desc).last(8)
+        @intern_offers = Offer.intern.order(updated_at: :desc).last(8)
+        @fulltime_offers = Offer.full_time.order(updated_at: :desc).last(8)
+        @parttime_offers = Offer.part_time.order(updated_at: :desc).last(8)
+        render json: {   new_offers: @new_offers,
+                         intern_offers: @intern_offers,
+                         fulltime_offers: @fulltime_offers,
+                         parttime_offers: @parttime_offers
+                    }        
+    end
+    
+
     def update
         
         if  !Offer.where(id:params[:id]).present?

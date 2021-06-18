@@ -30,7 +30,7 @@
                                             <option>Another option</option>
                                             <option>A option</option>
                                             <option>Potato</option>
-                                        </select>	
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                     <span>Register Your Account</span>
                 </div>
             </div>
-            
+
             <div class="col-sm-6 col-lg-4">
                 <div class="account-item">
                     <i class="flaticon-cv"></i>
@@ -182,8 +182,8 @@
                     <h2>Trusted & Popular Job Portal</h2>
                     <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
                     <div class="common-btn">
-                        <a class="login-btn" routerLink="/post-a-job">Post a Job <i class="icofont-swoosh-right"></i></a>
-                        <a class="sign-up-btn" routerLink="/create-account">Apply Now <i class="icofont-swoosh-right"></i></a>
+                        <a class="login-btn" (click)="postJob()">Post a Job <i class="icofont-swoosh-right"></i></a>
+                        <a class="sign-up-btn" (click)="apply()">Apply Now <i class="icofont-swoosh-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -198,11 +198,10 @@
         </div>
 
         <div class="sorting-menu">
-            <ul> 
-                <li class="filter active" data-filter="all">All</li>
-                <li class="filter" data-filter=".web">New</li>
-                <li class="filter" data-filter=".ui">Featured</li>
-                <li class="filter" data-filter=".branding">Recent</li>
+            <ul>
+                <li class="filter " data-filter="all">All</li>
+                <li class="filter active" data-filter=".web">New</li>
+                <li class="filter" data-filter=".branding">Intern</li>
                 <li class="filter" data-filter=".ux">Full Time</li>
                 <li class="filter" data-filter=".wp">Part Time</li>
             </ul>
@@ -210,31 +209,109 @@
 
         <div id="container">
             <div class="row">
-                <div class="col-lg-6 mix web ui">
+                <div class="col-lg-6 mix web ui" *ngFor="let item of newoffers">
                     <div class="job-item">
                         <img src="assets/img/home-1/jobs/1.png" alt="Job">
 
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
-                                <h3>UI/UX Designer</h3>
-                                <a routerLink="/company-details">Winbrans.com</a>
+                                <h3>{{item.title}}</h3>
+                                <a routerLink="/company-details/{{item.id}}">{{item.company_name}}</a>
                                 <ul>
-                                    <li><i class="icofont-money-bag"></i> $20k - $25k</li>
-                                    <li><i class="icofont-location-pin"></i> Location 210-27 Quadra, Market Street, Victoria Canada</li>
+                                    <li><i class="icofont-money-bag"></i>{{item.job_salary}}</li>
+                                    <li><i class="icofont-location-pin"></i>
+                                        <p>{{item.location}}</p>
+                                    </li>
                                 </ul>
                             </div>
 
                             <div class="job-inner-right">
                                 <ul>
                                     <li><a routerLink="/create-account">Apply</a></li>
-                                    <li><span>Full Time</span></li>
+                                    <li><span>{{item.job_time}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mix branding ui" *ngFor="let item of internoffers">
+                    <div class="job-item">
+                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+
+                        <div class="job-inner align-items-center">
+                            <div class="job-inner-left">
+                                <h3>{{item.title}}</h3>
+                                <a routerLink="/company-details/{{item.id}}">{{item.company_name}}</a>
+                                <ul>
+                                    <li><i class="icofont-money-bag"></i>{{item.job_salary}}</li>
+                                    <li><i class="icofont-location-pin"></i>
+                                        <p>{{item.location}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="job-inner-right">
+                                <ul>
+                                    <li><a routerLink="/create-account">Apply</a></li>
+                                    <li><span>{{item.job_time}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mix ux ui" *ngFor="let item of fulltimeoffers">
+                    <div class="job-item">
+                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+
+                        <div class="job-inner align-items-center">
+                            <div class="job-inner-left">
+                                <h3>{{item.title}}</h3>
+                                <a routerLink="/company-details/{{item.id}}">{{item.company_name}}</a>
+                                <ul>
+                                    <li><i class="icofont-money-bag"></i>{{item.job_salary}}</li>
+                                    <li><i class="icofont-location-pin"></i>
+                                        <p>{{item.location}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="job-inner-right">
+                                <ul>
+                                    <li><a routerLink="/create-account">Apply</a></li>
+                                    <li><span>{{item.job_time}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mix wp ui" *ngFor="let item of parttimeoffers">
+                    <div class="job-item">
+                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+
+                        <div class="job-inner align-items-center">
+                            <div class="job-inner-left">
+                                <h3>{{item.title}}</h3>
+                                <a routerLink="/company-details/{{item.id}}">{{item.company_name}}</a>
+                                <ul>
+                                    <li><i class="icofont-money-bag"></i>{{item.job_salary}}</li>
+                                    <li><i class="icofont-location-pin"></i>
+                                        <p>{{item.location}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="job-inner-right">
+                                <ul>
+                                    <li><a routerLink="/create-account">Apply</a></li>
+                                    <li><span>{{item.job_time}}</span></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-6 mix ui web">
+
+                <!-- <div class="col-lg-6 mix ui web">
                     <div class="job-item">
                         <img src="assets/img/home-1/jobs/2.png" alt="Job">
 
@@ -258,7 +335,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mix branding wp"> 
+                <div class="col-lg-6 mix branding wp">
                     <div class="job-item">
                         <img src="assets/img/home-1/jobs/3.png" alt="Job">
 
@@ -333,7 +410,7 @@
                 <div class="col-lg-6 mix web ui">
                     <div class="job-item">
                         <img src="assets/img/home-1/jobs/6.png" alt="Job">
-                        
+
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
                                 <h3>Sales Manager</h3>
@@ -400,7 +477,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -499,21 +576,21 @@
         </div>
 
         <div class="companies-slider owl-theme owl-carousel">
-            <div class="companies-item">
+            <div class="companies-item" *ngFor="let item of lastcompanies">
                 <img src="assets/img/home-1/companies/1.png" alt="Companies">
-                <h3><a routerLink="/company-details">Winbrans.com</a></h3>
-                <p><i class="icofont-location-pin"></i> Quadra, Street, Canada</p>
-                <a class="companies-btn" routerLink="/create-account">Hiring</a>
+                <h3><a routerLink="/company-details">{{item.title}}</a></h3>
+                <p><i class="icofont-location-pin"></i> {{item.location}}</p>
+                <a class="companies-btn" routerLink="/company-details/{{item.id}}">See More</a>
             </div>
 
-            <div class="companies-item">
+            <!-- <div class="companies-item">
                 <img src="assets/img/home-1/companies/2.png" alt="Companies">
                 <h3><a routerLink="/company-details">Infiniza.com</a></h3>
                 <p><i class="icofont-location-pin"></i> North Street, California</p>
                 <a class="companies-btn" routerLink="/create-account">Hiring</a>
-            </div>
+            </div> -->
 
-            <div class="companies-item">
+            <!-- <div class="companies-item">
                 <img src="assets/img/home-1/companies/3.png" alt="Companies">
                 <h3><a routerLink="/company-details">Glovibo.com</a></h3>
                 <p><i class="icofont-location-pin"></i> Barming Road, UK</p>
@@ -581,7 +658,7 @@
                 <h3><a routerLink="/company-details">Bizotic.com</a></h3>
                 <p><i class="icofont-location-pin"></i> Washington, New York</p>
                 <a class="companies-btn" routerLink="/create-account">Hiring</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -593,31 +670,42 @@
         </div>
 
         <div class="profile-slider owl-theme owl-carousel">
-            <div class="profile-item">
+            <!-- <div class="profile-item">
                 <img src="assets/img/home-1/profile/1.jpg" alt="Profile">
                 <div class="profile-inner">
-                    <h3>Jerry Hudson</h3>
-                    <span>Business Consultant</span>
-                    <a routerLink="/candidate-details">View Profile<i class="icofont-swoosh-right"></i></a>
+                    <h3>{{item.name}}</h3>
+                    <span>{{item.nickname}}</span>
+                    <a routerLink="/candidate-details/{{item.id}}">View Profile<i class="icofont-swoosh-right"></i></a>
                     <div class="profile-heart">
-                        <a routerLink="/candidate-details"><i class="icofont-heart-alt"></i></a>
+                        <a routerLink="/candidate-details/{{item.id}}"><i class="icofont-heart-alt"></i></a>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="profile-item" *ngFor="let item of lastusers">
+                <img src="assets/img/home-1/profile/2.jpg" alt="Profile">
+                <div class="profile-inner">
+                    <h3>{{item.name}}</h3>
+                    <span>{{item.nickname}}</span>
+                    <a routerLink="/candidate-details/{{item.id}}">View Profile<i class="icofont-swoosh-right"></i></a>
+                    <div class="profile-heart">
+                        <a routerLink="/candidate-details/{{item.id}}"><i class="icofont-heart-alt"></i></a>
                     </div>
                 </div>
             </div>
-
-            <div class="profile-item">
+            <!-- <div class="profile-item">
                 <img src="assets/img/home-1/profile/2.jpg" alt="Profile">
                 <div class="profile-inner">
-                    <h3>Jac Jacson</h3>
+                    <h3>Jac 2</h3>
                     <span>Web Consultant</span>
                     <a routerLink="/candidate-details">View Profile<i class="icofont-swoosh-right"></i></a>
                     <div class="profile-heart">
                         <a routerLink="/candidate-details"><i class="icofont-heart-alt"></i></a>
                     </div>
                 </div>
-            </div>
+            </div>  -->
 
-            <div class="profile-item">
+            <!-- <div class="profile-item">
                 <img src="assets/img/home-1/profile/3.jpg" alt="Profile">
                 <div class="profile-inner">
                     <h3>Tom Potter</h3>
@@ -735,7 +823,7 @@
                         <a routerLink="/candidate-details"><i class="icofont-heart-alt"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -753,7 +841,7 @@
             <div class="col-lg-6">
                 <div class="app-item">
                     <div class="section-title text-left">
-                        <h2>Download  The Glabe Mobile App</h2>
+                        <h2>Download The Glabe Mobile App</h2>
                     </div>
                     <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                     <div class="app-btn">
@@ -797,7 +885,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-sm-6 col-lg-4">
                 <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
                     <div class="blog-top">
