@@ -28,6 +28,8 @@ export class UsersService {
         "birthday":user.birthday,
         "description":user.description,
         "post":user.post,
+        lat: user.lat,
+        lng: user.lng
 
 
 

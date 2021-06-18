@@ -5700,6 +5700,11 @@ ngx-chips@^2.2.2:
     ng2-material-dropdown ">=0.11.0"
     tslib "^1.10.0"
 
+ngx-google-places-autocomplete@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/ngx-google-places-autocomplete/-/ngx-google-places-autocomplete-2.0.5.tgz#1e26b3fb236a0df22c1c65c05b601ca1d960b5d4"
+  integrity sha512-TApaE+X/eaZBDduXvmOMsMC5FTWv3CmgbZ+Iv7NsnrBWJeonPF2SYMGs3vaydM3CY3Rch14/K94ecU0mfyRVWw==
+
 ngx-owl-carousel@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/ngx-owl-carousel/-/ngx-owl-carousel-2.0.7.tgz#1a8854a64026c785dd0e6721a6a2fd64b17e254a"
