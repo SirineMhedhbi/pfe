@@ -46,6 +46,11 @@ class CompanyController < ApplicationController
         @company = current_api_user.company.update(company_params)
         render json: { company: @company}
      end
+     def companylast
+        @lastcompanies = Company.all.order(updated_at: :desc)
+        render json: {lastcompanies: @lastcompanies.last(12)}
+        
+    end
      
  
     def update
@@ -56,9 +61,6 @@ class CompanyController < ApplicationController
         @Company.update(company_params)
         render json: { Company: @Company,message:"company updated"}  
         end
-
-    
-
     end
 
     private

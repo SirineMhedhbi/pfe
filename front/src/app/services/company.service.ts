@@ -18,6 +18,10 @@ export class CompanyService {
       return this.http.get('/company/show/'+id);
   
     }
+    companyLast(){
+      return this.http.get('/company/company',
+    
+       ) }
      
      editCompany(company,id){
       console.log(company)

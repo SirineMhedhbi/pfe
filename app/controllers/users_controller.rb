@@ -32,6 +32,11 @@ class UsersController < ApplicationController
         @companies= User.Company.all
         render json: { companies: @companies}
     end
+    def indexlast
+        @lastusers = User.candidat.all.order(updated_at: :desc)
+        render json: {lastusers: @lastusers.last(12)}
+        
+    end
 
     def show
       

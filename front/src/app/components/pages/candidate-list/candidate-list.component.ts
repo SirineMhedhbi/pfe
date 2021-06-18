@@ -15,36 +15,34 @@ export class CandidateListComponent implements OnInit {
   educations
   skills
   link
- 
-  constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router) { }
+  constructor(private usersService: UsersService, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private router: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
-    this.usersService.candidatList().subscribe((res:any)=>{
-    
-      this.users=res.users
+    this.usersService.candidatList().subscribe((res: any) => {
+
+      this.users = res.users
       console.log(this.users)
-
-
-  })
-
-
-  
-  // this.usersService.cvUser(this.router.snapshot.paramMap.get('id')).subscribe((res:any)=>{
-  //   this.educations = res.educations
-  // })
-  // this.skillsService.userSkills().subscribe((res:any)=>{
-  //   this.skills = res.skills
-  // })
-
-  // this.linksService.userLinks().subscribe((res:any)=>{
-  //   if (res.link){
-  //   this.link = res.link
-  //   console.log(res.link)}
-  //   console.log(this.link)
-  // })
-  
-
+     
+    })
     
-}
+
+
+    // this.usersService.cvUser(this.router.snapshot.paramMap.get('id')).subscribe((res:any)=>{
+    //   this.educations = res.educations
+    // })
+    // this.skillsService.userSkills().subscribe((res:any)=>{
+    //   this.skills = res.skills
+    // })
+
+    // this.linksService.userLinks().subscribe((res:any)=>{
+    //   if (res.link){
+    //   this.link = res.link
+    //   console.log(res.link)}
+    //   console.log(this.link)
+    // })
+
+
+
+  }
 
 }

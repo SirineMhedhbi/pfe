@@ -47,4 +47,7 @@ export class UsersService {
   cvUser(id){
     return this.http.get('/cvs/cvUser/'+ id)
   }
+  candidatLast(){
+    return this.http.get('/users/indexlast',)
+  }
 }

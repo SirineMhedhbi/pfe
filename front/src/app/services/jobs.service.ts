@@ -62,6 +62,9 @@ export class JobsService {
   offersList() {
     return this.http.get('/offers/offer',)
   }
+  recentOffers(){
+    return this.http.get('/offers/recent',)
+  }
 }
 
 
