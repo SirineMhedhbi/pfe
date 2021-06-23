@@ -99,6 +99,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+
     NgSelectModule,
     TagInputModule,
     BrowserAnimationsModule,
