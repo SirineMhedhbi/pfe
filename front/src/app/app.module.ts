@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -47,6 +47,7 @@ import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
 import { EditJobComponent } from './services/edit-job/edit-job.component';
 import { MyCompanyComponent } from './components/my-company/my-company.component';
 import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -88,7 +89,7 @@ import { OffersDetailsComponent } from './components/offers-details/offers-detai
     EditJobComponent,
     MyCompanyComponent,
     OffersDetailsComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -97,10 +98,13 @@ import { OffersDetailsComponent } from './components/offers-details/offers-detai
     HttpClientModule,
     ReactiveFormsModule,
     NgSelectModule,
-    TagInputModule, 
+    TagInputModule,
     BrowserAnimationsModule,
-    
-    
+    ToastrModule.forRoot({
+      closeButton: true,
+    }),
+
+
 
   ],
   providers: [

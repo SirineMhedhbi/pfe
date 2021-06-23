@@ -38,7 +38,8 @@
                             "src/assets/fonts/flaticon.css",
                             "src/styles.scss",
                             "src/responsive.scss",
-                            "@ng-select/ng-select/themes/default.theme.css"
+                            "@ng-select/ng-select/themes/default.theme.css",
+                            "node_modules/ngx-toastr/toastr.css"
 
                         ],
                         "scripts": [
