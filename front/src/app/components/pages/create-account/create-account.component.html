@@ -142,7 +142,10 @@
                                 <label>Address:</label>
                                 <span class="text-danger"
                                     *ngIf="f.address.errors && f.address.hasError('required')">*</span>
-                                <input type="text" class="form-control" formControlName="address">
+                                <!-- <input type="text" class="form-control" formControlName="address"> -->
+                                <input ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="address" class="form-control" />
+
+
                                 <div
                                     *ngIf="f.address.invalid && f.address.errors && f.address.dirty || f.address.touched">
                                     <small class="text-danger" *ngIf="f.address.hasError('required')"> This field is
@@ -230,8 +233,11 @@
                 </div> -->
                 <div class="text-left">
                     <button type="submit" class="btn create-ac-btn" [disabled]="!form.valid">Save</button>
+
                 </div>
+
             </form>
+
         </div>
 
 

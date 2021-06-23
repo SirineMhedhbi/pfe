@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducationService } from 'src/app/services/education.service';
@@ -7,6 +7,9 @@ import { LinksService } from 'src/app/services/links.service';
 import { WorkService } from 'src/app/services/work.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+
 
 
 
@@ -20,7 +23,7 @@ export class ProfileComponent implements OnInit {
   public profil: string = "/profile";
   test
 
-
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
   form: FormGroup;
   user
@@ -46,6 +49,9 @@ export class ProfileComponent implements OnInit {
       gender: new FormControl('', Validators.compose([Validators.required])),
       description: new FormControl('', Validators.compose([Validators.required])),
       post: new FormControl('', Validators.compose([Validators.required])),
+      lat: new FormControl('', Validators.compose([Validators.required])),
+      lng: new FormControl('', Validators.compose([Validators.required])),
+
     });
   }
 
@@ -65,6 +71,8 @@ export class ProfileComponent implements OnInit {
         gender: new FormControl(this.user.user.gender, Validators.compose([Validators.required])),
         description: new FormControl(this.user.user.description, Validators.compose([Validators.required])),
         post: new FormControl(this.user.user.post, Validators.compose([Validators.required])),
+        lat: new FormControl(this.user.user.lat, Validators.compose([Validators.required])),
+        lng: new FormControl(this.user.user.lng, Validators.compose([Validators.required])),
       });
 
     })
@@ -206,6 +214,12 @@ export class ProfileComponent implements OnInit {
       console.log(this.works)
     })
 
+  }
+
+  public handleAddressChange(address: Address) {
+    this.f.address.setValue(address.formatted_address)
+    this.f.lat.setValue(address.geometry.location.lat())
+    this.f.lng.setValue(address.geometry.location.lng())
   }
 
 }

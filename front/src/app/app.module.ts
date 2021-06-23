@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -88,7 +90,7 @@ import { OffersDetailsComponent } from './components/offers-details/offers-detai
     EditJobComponent,
     MyCompanyComponent,
     OffersDetailsComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -97,10 +99,9 @@ import { OffersDetailsComponent } from './components/offers-details/offers-detai
     HttpClientModule,
     ReactiveFormsModule,
     NgSelectModule,
-    TagInputModule, 
+    TagInputModule,
     BrowserAnimationsModule,
-    
-    
+    GooglePlaceModule,
 
   ],
   providers: [

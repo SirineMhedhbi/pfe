@@ -65,7 +65,7 @@ class CompanyController < ApplicationController
 
     private
     def company_params
-    params.require(:company).permit(:title,:category,:location, :linkedin, :github, :facebook, :instagram, :description, :gmail, :site, :twitter)
+    params.require(:company).permit(:title,:category,:location, :linkedin, :github, :facebook, :instagram, :description, :gmail, :site, :twitter, :lat, :lng)
     end
     
 end
