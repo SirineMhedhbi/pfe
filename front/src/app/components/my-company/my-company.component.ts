@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
 import { JobsService } from 'src/app/services/jobs.service';
 import { UsersService } from 'src/app/services/users.service';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-my-company',
@@ -12,6 +14,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class MyCompanyComponent implements OnInit {
   form: FormGroup;
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+
   company
   constructor(private usersService: UsersService,private companyService: CompanyService,private jobsService: JobsService,private fb: FormBuilder,private router: ActivatedRoute,private route:Router) { 
     this.form = this.fb.group({
@@ -26,6 +30,9 @@ export class MyCompanyComponent implements OnInit {
       gmail: new FormControl("", Validators.compose([Validators.required])),
       site: new FormControl("", Validators.compose([Validators.required])),
       twitter: new FormControl("", Validators.compose([Validators.required])),
+      lat: new FormControl('', Validators.compose([Validators.required])),
+      lng: new FormControl('', Validators.compose([Validators.required])),
+
 
 
 
@@ -59,6 +66,9 @@ get f() { return this.form.controls; }
         gmail: new FormControl(this.company.company.gmail, Validators.compose([Validators.required])),
         site: new FormControl(this.company.company.site, Validators.compose([Validators.required])),
         twitter: new FormControl(this.company.company.twitter, Validators.compose([Validators.required])),
+        lat: new FormControl(this.company.company.lat, Validators.compose([Validators.required])),
+        lng: new FormControl(this.company.company.lng, Validators.compose([Validators.required])),
+  
 
 
     });
@@ -76,6 +86,11 @@ get f() { return this.form.controls; }
   
   })
   } 
+  public handleAddressChange(address: Address) {
+    this.f.location.setValue(address.formatted_address)
+    this.f.lat.setValue(address.geometry.location.lat())
+    this.f.lng.setValue(address.geometry.location.lng())
+  }
 
   }
 

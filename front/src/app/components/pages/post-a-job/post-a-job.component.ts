@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JobsService } from 'src/app/services/jobs.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/filter';
@@ -22,6 +25,8 @@ export class PostAJobComponent implements OnInit {
   // jobs=[]
   form: FormGroup;
   autocompleteItems = ['Item1', 'item2', 'item3'];
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+
 
   constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: Router) {
 
@@ -82,13 +87,13 @@ export class PostAJobComponent implements OnInit {
         console.log(this.data)
         this.router.navigate(['my-jobs']);
       },
-
-
-
-
       (error) => console.log(error)
-
     )
+    }
+    public handleAddressChange(address: Address) {
+      this.f.location.setValue(address.formatted_address)
+      this.f.lat.setValue(address.geometry.location.lat())
+      this.f.lng.setValue(address.geometry.location.lng())
     }
 }
 

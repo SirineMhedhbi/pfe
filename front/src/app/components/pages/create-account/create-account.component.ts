@@ -56,10 +56,7 @@ export class CreateAccountComponent implements OnInit {
       this.show = !this.show;
 
     }
-
     // this.show = !this.show;
-
-
   }
   showCompany() {
 
@@ -93,7 +90,6 @@ export class CreateAccountComponent implements OnInit {
   }
 
   public handleAddressChange(address: Address) {
-    debugger
     this.f.address.setValue(address.formatted_address)
     this.f.lat.setValue(address.geometry.location.lat())
     this.f.lng.setValue(address.geometry.location.lng())
