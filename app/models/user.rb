@@ -9,10 +9,9 @@ class User < ApplicationRecord
 
   include DeviseTokenAuth::Concerns::User
 
-  enum role: [ :admin, :candidat, :company ] 
+  enum role: [ :admin, :candidat, :company ]
   def role_user
     self.role
-    
   end
 
 
