@@ -43,7 +43,7 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
       {
         "email":registration.email,
         "password":registration.password,
-        "confirm_success_url":"/sdsd",
+        "confirm_success_url":"http://localhost:4200/login",
         "role":registration.role,
         "phone": registration.phone,
         "gender":registration.gender,
