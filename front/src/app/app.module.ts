@@ -102,15 +102,12 @@ import { ToastrModule } from 'ngx-toastr';
     NgSelectModule,
     TagInputModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
     GooglePlaceModule,
-=======
     ToastrModule.forRoot({
       closeButton: true,
     }),
 
 
->>>>>>> login example
 
   ],
   providers: [

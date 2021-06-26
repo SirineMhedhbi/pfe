@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { JobsService } from 'src/app/services/jobs.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -12,10 +13,10 @@ export class MyJobsComponent implements OnInit {
   form: FormGroup;
   company
   data
-  jobs
+  jobs =[]
   job={title:"",category:"",company_name:"",location:"",offer_type:"",job_experience:"",job_salary:"",job_time:"",description:""}
 
-  constructor(private usersService: UsersService,private jobsService: JobsService,private fb: FormBuilder) { 
+  constructor(private usersService: UsersService,private jobsService: JobsService,private fb: FormBuilder, private toastr: ToastrService) { 
     this.form = this.fb.group({
       title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
       category: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -32,7 +33,7 @@ export class MyJobsComponent implements OnInit {
   ngOnInit(): void {
     this.jobsService.userJobs().subscribe((res:any)=>{
       this.jobs = res.offers
-      console.log(res.company)
+      console.log(this.jobs )
       this.company=res.company 
       console.log(res)
 
@@ -46,6 +47,8 @@ export class MyJobsComponent implements OnInit {
     this.jobsService.deleteJob(id).subscribe((res:any)=>{
       this.jobs = this.jobs.filter(function(el) { return el.id != id });
       console.log(this.jobs)
+      this.toastr.success('Job Removed', '');
+
     })
    
   }
