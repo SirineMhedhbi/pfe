@@ -14,7 +14,8 @@ export class EducationService {
         "title": education.title,
         "degree": education.degree,
         "institute": education.institute,
-        "year": education.year,
+        "begin_date": education.begin_date,
+        "end_date": education.end_date,
       })
   }
 
@@ -33,7 +34,8 @@ export class EducationService {
         "title": education.title,
         "degree": education.degree,
         "institute": education.institute,
-        "year": education.year,
+        "begin_date": education.begin_date,
+        "end_date": education.end_date,
     })
   }
 }

@@ -2837,7 +2837,7 @@ footer {
                 padding: 0;
                 li {
                     list-style-type: none;
-                    display: block;
+                    display: flex;
                     font-size: $all-size;
                     color: #858585;
                     margin-bottom: 18px;
@@ -2878,7 +2878,7 @@ footer {
                 padding: 0;
                 li {
                     list-style-type: none;
-                    display: block;
+                    display: flex;
                     margin-bottom: 18px;
                     &:last-child {
                         margin-bottom: 0;

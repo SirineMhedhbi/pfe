@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { ToastrService } from 'ngx-toastr';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 
 
@@ -22,13 +24,14 @@ import { ToastrService } from 'ngx-toastr';
 export class ProfileComponent implements OnInit {
   public href: string = "";
   public profil: string = "/profile";
+  public Editor = ClassicEditor;
   test
 
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
   form: FormGroup;
   user
-  education = { title: "", degree: "", institute: "", year: "" }
+  education = { title: "", degree: "", institute: "", begin_date: "", end_date:"" }
   educations = []
   skill = { name: "", pourcentage: 50 }
   skills = []
@@ -136,7 +139,7 @@ export class ProfileComponent implements OnInit {
   addEducation(education) {
     this.educationService.addEducation(education).subscribe((res: any) => {
       this.educations.push(res.education)
-      this.education = { title: "", degree: "", institute: "", year: "" }
+      this.education = { title: "", degree: "", institute: "", begin_date: "", end_date: "" }
       this.toastr.success('Education added successfully', '');
 
     })
@@ -187,7 +190,7 @@ export class ProfileComponent implements OnInit {
     console.log(item)
     this.linksService.editLink(item).subscribe((res: any) => {
       console.log(res)
-      this.toastr.success('Skill Updated', '');
+      this.toastr.success('LLink Updated', '');
 
 
     })
@@ -218,7 +221,7 @@ export class ProfileComponent implements OnInit {
 
     this.worksService.editWork(item).subscribe((res: any) => {
       console.log(res)
-      this.toastr.success('Skill Updated', '');
+      this.toastr.success('Work Updated', '');
 
 
     })
@@ -243,7 +246,6 @@ export class ProfileComponent implements OnInit {
     })
 
   }
-
   public handleAddressChange(address: Address) {
     this.f.address.setValue(address.formatted_address)
     this.f.lat.setValue(address.geometry.location.lat())

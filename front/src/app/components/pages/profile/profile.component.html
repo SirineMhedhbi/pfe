@@ -93,14 +93,16 @@
                         <div class="form-group">
                             <label>Address:</label>
                             <!-- <input type="text" class="form-control" formControlName="address"> -->
-                            <input ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="address" class="form-control" />
+                            <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="address" class="form-control" />
 
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label>About you</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
+
+                            <!-- <input type="text" class="form-control" formControlName="description"> -->
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -143,7 +145,7 @@
 
                     <div class="create-education-right">
                         <!-- <a routerLink="/">Edit</a> -->
-                        <button (click)="addEducation(education)" [disabled]="education.title == '' || education.degree == '' || education.year == '' || education.institute == ''">Add Education</button>
+                        <button (click)="addEducation(education)" [disabled]="education.title == '' || education.degree == '' || education.begin_date == '' || education.end_date == '' || education.institute == ''">Add Education</button>
                     </div>
                 </div>
 
@@ -171,8 +173,14 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Year</label>
-                            <input type="text" class="form-control" [(ngModel)]="education.year">
+                            <label>Begin date</label>
+                            <input type="date" class="form-control" [(ngModel)]="education.begin_date">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>End date</label>
+                            <input type="date" class="form-control" [(ngModel)]="education.end_date">
                         </div>
                     </div>
                 </div>
@@ -212,8 +220,14 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Year</label>
-                                <input type="text" class="form-control" [(ngModel)]="item.year">
+                                <label>Begin date</label>
+                                <input type="date" class="form-control" [(ngModel)]="item.begin_date">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" [(ngModel)]="item.end_date">
                             </div>
                         </div>
                     </div>
@@ -372,10 +386,11 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label>Description</label>
-                            <input type="text" class="form-control" [(ngModel)]="work.description">
+                            <textarea class="form-control" [(ngModel)]="work.description" rows="5" style="height: unset !important;"></textarea>
+
                         </div>
                     </div>
 
@@ -421,10 +436,12 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Description</label>
-                                <input type="text" class="form-control" [(ngModel)]="item.description">
+                                <label>Description </label>
+
+                                <textarea class="form-control" [(ngModel)]="item.description" rows="5" style="height: unset !important;"></textarea>
+
                             </div>
                         </div>
 

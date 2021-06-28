@@ -26,6 +26,9 @@ export class JobsService {
         "qualification": job.offer.qualification,
         "offerSkills": job.offer.offerSkills,
         "contract": job.offer.contract,
+        "lat": job.offer.lat,
+        "lng": job.offer.lng,
+
       })
   }
 
@@ -54,6 +57,9 @@ export class JobsService {
         "qualification": job.qualification,
         "offerSkills": job.offerSkills,
         "contract": job.contract,
+        "lat": job.lat,
+        "lng": job.lng,
+
       })
   }
   showJob(id) {

@@ -77,7 +77,17 @@ jsonHeader = {headers: new HttpHeaders({'Content-Type':  'application/json'})};
     this.router.navigate(['/login']);
     localStorage.clear()
   }
-  
+  changePassword(registration){
+    return this.http.put('/api/v1/auth/password',
+
+    {
+    "current_password":registration.current_password,
+    "password":registration.new_password,
+    "password_confirmation":registration.password_confirmation,
+  }
+    )
+
+}
 }
 
 

@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { ToastrService } from 'ngx-toastr';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 import 'rxjs/add/observable/of';
@@ -20,6 +21,7 @@ import 'rxjs/add/operator/filter';
   styleUrls: ['./post-a-job.component.scss']
 })
 export class PostAJobComponent implements OnInit {
+  public Editor = ClassicEditor;
   data
   skills=[]
   job
@@ -43,6 +45,10 @@ export class PostAJobComponent implements OnInit {
       offerSkills: new FormControl('', Validators.compose([Validators.required])),
       contract: new FormControl('', Validators.compose([Validators.required])),
       qualification: new FormControl('', Validators.compose([Validators.required])),
+      lat: new FormControl('', Validators.compose([Validators.required])),
+      lng: new FormControl('', Validators.compose([Validators.required])),
+
+
 
 
 
@@ -75,6 +81,9 @@ export class PostAJobComponent implements OnInit {
         qualification: this.form.get('qualification').value,
         contract: this.form.get('contract').value,
         offerSkills: this.form.get('offerSkills').value,
+        lat: this.form.get('lat').value,
+        lng: this.form.get('lng').value,
+
 
 
 
@@ -95,6 +104,7 @@ export class PostAJobComponent implements OnInit {
     }
     public handleAddressChange(address: Address) {
       this.f.location.setValue(address.formatted_address)
+
       this.f.lat.setValue(address.geometry.location.lat())
       this.f.lng.setValue(address.geometry.location.lng())
     }
