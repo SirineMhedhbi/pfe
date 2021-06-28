@@ -10,12 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_132309) do
+ActiveRecord::Schema.define(version: 2021_06_28_094628) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
 
   create_table "companies", force: :cascade do |t|
     t.string "title"
@@ -47,10 +45,11 @@ ActiveRecord::Schema.define(version: 2021_06_18_132309) do
     t.string "title"
     t.string "degree"
     t.string "institute"
-    t.string "year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "cv_id"
+    t.date "begin_date"
+    t.date "end_date"
   end
 
   create_table "infos", force: :cascade do |t|
@@ -129,6 +128,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_132309) do
     t.inet "last_sign_in_ip"
     t.integer "company_id"
     t.integer "role"
+    t.string "integer"
     t.string "jobtitle"
     t.string "phone"
     t.date "birthday"
@@ -142,6 +142,16 @@ ActiveRecord::Schema.define(version: 2021_06_18_132309) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "work_exps", force: :cascade do |t|
+    t.string "title"
+    t.date "begin_date"
+    t.date "end_date"
+    t.string "company"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "works", force: :cascade do |t|

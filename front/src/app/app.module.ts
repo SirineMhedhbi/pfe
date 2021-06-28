@@ -50,6 +50,8 @@ import { EditJobComponent } from './services/edit-job/edit-job.component';
 import { MyCompanyComponent } from './components/my-company/my-company.component';
 import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 
@@ -99,6 +101,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CKEditorModule,
 
     NgSelectModule,
     TagInputModule,
@@ -107,6 +110,9 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       closeButton: true,
     }),
+    
+
+
 
 
 

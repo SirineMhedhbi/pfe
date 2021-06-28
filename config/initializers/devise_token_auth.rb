@@ -17,6 +17,7 @@ DeviseTokenAuth.setup do |config|
   config.token_cost = Rails.env.test? ? 4 : 10
   config.send_confirmation_email = true
   config.batch_request_buffer_throttle = 1.month
+  config.check_current_password_before_update = true
 
   # Sets the max number of concurrent devices per user, which is 10 by default.
   # After this limit is reached, the oldest tokens will be removed.

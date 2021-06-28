@@ -6,6 +6,8 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { CompanyService } from 'src/app/services/company.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 
 @Component({
@@ -15,6 +17,8 @@ import { CompanyService } from 'src/app/services/company.service';
 })
 export class CreateAccountComponent implements OnInit {
   public show: boolean = false;
+  public Editor = ClassicEditor;
+
   company
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
   cars = [

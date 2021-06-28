@@ -48,14 +48,14 @@
 
                     <div class="job-inner align-items-center">
                         <div class="job-inner-left">
-                            <h3>{{item.title}}</h3>
-                            <a routerLink="/company-details/{{item.id}}">{{item.title}}.com</a>
+                            <h3>{{item?.title}}</h3>
+                            <a routerLink="/company-details/{{item.id}}">{{item?.title}}.com</a>
                             <ul>
                                 <li><i class="icofont-money-bag"></i>
-                                    <p> {{item.job_salary}} </p>
+                                    <p> {{item?.job_salary}} </p>
                                 </li>
                                 <li><i class="icofont-location-pin"></i>
-                                    <p>{{item.location}}</p>
+                                    <p>{{item?.location}}</p>
                                 </li>
                             </ul>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="job-inner-right">
                             <ul>
                                 <li><a routerLink="/job-details/{{item.id}}">See More</a></li>
-                                <li><span>{{item.job_time}}</span></li>
+                                <li><span>{{item?.job_time}}</span></li>
                             </ul>
                         </div>
                     </div>
