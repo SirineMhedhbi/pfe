@@ -49,6 +49,7 @@ import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
 import { EditJobComponent } from './services/edit-job/edit-job.component';
 import { MyCompanyComponent } from './components/my-company/my-company.component';
 import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -98,10 +99,16 @@ import { OffersDetailsComponent } from './components/offers-details/offers-detai
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+
     NgSelectModule,
     TagInputModule,
     BrowserAnimationsModule,
     GooglePlaceModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+    }),
+
+
 
   ],
   providers: [

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { CompanyService } from 'src/app/services/company.service';
 
@@ -24,7 +25,7 @@ export class CreateAccountComponent implements OnInit {
   ];
   companies
   form: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private companyService: CompanyService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private companyService: CompanyService, private toastr: ToastrService) {
 
   }
 
@@ -36,6 +37,7 @@ export class CreateAccountComponent implements OnInit {
         if (result['status'] == 'success') {
           this.form.reset();
           this.router.navigate(['login']);
+          this.toastr.success('You have to confirm your account via Email', 'SignUp succesfully');
         }
       }
     )

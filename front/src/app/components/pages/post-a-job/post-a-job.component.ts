@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { ToastrService } from 'ngx-toastr';
 
 
 import 'rxjs/add/observable/of';
@@ -28,7 +29,7 @@ export class PostAJobComponent implements OnInit {
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
 
-  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: Router) {
+  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
 
     this.form = this.fb.group({
       title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -86,6 +87,8 @@ export class PostAJobComponent implements OnInit {
       (response) => {
         console.log(this.data)
         this.router.navigate(['my-jobs']);
+        this.toastr.success('Job added successfully', '');
+
       },
       (error) => console.log(error)
     )

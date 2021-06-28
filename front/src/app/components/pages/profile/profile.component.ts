@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit {
   role
   work = { title: "", begin_date: "", end_date: "", company: "", description: "" }
   works = []
-  constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private worksService: WorkService, private authService: AuthService) {
+  constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private worksService: WorkService, private authService: AuthService, private toastr: ToastrService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -111,6 +112,9 @@ export class ProfileComponent implements OnInit {
     console.log(this.form.value)
     this.usersService.updateUser(this.form.value, this.user.user.id).subscribe(result => {
       console.log(result)
+      this.toastr.success('Profile Updated', '');
+
+      
     })
 
 
@@ -124,6 +128,8 @@ export class ProfileComponent implements OnInit {
 
     this.educationService.editEducation(item).subscribe((res: any) => {
       console.log(res)
+      this.toastr.success('Education Updated', '');
+
 
     })
   }
@@ -131,6 +137,8 @@ export class ProfileComponent implements OnInit {
     this.educationService.addEducation(education).subscribe((res: any) => {
       this.educations.push(res.education)
       this.education = { title: "", degree: "", institute: "", year: "" }
+      this.toastr.success('Education added successfully', '');
+
     })
 
   }
@@ -139,6 +147,8 @@ export class ProfileComponent implements OnInit {
       let index = this.educations.findIndex(x => x.id == id);
       this.educations = this.educations.filter(function (el) { return el.id != id });
       console.log(this.educations)
+      this.toastr.success('Remove successfully', '');
+
     })
 
   }
@@ -146,6 +156,8 @@ export class ProfileComponent implements OnInit {
     console.log(item)
     this.skillsService.editSkill(item).subscribe((res: any) => {
       console.log(res)
+      this.toastr.success('Skill Updated', '');
+
 
     })
 
@@ -156,6 +168,8 @@ export class ProfileComponent implements OnInit {
       this.skills.push(res.skill)
       this.skill = { name: "", pourcentage: 50 }
       console.log(res.skill)
+      this.toastr.success('Skill added successfully', '');
+
     })
 
   }
@@ -164,6 +178,8 @@ export class ProfileComponent implements OnInit {
       // let index = this.skills.findIndex(x => x.id == id);
       this.skills = this.skills.filter(function (el) { return el.id != id });
       console.log(this.skills)
+      this.toastr.success('Remove successfully', '');
+
     })
 
   }
@@ -171,6 +187,8 @@ export class ProfileComponent implements OnInit {
     console.log(item)
     this.linksService.editLink(item).subscribe((res: any) => {
       console.log(res)
+      this.toastr.success('Skill Updated', '');
+
 
     })
 
@@ -180,6 +198,8 @@ export class ProfileComponent implements OnInit {
       this.links.push(res.link)
       //  this.link = {linkedin: "", facebook:"", instagram:"", github:""}
       console.log(res.link)
+      this.toastr.success('Link added successfully', '');
+
     })
 
   }
@@ -188,6 +208,8 @@ export class ProfileComponent implements OnInit {
     this.linksService.deleteLink(id).subscribe((res: any) => {
       this.links = this.links.filter(function (el) { return el.id != id });
       console.log(this.links)
+      this.toastr.success('Remove successfully', '');
+
     })
 
   }
@@ -196,6 +218,8 @@ export class ProfileComponent implements OnInit {
 
     this.worksService.editWork(item).subscribe((res: any) => {
       console.log(res)
+      this.toastr.success('Skill Updated', '');
+
 
     })
   }
@@ -203,6 +227,8 @@ export class ProfileComponent implements OnInit {
     this.worksService.addWork(work).subscribe((res: any) => {
       this.works.push(res.work)
       this.work = work = { title: "", begin_date: "", end_date: "", company: "", description: "" }
+      this.toastr.success('Work added successfully', '');
+
 
     })
 
@@ -212,6 +238,8 @@ export class ProfileComponent implements OnInit {
       let index = this.works.findIndex(x => x.id == id);
       this.works = this.works.filter(function (el) { return el.id != id });
       console.log(this.works)
+      this.toastr.success('Remove successfully', '');
+
     })
 
   }

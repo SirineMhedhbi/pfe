@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { JobsService } from '../jobs.service';
 import { UsersService } from '../users.service';
 
@@ -14,7 +15,7 @@ export class EditJobComponent implements OnInit {
   job
   autocompleteItems = ['Item1', 'item2', 'item3'];
 
-  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: ActivatedRoute, private route: Router) {
+  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: ActivatedRoute, private route: Router, private toastr: ToastrService) {
     this.form = this.fb.group({
       title: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
       category: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -60,8 +61,10 @@ export class EditJobComponent implements OnInit {
 
   }
   editJob() {
-    this.jobsService.editJob(this.form.value, this.job.offer.id).subscribe((res: any) => {
+    this.jobsService.editJob(this.form.value, this.job.id).subscribe((res: any) => {
       this.route.navigate(['my-jobs']);
+      this.toastr.success('Job updated successfully', '');
+
     })
   }
 
