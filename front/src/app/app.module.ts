@@ -51,6 +51,9 @@ import { MyCompanyComponent } from './components/my-company/my-company.component
 import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './components/common/dialog/dialog.component';
+import { JobTestComponent } from './components/pages/post-a-job/job-test/job-test.component';
 
 
 
@@ -93,6 +96,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     EditJobComponent,
     MyCompanyComponent,
     OffersDetailsComponent,
+    DialogComponent,
+    JobTestComponent,
 
   ],
   imports: [
@@ -110,7 +115,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ToastrModule.forRoot({
       closeButton: true,
     }),
-    
+    MatDialogModule
+
 
 
 

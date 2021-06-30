@@ -13,6 +13,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/filter';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../common/dialog/dialog.component';
 
 
 @Component({
@@ -23,7 +25,7 @@ import 'rxjs/add/operator/filter';
 export class PostAJobComponent implements OnInit {
   public Editor = ClassicEditor;
   data
-  skills=[]
+  skills = []
   job
   // jobs=[]
   form: FormGroup;
@@ -31,7 +33,7 @@ export class PostAJobComponent implements OnInit {
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
 
-  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
+  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: Router, private toastr: ToastrService, private matDialog: MatDialog) {
 
     this.form = this.fb.group({
       title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -58,16 +60,20 @@ export class PostAJobComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  ngOnInit(): void {}
-  
-  
+  ngOnInit(): void { 
+    // const dialogRef = this.matDialog.open(DialogComponent, {
+    //   data: { title: "Would you like to add a test to this job post? " }
+    // });
+  }
+
+
   saveJob() {
-    
-  //  for (let index = 0; index < this.form.get('offerSkills').value.length; index++) {
-  //    const element = this.form.get('offerSkills').value[index];
-  //    this.skills=element.value
-  //    console.log(this.skills)
-  //  }
+
+    //  for (let index = 0; index < this.form.get('offerSkills').value.length; index+) {
+    //    const element = this.form.get('offerSkills').value[index];
+    //    this.skills=element.value
+    //    console.log(this.skills)
+    //  }
     this.data = {
       offer: {
         title: this.form.get('title').value,
@@ -93,21 +99,30 @@ export class PostAJobComponent implements OnInit {
 
     this.jobsService.addJob(this.data).subscribe(
 
-      (response) => {
-        console.log(this.data)
-        this.router.navigate(['my-jobs']);
+      (response:any) => {
         this.toastr.success('Job added successfully', '');
+        const dialogRef = this.matDialog.open(DialogComponent, {
+          data: { title: "Would you like to add a test to this job post? " }
+        });
+        dialogRef.afterClosed().subscribe((result: boolean) => {
+          if (result == true) {
+            this.router.navigate(['job-test/'+response.Offer.id]);
+
+          }else{
+            this.router.navigate(['my-jobs']);
+          }
+        });
 
       },
       (error) => console.log(error)
     )
-    }
-    public handleAddressChange(address: Address) {
-      this.f.location.setValue(address.formatted_address)
+  }
+  public handleAddressChange(address: Address) {
+    this.f.location.setValue(address.formatted_address)
 
-      this.f.lat.setValue(address.geometry.location.lat())
-      this.f.lng.setValue(address.geometry.location.lng())
-    }
+    this.f.lat.setValue(address.geometry.location.lat())
+    this.f.lng.setValue(address.geometry.location.lng())
+  }
 }
 
 

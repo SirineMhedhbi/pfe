@@ -1,0 +1,32 @@
+$common-font: 'Poppins',
+sans-serif;
+$heading-font: 'Montserrat',
+sans-serif;
+$transition: .5s all ease;
+$all-size: 16px;
+$main-color: #4bcc5a;
+$white-color: #ffffff;
+$black-color: #333333;
+$gradient-green: linear-gradient(90deg, rgba(56, 167, 69, 1) 0%, rgba(76, 206, 91, 1) 63%);
+$gradient-red: linear-gradient(90deg, rgb(167, 56, 56) 0%, rgb(206, 76, 76) 63%);
+
+.answerbtn {
+    display: inline-block;
+    font-weight: 500;
+    font-size: $all-size;
+    color: $white-color;
+    background: $gradient-green;
+    padding: 16px 20px;
+    cursor: pointer;
+    border: none;
+    margin-right: 15px;
+    &:hover {
+        background: linear-gradient(270deg, #38a745 0%, #4cce5b 63%);
+    }
+    &:disabled,
+    button[disabled] {
+        border: 1px solid #89e490;
+        background-color: #727c76;
+        opacity: 0.6;
+    }
+}
