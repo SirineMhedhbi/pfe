@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobsService } from '../jobs.service';
 import { UsersService } from '../users.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-edit-job',
@@ -11,6 +13,7 @@ import { UsersService } from '../users.service';
   styleUrls: ['./edit-job.component.scss']
 })
 export class EditJobComponent implements OnInit {
+  public Editor = ClassicEditor;
   form: FormGroup;
   job
   autocompleteItems = ['Item1', 'item2', 'item3'];

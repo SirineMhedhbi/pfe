@@ -183,7 +183,8 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label>Job Description</label>
-                            <textarea id="your_message" rows="8" class="form-control" formControlName="description"></textarea>
+                            <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
+
                         </div>
                     </div>
                 </div>
