@@ -54,6 +54,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './components/common/dialog/dialog.component';
 import { JobTestComponent } from './components/pages/post-a-job/job-test/job-test.component';
+import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-job/edit-test-job.component';
 
 
 
@@ -98,6 +99,7 @@ import { JobTestComponent } from './components/pages/post-a-job/job-test/job-tes
     OffersDetailsComponent,
     DialogComponent,
     JobTestComponent,
+    EditTestJobComponent,
 
   ],
   imports: [

@@ -32,6 +32,8 @@ export class JobsService {
       })
   }
 
+ 
+
   userJobs() {
 
     return this.http.get('/offers/index')
@@ -70,6 +72,14 @@ export class JobsService {
   }
   recentOffers(){
     return this.http.get('/offers/recent',)
+  }
+  addTest(test,id){
+    return this.http.post('/test/validate/' + id,
+    {
+      "test_offer":test,
+    })
+    
+
   }
 }
 

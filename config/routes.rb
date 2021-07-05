@@ -72,6 +72,9 @@ Rails.application.routes.draw do
   get "/works/index" => "works#index"
   delete "/works/destroy/:id" => "works#destroy"
 
+  post "/test/validate/:id" => "test#validate"
+
+
 
 
 

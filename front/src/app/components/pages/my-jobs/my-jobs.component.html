@@ -54,7 +54,10 @@
                             <ul>
                                 <li><span>{{item.job_time}}</span></li>
                                 <li>
-                                    <a routerLink="/edit-job/{{item.id}}">Edit</a>
+                                    <a routerLink="/edit-job/{{item.id}}">Edit Job</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/edit-test-job/{{item.id}}">Edit Test</a>
                                 </li>
                                 <li>
                                     <button type="button" class="btn btn-danger" (click)="removeJob(item.id)">Remove</button>
