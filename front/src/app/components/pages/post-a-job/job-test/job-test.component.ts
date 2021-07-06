@@ -16,7 +16,8 @@ export class JobTestComponent implements OnInit {
   constructor(
     private jobsService: JobsService,
     private router: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private route:  Router
   ) {}
 
   ngOnInit(): void {}
@@ -25,14 +26,14 @@ export class JobTestComponent implements OnInit {
     this.answer = { answer_content: "", is_true: false };
     this.quiz = { question: "", reponses: [] };
     console.log(this.test);
-    this.toastr.success("Question added successfully", "");
+    this.toastr.info("Question added successfully", "");
   }
   addAnswer() {
     this.quiz.reponses.push(this.answer);
     this.answer = { answer_content: "", is_true: false };
     console.log(this.quiz);
     this.checkAnsewers();
-    this.toastr.success("Answer added successfully", "");
+    this.toastr.info("Answer added successfully", "");
   }
 
   checkAnsewers() {
@@ -41,11 +42,11 @@ export class JobTestComponent implements OnInit {
   }
   removeItem(item) {
     this.test = this.test.filter((obj) => obj !== item);
-    this.toastr.info("Test removed successfully", "");
+    this.toastr.info("question removed successfully", "");
   }
   removeAnswer(item) {
     this.quiz.reponses = this.quiz.reponses.filter((obj) => obj !== item);
-    this.toastr.success("Answer removed successfully", "");
+    this.toastr.info("Answer removed successfully", "");
   }
   removeQA(item) {
     console.log(item);
@@ -65,6 +66,7 @@ export class JobTestComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.toastr.success("Success", "Test validated");
+        this.route.navigate(['my-jobs'])
       });
   }
 }

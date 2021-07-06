@@ -1,0 +1,85 @@
+$common-font: 'Poppins',
+sans-serif;
+$heading-font: 'Montserrat',
+sans-serif;
+$transition: .5s all ease;
+$all-size: 16px;
+$main-color: #4bcc5a;
+$white-color: #ffffff;
+$black-color: #333333;
+$gradient-green: linear-gradient(90deg, rgba(56, 167, 69, 1) 0%, rgba(76, 206, 91, 1) 63%);
+$gradient-red: linear-gradient(90deg, rgb(167, 56, 56) 0%, rgb(206, 76, 76) 63%);
+.answerbtn {
+    display: inline-block;
+    font-weight: 500;
+    font-size: $all-size;
+    color: $white-color;
+    background: $gradient-green;
+    padding: 16px 20px;
+    cursor: pointer;
+    border: none;
+    margin-right: 15px;
+    &:hover {
+        background: linear-gradient(270deg, #8a8f8a 0%, #4cce5b 63%);
+    }
+    &:disabled,
+    button[disabled] {
+        border: 1px solid #89e490;
+        background-color: #727c76;
+        opacity: 0.6;
+    }
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: $main-color !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $main-color;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-inner-container {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-radius: 5px !important;
+    border: 1px solid #ebebeb !important;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 15px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

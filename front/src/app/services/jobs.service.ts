@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { CompanyService } from './company.service';
 
 @Injectable({
@@ -73,14 +74,43 @@ export class JobsService {
   recentOffers(){
     return this.http.get('/offers/recent',)
   }
+
   addTest(test,id){
     return this.http.post('/test/validate/' + id,
     {
       "test_offer":test,
     })
-    
+  }
+  showTest(id){
+    return this.http.get('/test/show/' + id);
+  }
+  addquestion(question,id){
+    return this.http.post('/test/addquestion/' + id,
+    {
+      "question":question,
+    } )
+  }
+  deleteQuestion(id){
+    return this.http.delete('/test/destroy/' + id)
+  }
+  editQuestion(question,id){
+    return this.http.put('/test/updatequestion/' + +id,
+    {
+      "question_content":question,
+
+    } )
 
   }
+  editAnswer(answer,id){
+    return this.http.put('/test/updateanswer/' + +id,
+    {
+      "answer_content":answer,
+
+    } )
+
+  }
+
+
 }
 
 

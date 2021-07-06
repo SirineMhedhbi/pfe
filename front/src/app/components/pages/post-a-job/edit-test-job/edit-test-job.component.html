@@ -3,11 +3,11 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-text">
-                    <h2>Edit Your Job Test</h2>
+                    <h2>Post A Job Test</h2>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
                         <li><i class="icofont-simple-right"></i></li>
-                        <li>Edit Your Job Test Job Test</li>
+                        <li>Post A Job Test</li>
                     </ul>
                 </div>
             </div>
@@ -16,13 +16,25 @@
 </div>
 <div class="login-area pt-100">
     <div class="container">
-        <h2>Edit your test Job </h2>
 
         <div class="create-education create-education-two">
             <div class="create-education-wrap">
                 <div class="create-education-left">
-                    <h3>Question</h3>
+                    <h3>Question <i class="sticky note icon tooltip" style="    opacity: 0.5;
+                        cursor: pointer;
+                        margin: 2px;">
+                        <span class="tooltiptext" style="width: 247px; margin-left: -120px;">
+                            <ul>
+                                <li>Question can't be empty.</li>
+                            <li>You can't post less than three questions.</li>
+                            
+                        </ul>
+                        </span>
+                    </i>
+                    </h3>
+
                 </div>
+
 
                 <div class="create-education-right">
                     <!-- <a routerLink="/">Edit</a> -->
@@ -45,9 +57,10 @@
                     </div>
                 </div>
                 <div class="col-lg-2">
-                    <div class="form-group">
+                    <div class="form-group" style="    display: flex;flex-direction: column;">
                         <label>Is true answer</label>
-                        <input type="checkbox" class="form-control" [(ngModel)]="answer.is_true">
+                        <mat-checkbox class="" [(ngModel)]="answer.is_true" style="    height: 32px; margin-top: 10px; margin-left: 25px;"></mat-checkbox>
+                        <!-- <input type="checkbox" class="form-control" [(ngModel)]="answer.is_true" style="    height: 32px; margin-top: 10px;"> -->
                     </div>
                 </div>
 
@@ -68,10 +81,19 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label></label>
-                                <input type="checkbox" class="form-control" [(ngModel)]="item.is_true">
+                                <mat-checkbox class="" [(ngModel)]="item.is_true" style=" margin-bottom: 20px;margin-left: 15px;    margin-top: 32px;"></mat-checkbox>
+
                             </div>
                         </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <i class="trash icon" style="    margin-top: 21px;
+                                opacity: 0.5;     font-size: 35px; cursor: pointer; margin-left: -53px;" (click)="removeAnswer(item)"></i>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
 
@@ -84,48 +106,66 @@
 
 
         </div>
-        <div class="create-education create-education-two">
+        <div class="create-education create-education-two" *ngIf="test.length">
             <div class="create-education-wrap">
                 <div class="create-education-left">
                     <h3>Test Validation</h3>
+
+
                 </div>
 
-                <div class="create-education create-education-two" *ngFor="let item of test">
-                    <div class="create-education-wrap">
-                        <button type="button" class="btn btn-danger" style="text-align: unset;margin-block: 30px;
-                        margin-left: auto;" (click)="removeItem(item)">Remove</button>
-
-
+                <div class="create-education create-education-two col-lg-12" *ngFor="let item of test; let index = index ">
+                    <i class="times icon tooltip" (click)="removeQuestion(item.id)" style="position: absolute;
+                    font-size: 35px;
+                    color: #c1483b;
+                    opacity: 0.7;
+                    margin-top: -17px;
+                    right: -9px;
+                    top: 9px;
+                    cursor: pointer;   z-index: 0"><span class="tooltiptext">Remove Question</span></i>
+                    <div class="create-education-wrap" style="display: unset;">
+                        <!-- <button type="button" class="btn btn-danger" style="text-align: unset;margin-block: 30px;
+                        " (click)="removeItem(item)">Remove</button> -->
 
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label>Question</label>
-                                    <input type="text" class="form-control" [(ngModel)]="item.question">
+                                    <label>Question {{index + 1}}</label>
+                                    <input type="text" class="form-control" [(ngModel)]="item.question_content" (change)="editQuestion(item)">
                                 </div>
 
                             </div>
 
-                            <div *ngFor="let rep of item.reponses" class="col-lg-12" style="padding: unset;display: flex;">
-                                <div class="col-lg-10">
+                            <div *ngFor="let rep of item.answers" class="col-lg-12" style="padding: unset;display: flex;">
+                                <div class="col-lg-8">
                                     <div class="form-group">
                                         <label>Answer</label>
-                                        <input type="text" class="form-control" [(ngModel)]="rep.answer_content">
+                                        <input type="text" class="form-control" [(ngModel)]="rep.answer_content" (change)="editAnswer(rep)">
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label>Is true answer</label>
-                                        <input type="checkbox" class="form-control" [(ngModel)]="rep.is_true">
+                                        <mat-checkbox class="" [(ngModel)]="rep.is_true" [disabled]="true" style="     height: 32px; margin-top: 10px; margin-left: 25px;"></mat-checkbox>
+
                                     </div>
                                 </div>
+                                <!-- <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <i class="trash icon" style="    margin-top: 38px;
+                                        opacity: 0.5;     font-size: 34px; cursor: pointer;" (click)="removeQA(rep)"></i>
+                                    </div>
+                                </div> -->
+
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="create-education-right" style="text-align: unset;">
-                    <button (click)="validateTest()">Validate</button>
-                </div>
+                <!-- <div class="create-education-right" style="text-align: unset;">
+                    <button (click)="validateTest()" [disabled]="test.length < 3">Validate</button>
+                </div> -->
 
             </div>
 
@@ -135,7 +175,32 @@
 
 
 
+            <!-- <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Degree</label>
+                    <input type="text" class="form-control" >
+                </div>
+            </div>
 
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Institute</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Begin date</label>
+                    <input type="date" class="form-control" >
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>End date</label>
+                    <input type="date" class="form-control" >
+                </div>
+            </div> -->
         </div>
 
     </div>

@@ -55,6 +55,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './components/common/dialog/dialog.component';
 import { JobTestComponent } from './components/pages/post-a-job/job-test/job-test.component';
 import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-job/edit-test-job.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 
@@ -117,7 +119,8 @@ import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-jo
     ToastrModule.forRoot({
       closeButton: true,
     }),
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
 
 
 
