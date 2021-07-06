@@ -32,6 +32,8 @@ import { MyJobsComponent } from './components/pages/my-jobs/my-jobs.component';
 import { EditJobComponent } from './services/edit-job/edit-job.component';
 import { MyCompanyComponent } from './components/my-company/my-company.component';
 import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
+import { JobTestComponent } from './components/pages/post-a-job/job-test/job-test.component';
+import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-job/edit-test-job.component';
 
 
 const routes: Routes = [
@@ -66,6 +68,9 @@ const routes: Routes = [
     {path: 'edit-job/:id', component: EditJobComponent},
     {path: 'my-company', component: MyCompanyComponent},
     {path: 'offers-details/:id', component: OffersDetailsComponent},
+    {path: 'job-test/:id', component: JobTestComponent, canActivate: [AuthGuard]},
+    {path: 'edit-test-job/:id', component: EditTestJobComponent, canActivate: [AuthGuard]},
+
 
     
     // Here add new pages component

@@ -15,6 +15,14 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "answers", force: :cascade do |t|
+    t.text "answer_content"
+    t.boolean "is_true"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "question_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "title"
     t.string "category"
@@ -64,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "cv_id"
-  end
+  end 
 
   create_table "links", force: :cascade do |t|
     t.string "facebook"
@@ -74,6 +82,12 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "cv_id"
     t.string "github"
+  end
+
+  create_table "offer_tests", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "offer_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -91,6 +105,13 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
     t.string "qualification"
     t.string "contract"
     t.string "offerSkills", default: [], array: true
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "question_content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "offer_test_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -165,11 +186,14 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
     t.integer "cv_id"
   end
 
+  add_foreign_key "answers", "questions"
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
   add_foreign_key "infos", "cvs"
   add_foreign_key "links", "cvs"
+  add_foreign_key "offer_tests", "offers"
   add_foreign_key "offers", "users"
+  add_foreign_key "questions", "offer_tests"
   add_foreign_key "skills", "cvs"
   add_foreign_key "users", "companies"
   add_foreign_key "works", "cvs"

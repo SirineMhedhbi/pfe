@@ -1,0 +1,19 @@
+:host {
+    
+    width: 100%;
+    display: block;
+    button {
+        margin-left: 20px;
+        border: none !important;
+        width: 50px !important;
+        height: 30px;
+        border-radius: 4px;
+    }
+    .mat-primary{
+        background-color: #38a745;
+
+    }
+}
+.mat-dialog-container{
+    border: 3px solid#38a745 !important;
+}
