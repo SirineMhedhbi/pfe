@@ -39,8 +39,13 @@ Rails.application.routes.draw do
   post "/educations/create"  => "educations#create"
   put "/educations/update/:id" => "educations#update"
   get "/educations/index" => "educations#index"
-  # get "/educations/show/:id" => "educations#show"
   delete "/educations/destroy/:id" => "educations#destroy"
+
+  post "/hobbies/create"  => "hobbies#create"
+  put "/hobbies/update/:id" => "hobbies#update"
+  get "/hobbies/index" => "hobbies#index"
+  delete "/hobbies/destroy/:id" => "hobbies#destroy"
+
 
   post "/infos/create"  => "info#create"
 

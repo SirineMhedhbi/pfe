@@ -11,6 +11,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { ToastrService } from 'ngx-toastr';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { HobbiesService } from 'src/app/services/hobbies.service';
 
 
 
@@ -40,7 +41,10 @@ export class ProfileComponent implements OnInit {
   role
   work = { title: "", begin_date: "", end_date: "", company: "", description: "" }
   works = []
-  constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private worksService: WorkService, private authService: AuthService, private toastr: ToastrService) {
+  hobbie = {name: ""}
+  hobbies = []
+
+  constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private worksService: WorkService, private authService: AuthService, private toastr: ToastrService, private hobbieService : HobbiesService) {
 
     this.form = this.fb.group({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -90,6 +94,11 @@ export class ProfileComponent implements OnInit {
         this.educationService.userEducations().subscribe((res: any) => {
           this.educations = res.educations
         })
+
+        this.hobbieService.userHobbies().subscribe((res: any) => {
+          this.hobbies = res.hobbies
+        })
+
         this.skillsService.userSkills().subscribe((res: any) => {
           this.skills = res.skills
         })
@@ -246,6 +255,34 @@ export class ProfileComponent implements OnInit {
     })
 
   }
+
+  addHobbie(hobbie) {
+    this.hobbieService.addHobbie(hobbie).subscribe((res: any) => {
+      this.hobbies.push(res.hobbie)
+      this.hobbie = { name: ""}
+      this.toastr.success('Hobbie added successfully', '');
+
+    })
+
+  }
+  editHobbie(item) {
+
+    this.hobbieService.editHobbie(item).subscribe((res: any) => {
+      console.log(res)
+      this.toastr.success('Hobbie Updated', '');
+    })
+  }
+  removeHobbie(id) {
+    this.hobbieService.deleteHobbie(id).subscribe((res: any) => {
+      let index = this.hobbies.findIndex(x => x.id == id);
+      this.hobbies = this.hobbies.filter(function (el) { return el.id != id });
+      console.log(this.hobbies)
+      this.toastr.success('Remove successfully', '');
+
+    })
+
+  }
+
   public handleAddressChange(address: Address) {
     this.f.address.setValue(address.formatted_address)
     this.f.lat.setValue(address.geometry.location.lat())

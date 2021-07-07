@@ -14,11 +14,13 @@ class CvController < ApplicationController
             @skills= @user.cv&.skills
             @links= @user.cv&.links
             @works= @user.cv&.works
+            @hobbies= @user.cv&.hobbies
 
 
 
 
-            render json: { educations: @educations, user: @user, skills: @skills, links: @links, works: @works}
+
+            render json: { educations: @educations, user: @user, skills: @skills, links: @links, works: @works, hobbies: @hobbies}
 
         end
     private

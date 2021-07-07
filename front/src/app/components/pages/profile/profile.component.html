@@ -501,5 +501,52 @@
                     </div>
                 </div>
             </div>
+
+            <div class="create-education create-education-two">
+                <div class="create-education-wrap">
+                    <div class="create-education-left">
+                        <h3>Hobbies</h3>
+                    </div>
+
+                    <div class="create-education-right">
+                        <!-- <a routerLink="/">Edit</a> -->
+                        <button (click)="addHobbie(hobbie)" [disabled]="hobbie.name == ''  ">Add Hobbie</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Hobbie</label>
+                            <input type="text" class="form-control" [(ngModel)]="hobbie.name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="create-education create-education-two" *ngFor="let item of hobbies">
+                    <div class="create-education-wrap">
+                        <div class="create-education-left">
+                            <h3>Hobbie</h3>
+                        </div>
+
+                        <div class="create-education-right">
+                            <button type="submit" (click)="editHobbie(item)" [disabled]="item.name == '' ">Edit </button>
+                            <button class="delete-btn" (click)="removeHobbie(item.id)">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Hobbie</label>
+                                <input type="text" class="form-control" [(ngModel)]="item.name">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
