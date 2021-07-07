@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EducationService } from 'src/app/services/education.service';
+import { HobbiesService } from 'src/app/services/hobbies.service';
 import { LinksService } from 'src/app/services/links.service';
 import { SkillsService } from 'src/app/services/skills.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -24,6 +25,7 @@ export class CandidateDetailsComponent implements OnInit {
   infos 
   user
   works
+  hobbies
   @Input() id;
 
   public href: string = "";
@@ -31,7 +33,7 @@ export class CandidateDetailsComponent implements OnInit {
   test 
   
 
-  constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router,private worksService: WorkService) { }
+  constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router,private worksService: WorkService, private hobbiesService : HobbiesService) { }
 
   ngOnInit(): void {
     this.href = this.route.url
@@ -61,6 +63,9 @@ export class CandidateDetailsComponent implements OnInit {
     console.log(this.skills)
     this.works=res.works
     console.log(this.works)
+    this.hobbies=res.hobbies
+    console.log(this.hobbies)
+
 
    
 

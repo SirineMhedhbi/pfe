@@ -4,12 +4,7 @@ class Cv < ApplicationRecord
     has_many :infos, class_name: "Info"
     has_many :links, class_name: "Link"
     has_many :works, class_name: "Work"
-
-
+    has_many :hobbies, class_name: "Hobbie"
     has_one :user
-
-
-    
-
 
 end

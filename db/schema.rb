@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_094628) do
+ActiveRecord::Schema.define(version: 2021_07_07_093802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
     t.date "end_date"
   end
 
+  create_table "hobbies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "cv_id"
+  end
+
   create_table "infos", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -72,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "cv_id"
-  end 
+  end
 
   create_table "links", force: :cascade do |t|
     t.string "facebook"
@@ -189,6 +196,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_094628) do
   add_foreign_key "answers", "questions"
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
+  add_foreign_key "hobbies", "cvs"
   add_foreign_key "infos", "cvs"
   add_foreign_key "links", "cvs"
   add_foreign_key "offer_tests", "offers"
