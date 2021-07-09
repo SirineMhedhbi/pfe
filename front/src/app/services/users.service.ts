@@ -29,7 +29,9 @@ export class UsersService {
         "description":user.description,
         "post":user.post,
         lat: user.lat,
-        lng: user.lng
+        lng: user.lng,
+        "avatar":user.image,
+
 
 
 

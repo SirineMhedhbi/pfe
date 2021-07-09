@@ -21,13 +21,8 @@ export class CreateAccountComponent implements OnInit {
 
   company
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
-  cars = [
-    { id: 1, name: 'Volvo' },
-    { id: 2, name: 'Saab' },
-    { id: 3, name: 'Opel' },
-    { id: 4, name: 'Audi' },
-  ];
   companies
+  filePath
   form: FormGroup;
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private companyService: CompanyService, private toastr: ToastrService) {
 
@@ -89,10 +84,20 @@ export class CreateAccountComponent implements OnInit {
       company_id: new FormControl(''),
       lat: new FormControl('', Validators.compose([Validators.required])),
       lng: new FormControl('', Validators.compose([Validators.required])),
-
-
+      image: new FormControl('', Validators.compose([Validators.required])),
     });
 
+  }
+  imagePreview(files) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.filePath = reader.result
+      this.form.patchValue({
+        image: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
   }
 
   public handleAddressChange(address: Address) {

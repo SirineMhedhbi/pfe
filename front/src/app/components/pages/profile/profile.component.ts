@@ -12,6 +12,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { ToastrService } from 'ngx-toastr';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { HobbiesService } from 'src/app/services/hobbies.service';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -43,6 +44,7 @@ export class ProfileComponent implements OnInit {
   works = []
   hobbie = {name: ""}
   hobbies = []
+  filePath
 
   constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private worksService: WorkService, private authService: AuthService, private toastr: ToastrService, private hobbieService : HobbiesService) {
 
@@ -68,6 +70,7 @@ export class ProfileComponent implements OnInit {
 
     this.usersService.ShowUser().subscribe(result => {
       this.user = result
+      this.filePath =environment.baseUrl + this.user.user.image
       this.form = this.fb.group({
         name: new FormControl(this.user.user.name, Validators.compose([Validators.required, Validators.minLength(3)])),
         nickname: new FormControl(this.user.user.nickname, Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -81,6 +84,8 @@ export class ProfileComponent implements OnInit {
         post: new FormControl(this.user.user.post, Validators.compose([Validators.required])),
         lat: new FormControl(this.user.user.lat, Validators.compose([Validators.required])),
         lng: new FormControl(this.user.user.lng, Validators.compose([Validators.required])),
+        image: new FormControl('', Validators.compose([Validators.required])),
+
       });
 
     })
@@ -119,6 +124,17 @@ export class ProfileComponent implements OnInit {
 
 
 
+  }
+  imagePreview(files) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.filePath = reader.result
+      this.form.patchValue({
+        image: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
   }
   updateUser() {
     console.log(this.form.value)
