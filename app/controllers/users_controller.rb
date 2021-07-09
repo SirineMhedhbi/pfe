@@ -18,6 +18,11 @@ class UsersController < ApplicationController
         else 
         @user  = User.find(params[:id])
         @user.update(user_params)
+        if params[ :avatar ].present?
+            @user.avatar.attach(data: params[ :avatar ])
+		    @user.update(image: rails_blob_path(@user.avatar))
+        end
+        
         render json: { user: @user,message:"user updated"}  
         end
 
@@ -40,12 +45,12 @@ class UsersController < ApplicationController
 
     def show
       
-        render json: { user: User.find(current_api_user.id)}
+        render json: { user: current_api_user}
     end
     
       private
      def user_params
-      params.require(:user).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender, :description, :post, :birthday, :lat,:lng)
+      params.require(:user).permit(:email,:password, :role, :name, :nickname, :jobtitle, :phone, :address, :gender, :description, :post, :birthday, :lat,:lng, avatar: :data)
      end
 
 end

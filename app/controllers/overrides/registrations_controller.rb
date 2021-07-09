@@ -5,10 +5,12 @@ module Overrides
 		#   @resource = User.new(user_params)
 		#    #This may vary based on your params and conditions you want7
 			super
-			if @resource.role == "candidat"  
+			@resource.avatar.attach(data: params[ :avatar ])
+			@resource.update(image: rails_blob_path(@resource.avatar))
+			if @resource.role == "candidat"
 					cv = Cv.create
-					@resource.cv = cv 
-					@resource.save         
+					@resource.cv = cv
+					@resource.save
 			end
 		end
 		# private
