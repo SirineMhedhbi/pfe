@@ -34,52 +34,58 @@ import { MyCompanyComponent } from './components/my-company/my-company.component
 import { OffersDetailsComponent } from './components/offers-details/offers-details.component';
 import { JobTestComponent } from './components/pages/post-a-job/job-test/job-test.component';
 import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-job/edit-test-job.component';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 
 
 const routes: Routes = [
-    {path: '', component: HomeOneComponent},
-    {path: 'home-two', component: HomeTwoComponent},
-    {path: 'home-three', component: HomeThreeComponent},
-    {path: 'about', component: AboutComponent},
-    {path: 'job-list', component: JobListComponent},
-    {path: 'favourite-job', component: FavouriteJobComponent},
-    {path: 'job-details/:id', component: JobDetailsComponent},
-    {path: 'post-a-job', component: PostAJobComponent},
-    {path: 'candidate-list', component: CandidateListComponent},
-    {path: 'candidate-details/:id', component: CandidateDetailsComponent},
-    {path: 'single-resume', component: SingleResumeComponent},
-    {path: 'submit-resume', component: SubmitResumeComponent},
-    {path: 'pricing', component: PricingComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'company-list', component: CompanyListComponent},
-    {path: 'company-details/:id', component: CompanyDetailsComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'create-account', component: CreateAccountComponent},
-    {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard]},
-    {path: 'single-profile', component: SingleProfileComponent},
-    {path: '404', component: ErrorComponent},
-    {path: 'faq', component: FaqComponent},
-    {path: 'terms-and-conditions', component: TermsAndConditionsComponent},
-    {path: 'privacy-policy', component: PrivacyPolicyComponent},
-    {path: 'blog', component: BlogComponent},
-    {path: 'blog-details', component: BlogDetailsComponent},
-    {path: 'contact', component: ContactComponent},
-    {path: 'my-jobs', component: MyJobsComponent},
-    {path: 'edit-job/:id', component: EditJobComponent},
-    {path: 'my-company', component: MyCompanyComponent},
-    {path: 'offers-details/:id', component: OffersDetailsComponent},
-    {path: 'job-test/:id', component: JobTestComponent, canActivate: [AuthGuard]},
-    {path: 'edit-test-job/:id', component: EditTestJobComponent, canActivate: [AuthGuard]},
+	{ path: '', component: HomeOneComponent },
+	{ path: 'home-two', component: HomeTwoComponent },
+	{ path: 'home-three', component: HomeThreeComponent },
+	{ path: 'about', component: AboutComponent },
+	{ path: 'job-list', component: JobListComponent },
+	{ path: 'favourite-job', component: FavouriteJobComponent },
+	{ path: 'job-details/:id', component: JobDetailsComponent },
+	{ path: 'post-a-job', component: PostAJobComponent },
+	{ path: 'candidate-list', component: CandidateListComponent },
+	{ path: 'candidate-details/:id', component: CandidateDetailsComponent },
+	{ path: 'single-resume', component: SingleResumeComponent },
+	{ path: 'submit-resume', component: SubmitResumeComponent },
+	{ path: 'pricing', component: PricingComponent },
+	{ path: 'dashboard', component: DashboardComponent },
+	{ path: 'company-list', component: CompanyListComponent },
+	{ path: 'company-details/:id', component: CompanyDetailsComponent },
+	{ path: 'login', component: LoginComponent },
+	{ path: 'create-account', component: CreateAccountComponent },
+	{ path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+	{ path: 'single-profile', component: SingleProfileComponent },
+	{ path: '404', component: ErrorComponent },
+	{ path: 'faq', component: FaqComponent },
+	{ path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+	{ path: 'privacy-policy', component: PrivacyPolicyComponent },
+	{ path: 'blog', component: BlogComponent },
+	{ path: 'blog-details', component: BlogDetailsComponent },
+	{ path: 'contact', component: ContactComponent },
+	{ path: 'my-jobs', component: MyJobsComponent },
+	{ path: 'edit-job/:id', component: EditJobComponent },
+	{ path: 'my-company', component: MyCompanyComponent },
+	{ path: 'offers-details/:id', component: OffersDetailsComponent },
+	{ path: 'job-test/:id', component: JobTestComponent, canActivate: [AuthGuard] },
+	{ path: 'edit-test-job/:id', component: EditTestJobComponent, canActivate: [AuthGuard] },
+	{ path: 'forget/password', component: ForgetPasswordComponent },
+	{ path: 'reset/password', component: ResetPasswordComponent },
 
 
-    
-    // Here add new pages component
 
-    {path: '**', component: ErrorComponent} // This line will remain down from the whole pages component list
+
+
+	// Here add new pages component
+
+	{ path: '**', component: ErrorComponent } // This line will remain down from the whole pages component list
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-    exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
