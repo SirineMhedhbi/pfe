@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { 
-  ActivatedRouteSnapshot, 
-  CanActivate, 
-  Router, 
-  RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot
+} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -13,8 +15,9 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private toaster: ToastrService
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -24,7 +27,9 @@ export class AuthGuard implements CanActivate {
       .pipe(
         take(1),                              // {2} 
         map((isLoggedIn: boolean) => {         // {3}
-          if (!isLoggedIn){
+          if (!isLoggedIn) {
+            this.toaster.warning('You have to be logged in', '');
+
             this.router.navigate(['/login']);  // {4}
             return false;
           }
