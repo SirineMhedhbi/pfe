@@ -18,6 +18,8 @@ DeviseTokenAuth.setup do |config|
   config.send_confirmation_email = true
   config.batch_request_buffer_throttle = 1.month
   config.check_current_password_before_update = true
+  config.default_confirm_success_url = "http://localhost:4200"
+
 
   # Sets the max number of concurrent devices per user, which is 10 by default.
   # After this limit is reached, the oldest tokens will be removed.

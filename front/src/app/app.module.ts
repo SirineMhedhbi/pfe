@@ -56,6 +56,8 @@ import { DialogComponent } from './components/common/dialog/dialog.component';
 import { JobTestComponent } from './components/pages/post-a-job/job-test/job-test.component';
 import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-job/edit-test-job.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 
 
 
@@ -102,6 +104,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     DialogComponent,
     JobTestComponent,
     EditTestJobComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
 
   ],
   imports: [
