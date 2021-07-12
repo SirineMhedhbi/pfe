@@ -60,11 +60,12 @@ class TestController < ApplicationController
       render json: {message: "success update"}
     end
     
+    def check_test
+      @offer = Offer.find(params[:id])
+     render json: {message: @offer.offer_test.present?}
+    end
     
-
-  
-		
-
+    
     private
     def test_params
 			params.require(:test_offer).each do |item|
@@ -80,7 +81,6 @@ class TestController < ApplicationController
     def question_test_params
       params.require(:test).permit!
     end
-    
     
     
 end 

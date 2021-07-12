@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -58,6 +60,7 @@ import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-jo
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
 
 
 
@@ -106,6 +109,7 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
     EditTestJobComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    CandidatTestComponent,
 
   ],
   imports: [
@@ -124,7 +128,8 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
       closeButton: true,
     }),
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule,
 
 
 

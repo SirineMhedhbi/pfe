@@ -62,7 +62,7 @@ class OfferController < ApplicationController
         else 
             @offer = Offer.find(params[:id])
             render json: @offer.to_json(
-                :include => {:user => {:only => [:phone ,:address, :email]}} )
+                :include => {:user => {:only => [:phone ,:address, :email]}})
             
         end 
     end

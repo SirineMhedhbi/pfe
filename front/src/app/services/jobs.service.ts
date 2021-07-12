@@ -109,6 +109,9 @@ export class JobsService {
     } )
 
   }
+  checkTest(id) {
+    return this.http.get('/test/checktest/' + id);
+  }
 
 
 }

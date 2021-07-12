@@ -14,7 +14,7 @@ export class JobDetailsComponent implements OnInit {
   offer
   company
 
-  constructor(private jobsService: JobsService,private router: ActivatedRoute,private companyService: CompanyService) { }
+  constructor(private jobsService: JobsService,private router: ActivatedRoute,private route: Router ,private companyService: CompanyService) { }
 
   ngOnInit(): void {
     this.jobsService.showJob(this.router.snapshot.paramMap.get('id')).subscribe((res: any) => {
@@ -22,7 +22,21 @@ export class JobDetailsComponent implements OnInit {
       this.offer = res
       console.log(this.offer)
     })
-    
+
+   
+  }
+  checkTest(id){
+    this.jobsService.checkTest(this.router.snapshot.paramMap.get('id')).subscribe((res: any) => {
+      console.log(res)
+      console.log(res.message)  
+    if (res.message) {
+      this.route.navigate(['/candidat-test/', + id]);
+      
+    }
+    })
+
+   
+
   }
 
 }
