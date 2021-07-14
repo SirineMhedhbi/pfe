@@ -4,6 +4,8 @@ import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
+
 
 
 
@@ -130,6 +132,8 @@ import { CandidatTestComponent } from './components/pages/job-list/candidat-test
     MatDialogModule,
     MatCheckboxModule,
     MatTabsModule,
+    MatRadioModule,
+
 
 
 

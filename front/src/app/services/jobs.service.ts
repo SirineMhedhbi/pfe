@@ -113,6 +113,11 @@ export class JobsService {
     return this.http.get('/test/checktest/' + id);
   }
 
+  testresult(tab){
+    return this.http.post('/test/testresult/',{tab});
+  }
+
+
 
 }
 

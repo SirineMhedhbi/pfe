@@ -64,6 +64,24 @@ class TestController < ApplicationController
       @offer = Offer.find(params[:id])
      render json: {message: @offer.offer_test.present?}
     end
+
+    def test_result
+      candidat_answres = test_result_params
+      note = 0
+      test_result_params.each do |item|
+        sended_answers = item[:answers]
+        right_answers = Question.find(item[:question_id]).answers.where(is_true: true).pluck :id
+        if sended_answers == right_answers
+          note = note + 1
+        end
+      end
+      final_note = note.to_f / candidat_answres.length.to_f * 100
+      if final_note > 70 
+        render json: {message: true}
+      else
+        render json: {message: false}
+      end
+    end
     
     
     private
@@ -81,6 +99,12 @@ class TestController < ApplicationController
     def question_test_params
       params.require(:test).permit!
     end
+    def test_result_params
+      params.require(:tab).each do |item|
+				item.permit!        
+    	end
+    end
+    
     
     
 end 
