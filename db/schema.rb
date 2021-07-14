@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_141439) do
+ActiveRecord::Schema.define(version: 2021_07_14_162434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2021_07_08_141439) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "question_id"
+  end
+
+  create_table "applies", force: :cascade do |t|
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "offer_id"
+    t.integer "user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -160,6 +168,14 @@ ActiveRecord::Schema.define(version: 2021_07_08_141439) do
     t.integer "cv_id"
   end
 
+  create_table "test_attempts", force: :cascade do |t|
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "offer_test_id"
+    t.integer "user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -215,6 +231,8 @@ ActiveRecord::Schema.define(version: 2021_07_08_141439) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
+  add_foreign_key "applies", "offers"
+  add_foreign_key "applies", "users"
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
   add_foreign_key "hobbies", "cvs"
@@ -224,6 +242,8 @@ ActiveRecord::Schema.define(version: 2021_07_08_141439) do
   add_foreign_key "offers", "users"
   add_foreign_key "questions", "offer_tests"
   add_foreign_key "skills", "cvs"
+  add_foreign_key "test_attempts", "offer_tests"
+  add_foreign_key "test_attempts", "users"
   add_foreign_key "users", "companies"
   add_foreign_key "works", "cvs"
 end

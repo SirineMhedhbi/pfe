@@ -1,7 +1,10 @@
 import { serializeNodes } from "@angular/compiler/src/i18n/digest";
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { filter } from "rxjs/operators";
+import { DialogComponent } from "src/app/components/common/dialog/dialog.component";
 import { JobsService } from "src/app/services/jobs.service";
 
 @Component({
@@ -20,8 +23,11 @@ export class CandidatTestComponent implements OnInit {
 
   constructor(
     private jobsService: JobsService,
-    private router: ActivatedRoute
-  ) {}
+    private router: ActivatedRoute,
+    private matDialog: MatDialog,
+    private toastr: ToastrService
+  ) { }
+
 
   ngOnInit(): void {
     this.jobsService
@@ -37,7 +43,7 @@ export class CandidatTestComponent implements OnInit {
         }
         console.log(this.t);
       });
-   
+
   }
 
   checkValue(e) {
@@ -57,12 +63,24 @@ export class CandidatTestComponent implements OnInit {
     }
     console.log(this.t);
   }
-  testresult(){
-    this.jobsService
-    .testresult(this.t)
-    .subscribe((res: any) => {
-      console.log(res);
+  testresult() {
+    const dialogRef = this.matDialog.open(DialogComponent, {
+      data: { title: "Are you sure to validate your answers? " }
     });
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result == true) {
+        this.jobsService.testresult(this.t, this.idtest).subscribe((res: any) => {
+          console.log(res.success);
+          if (res.success) {
+            this.toastr.success(res.message, '');
+
+          } else {
+            this.toastr.warning(res.message, '');
+          }
+        });
+      }
+    });
+
   }
-  
+
 }

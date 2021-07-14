@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6" *ngFor="let item of jobs">
-                <div class="job-item">
+                <div class="job-item" [matBadge]="item.applies.length" matBadgeSize="large">
                     <img src="assets/img/home-1/jobs/1.png" alt="Job">
 
 
@@ -56,8 +56,11 @@
                                 <li>
                                     <a routerLink="/edit-job/{{item.id}}">Edit Job</a>
                                 </li>
-                                <li>
+                                <li *ngIf="item.offer_test">
                                     <a routerLink="/edit-test-job/{{item.id}}">Edit Test</a>
+                                </li>
+                                <li *ngIf="!item.offer_test">
+                                    <a routerLink="/job-test/{{item.id}}">Add Test</a>
                                 </li>
                                 <li style=" border: unset;">
                                     <button type="button" class="btn btn-danger" style="width: 96px; height: 41px;" (click)="removeJob(item.id)">Remove</button>

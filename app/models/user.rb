@@ -7,8 +7,10 @@ class User < ApplicationRecord
 
   belongs_to :company, class_name: "Company", foreign_key: "company_id", optional: true
   has_many :offers, class_name: "Offer"
+  has_many :test_attempts, class_name: "TestAttempt"
   has_one :cv
   has_one_base64_attached :avatar
+  has_many :applies
 
   devise :database_authenticatable, :registerable,:recoverable, :rememberable, :trackable, :validatable, :confirmable
 

@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 
 
@@ -133,6 +135,7 @@ import { CandidatTestComponent } from './components/pages/job-list/candidat-test
     MatCheckboxModule,
     MatTabsModule,
     MatRadioModule,
+    MatBadgeModule
 
 
 

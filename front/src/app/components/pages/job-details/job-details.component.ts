@@ -3,6 +3,7 @@ import { JobsService } from 'src/app/services/jobs.service';
 import { UsersService } from 'src/app/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class JobDetailsComponent implements OnInit {
   offer
   company
 
-  constructor(private jobsService: JobsService,private router: ActivatedRoute,private route: Router ,private companyService: CompanyService) { }
+  constructor(private jobsService: JobsService, private router: ActivatedRoute, private route: Router, private companyService: CompanyService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.jobsService.showJob(this.router.snapshot.paramMap.get('id')).subscribe((res: any) => {
@@ -23,19 +24,18 @@ export class JobDetailsComponent implements OnInit {
       console.log(this.offer)
     })
 
-   
+
   }
-  checkTest(id){
+  checkTest(id) {
     this.jobsService.checkTest(this.router.snapshot.paramMap.get('id')).subscribe((res: any) => {
-      console.log(res)
-      console.log(res.message)  
-    if (res.message) {
-      this.route.navigate(['/candidat-test/', + id]);
-      
-    }
+      if (res.success) {
+        this.route.navigate(['/candidat-test/', + id]);
+      } else {
+        this.toastr.info(res.message, '');
+      }
     })
 
-   
+
 
   }
 
