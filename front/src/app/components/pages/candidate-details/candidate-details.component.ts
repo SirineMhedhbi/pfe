@@ -6,6 +6,8 @@ import { LinksService } from 'src/app/services/links.service';
 import { SkillsService } from 'src/app/services/skills.service';
 import { UsersService } from 'src/app/services/users.service';
 import { WorkService } from 'src/app/services/work.service';
+import { environment } from 'src/environments/environment';
+
 
 
 @Component({
@@ -26,6 +28,7 @@ export class CandidateDetailsComponent implements OnInit {
   user
   works
   hobbies
+  filePath
   @Input() id;
 
   public href: string = "";
@@ -52,6 +55,9 @@ export class CandidateDetailsComponent implements OnInit {
   this.usersService.cvUser(this.router.snapshot.paramMap.get('id')|| this.id).subscribe((res:any)=>{
     console.log(res)
     this.user=res.user
+    if (this.user.image) {
+      this.filePath = environment.baseUrl + this.user.image
+    }
     if (res.links) {
       this.links=res.links[0]
 
@@ -65,11 +71,6 @@ export class CandidateDetailsComponent implements OnInit {
     console.log(this.works)
     this.hobbies=res.hobbies
     console.log(this.hobbies)
-
-
-   
-
-
 
 
 

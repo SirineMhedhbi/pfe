@@ -70,7 +70,10 @@ export class ProfileComponent implements OnInit {
 
     this.usersService.ShowUser().subscribe(result => {
       this.user = result
-      this.filePath =environment.baseUrl + this.user.user.image
+      if (this.user.user.image) {
+        this.filePath = environment.baseUrl + this.user.user.image
+      }
+      
       this.form = this.fb.group({
         name: new FormControl(this.user.user.name, Validators.compose([Validators.required, Validators.minLength(3)])),
         nickname: new FormControl(this.user.user.nickname, Validators.compose([Validators.required, Validators.minLength(3)])),

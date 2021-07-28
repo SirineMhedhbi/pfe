@@ -11,8 +11,8 @@ class OfferController < ApplicationController
     end
 
     def index
-        @offers = current_api_user.offers
-        render json: { offers: @offers, company: current_api_user.company }
+        @offers = current_api_user.offers.to_json(:include => [:offer_test, :applies])
+        render json: { offers: JSON(@offers), company: current_api_user.company }
 
     end
 
@@ -62,7 +62,7 @@ class OfferController < ApplicationController
         else 
             @offer = Offer.find(params[:id])
             render json: @offer.to_json(
-                :include => {:user => {:only => [:phone ,:address, :email]}} )
+                :include => {:user => {:only => [:phone ,:address, :email]}})
             
         end 
     end

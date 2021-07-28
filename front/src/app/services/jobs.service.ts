@@ -109,6 +109,14 @@ export class JobsService {
     } )
 
   }
+  checkTest(id) {
+    return this.http.get('/test/checktest/' + id);
+  }
+
+  testresult(tab, id_test){
+    return this.http.post('/test/testresult/'+ id_test, {tab});
+  }
+
 
 
 }

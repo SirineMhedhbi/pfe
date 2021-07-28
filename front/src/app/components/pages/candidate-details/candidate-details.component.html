@@ -20,7 +20,7 @@
         <div class="row align-items-center">
             <div class="col-lg-5">
                 <div class="single-profile-item">
-                    <img src="assets/img/single-profile/2.jpg" alt="Profile">
+                    <img [src]="filePath? filePath : 'assets/img/single-profile/default-user.png'" alt="Profile" class="offset-lg-2 ui medium circular image" style="height: 285px;">
 
                     <div class="single-profile-left">
                         <div class="single-profile-contact">

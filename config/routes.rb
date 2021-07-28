@@ -85,6 +85,16 @@ Rails.application.routes.draw do
   delete "/test/destroy/:id" => "test#destroy"
   put "/test/updatequestion/:id" => "test#update_question"
   put "/test/updateanswer/:id" => "test#update_answer"
+  get "/test/checktest/:id" => "test#check_test"
+  post "/test/testresult/:test_id" => "test#test_result"
+  
+  
+  post "/apply/candidatlist/:id" => "apply#candidat_list"
+  get "/apply/acceptorrefuse/:id/:status" => "apply#accept_refuse"
+
+
+
+
 
 
 

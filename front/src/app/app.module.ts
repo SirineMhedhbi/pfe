@@ -3,6 +3,23 @@ import { NgModule } from '@angular/core';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+
+
+
+
+
+
+
+
+
 
 
 
@@ -58,6 +75,8 @@ import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-jo
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
+import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
 
 
 
@@ -106,6 +125,8 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
     EditTestJobComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    CandidatTestComponent,
+    ApplyListComponent,
 
   ],
   imports: [
@@ -124,7 +145,17 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
       closeButton: true,
     }),
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatBadgeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
+
+
 
 
 
