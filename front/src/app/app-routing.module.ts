@@ -37,6 +37,7 @@ import { EditTestJobComponent } from './components/pages/post-a-job/edit-test-jo
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
+import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,8 @@ const routes: Routes = [
 	{ path: 'forget/password', component: ForgetPasswordComponent },
 	{ path: 'reset/password', component: ResetPasswordComponent },
 	{path: 'candidat-test/:id', component: CandidatTestComponent},
+	{path: 'apply-list/:id', component: ApplyListComponent},
+
 
 
 

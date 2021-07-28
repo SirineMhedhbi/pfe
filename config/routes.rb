@@ -87,6 +87,12 @@ Rails.application.routes.draw do
   put "/test/updateanswer/:id" => "test#update_answer"
   get "/test/checktest/:id" => "test#check_test"
   post "/test/testresult/:test_id" => "test#test_result"
+  
+  
+  post "/apply/candidatlist/:id" => "apply#candidat_list"
+  get "/apply/acceptorrefuse/:id/:status" => "apply#accept_refuse"
+
+
 
 
 

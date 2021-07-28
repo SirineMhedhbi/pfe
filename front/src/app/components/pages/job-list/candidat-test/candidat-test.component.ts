@@ -1,7 +1,7 @@
 import { serializeNodes } from "@angular/compiler/src/i18n/digest";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { filter } from "rxjs/operators";
 import { DialogComponent } from "src/app/components/common/dialog/dialog.component";
@@ -25,7 +25,9 @@ export class CandidatTestComponent implements OnInit {
     private jobsService: JobsService,
     private router: ActivatedRoute,
     private matDialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private route: Router
+
   ) { }
 
 
@@ -73,9 +75,14 @@ export class CandidatTestComponent implements OnInit {
           console.log(res.success);
           if (res.success) {
             this.toastr.success(res.message, '');
+            this.route.navigate(['/job-list']);
 
           } else {
             this.toastr.warning(res.message, '');
+            if (res.redirect) {
+              this.route.navigate(['/job-list']);
+
+            }
           }
         });
       }

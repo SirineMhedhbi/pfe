@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
     this.usersService.ShowUser().subscribe(result => {
       this.user = result
       if (this.user.user.image) {
-        this.filePath =environment.baseUrl + this.user.user.image
+        this.filePath = environment.baseUrl + this.user.user.image
       }
       
       this.form = this.fb.group({

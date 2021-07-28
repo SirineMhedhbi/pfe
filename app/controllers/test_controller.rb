@@ -85,7 +85,7 @@ class TestController < ApplicationController
     def test_result
       ta = create_or_update_test_attempt(params[:test_id])
       if ta.count > 2
-        render json: {message: "You have already finish your 3 attempts", success: false}
+        render json: {message: "You have already finish your 3 attempts", success: false, redirect: true}
       else
         candidat_answres = test_result_params
         note = 0
@@ -98,10 +98,10 @@ class TestController < ApplicationController
         end
         final_note = note.to_f / candidat_answres.length.to_f * 100
         if final_note > 70
-          Apply.create(offer_id: OfferTest.find(params[:test_id]).offer.id, user_id: current_api_user.id, status: 0)
+          Apply.create(offer_id: OfferTest.find(params[:test_id]).offer.id, user_id: current_api_user.id, status: 0, note: final_note)
           render json: {message: "Congratulation you have passed the test, in 24 hours the job post owner will contact you", success: true}
         else
-          render json: {message: "Sorry your score is under 70% you have #{3 - (ta.count + 1)} attempt(s) left", success: false}
+          render json: {message: "Sorry your score is under 70% you have #{3 - (ta.count + 1)} attempt(s) left", success: false }
         end
       end
     end
