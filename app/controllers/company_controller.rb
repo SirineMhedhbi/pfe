@@ -54,7 +54,7 @@ class CompanyController < ApplicationController
      
  
     def update
-        if  !Company.where(id:params[:id]).present?
+        if  !Company.where(id: params[:id]).present?
             render json: {message:"company not found"}
         else 
         @Company  = Company.find(params[:id])

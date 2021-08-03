@@ -13,7 +13,9 @@
 ActiveRecord::Schema.define(version: 2021_07_28_134108) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -201,7 +203,6 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
     t.inet "last_sign_in_ip"
     t.integer "company_id"
     t.integer "role"
-    t.string "integer"
     t.string "jobtitle"
     t.string "phone"
     t.date "birthday"
@@ -215,16 +216,6 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
-  end
-
-  create_table "work_exps", force: :cascade do |t|
-    t.string "title"
-    t.date "begin_date"
-    t.date "end_date"
-    t.string "company"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "works", force: :cascade do |t|

@@ -41,7 +41,10 @@ import { ApplyListComponent } from './components/pages/apply-list/apply-list.com
 
 
 const routes: Routes = [
-	{ path: '', component: HomeOneComponent },
+	{ path: 'admin',
+		loadChildren: () => import('../app/components/admin/admin.module').then(m => m.AdminModule),
+	},
+	{ path: '', component: HomeOneComponent},
 	{ path: 'home-two', component: HomeTwoComponent },
 	{ path: 'home-three', component: HomeThreeComponent },
 	{ path: 'about', component: AboutComponent },

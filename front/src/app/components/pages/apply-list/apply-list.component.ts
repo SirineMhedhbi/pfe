@@ -28,7 +28,6 @@ export class ApplyListComponent implements OnInit,AfterViewInit  {
   columnsToDisplay = ['name', 'first_name', 'email', 'phone', 'note'];
   expandedElement: any | null;
   dataSource = new MatTableDataSource<any>();
-  environment 
   filtre = {query:"", status:""}
   selectedValue
 
@@ -42,7 +41,6 @@ export class ApplyListComponent implements OnInit,AfterViewInit  {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit(): void {
-    this.environment = environment 
 
      
       this.applyService.candidatList(this.router.snapshot.paramMap.get('id'),null).subscribe((res: any) => {
