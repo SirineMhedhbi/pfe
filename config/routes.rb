@@ -2,6 +2,16 @@ Rails.application.routes.draw do
   #mount_devise_token_auth_for 'User', at: 'auth'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   default_url_options :host => "http://localhost:3000/"
+  namespace :admin do
+    %i(
+      offers
+      companies
+      users
+      applies
+    ).each do |name|
+    resources name, only: %i(index show new create edit update destroy)
+    end
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   post "/company/create"  => "company#create"
