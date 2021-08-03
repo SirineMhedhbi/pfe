@@ -105,4 +105,7 @@ class CompanyDashboard < Administrate::BaseDashboard
   # def display_resource(company)
   #   "Company ##{company.id}"
   # end
+  def display_resource(company)
+    company.id.to_s + "- " + (company.name|| "") + "( " + (company.location || "") + " )"
+  end
 end

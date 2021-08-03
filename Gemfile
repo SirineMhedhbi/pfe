@@ -20,6 +20,7 @@ gem 'active_storage_base64'
 gem "administrate"
 gem 'administrate-field-active_storage'
 gem "image_processing"
+gem 'activerecord-session_store'
 
 
 # Use Redis adapter to run Action Cable in production
