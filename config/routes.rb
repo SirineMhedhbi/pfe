@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       offers
       companies
       users
-      applies
+      
     ).each do |name|
     resources name, only: %i(index show new create edit update destroy)
     end

@@ -59,6 +59,10 @@ class CompanyController < ApplicationController
         else 
         @Company  = Company.find(params[:id])
         @Company.update(company_params)
+        if params[ :avatar ].present?
+            @Company.avatar.attach(data: params[ :avatar ])
+		    @Company.update(image: rails_blob_path(@Company.avatar))
+        end
         render json: { Company: @Company,message:"company updated"}  
         end
     end

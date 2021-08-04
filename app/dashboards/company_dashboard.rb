@@ -8,6 +8,7 @@ class CompanyDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    avatar: Field::ActiveStorage,
     users: Field::HasMany,
     id: Field::Number,
     title: Field::String,
@@ -36,7 +37,7 @@ class CompanyDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     users
-    id
+    location
     title
     category
   ].freeze
@@ -47,6 +48,7 @@ class CompanyDashboard < Administrate::BaseDashboard
     users
     id
     title
+    avatar
     category
     name
     location
@@ -71,6 +73,7 @@ class CompanyDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     users
     title
+    avatar
     category
     name
     location
