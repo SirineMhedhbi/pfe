@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       offers
       companies
       users
-      
+      categories
     ).each do |name|
     resources name, only: %i(index show new create edit update destroy)
     end
@@ -101,6 +101,9 @@ Rails.application.routes.draw do
   
   post "/apply/candidatlist/:id" => "apply#candidat_list"
   get "/apply/acceptorrefuse/:id/:status" => "apply#accept_refuse"
+
+
+  get "/categories/index" => "categories#index"
 
 
 

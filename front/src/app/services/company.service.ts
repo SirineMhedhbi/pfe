@@ -68,4 +68,8 @@ export class CompanyService {
       })
 
       }
+
+      getCategories(){
+        return this.http.get('/categories/index/',
+        )}
 }

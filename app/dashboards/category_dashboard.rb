@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class OfferDashboard < Administrate::BaseDashboard
+class CategoryDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,22 +8,12 @@ class OfferDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    user: Field::BelongsTo,
-    applies: Field::HasMany,
+    avatar: Field::ActiveStorage,
     id: Field::Number,
-    title: Field::String,
-    category: Field::BelongsTo,
-    company_name: Field::String,
-    location: Field::String,
-    description: Field::String,
+    name: Field::String,
+    image: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    job_salary: Field::Number,
-    job_experience: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
-    job_time: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
-    qualification: Field::String,
-    contract: Field::String,
-    offerSkills: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -32,49 +22,28 @@ class OfferDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    user
-    category
-    id
+  avatar
+  id
+  name
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    user
-    applies
-    id
-    title
-    category
-    company_name
-    location
-    description
-    created_at
-    updated_at
-    job_salary
-    job_experience
-    job_time
-    qualification
-    contract
-    offerSkills
+  avatar
+  id
+  name
+  image
+  created_at
+  updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    user
-    applies
-    title
-    category
-    company_name
-    location
-    description
-    job_salary
-    job_experience
-    job_time
-    qualification
-    contract
-    offerSkills
+  avatar
+  name
   ].freeze
 
   # COLLECTION_FILTERS
@@ -89,10 +58,10 @@ class OfferDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how offers are displayed
+  # Overwrite this method to customize how categories are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(offer)
-  #   "Offer ##{offer.id}"
-  # end
+  def display_resource(category)
+    " (#{category.id}) #{category.name}"
+  end
 end

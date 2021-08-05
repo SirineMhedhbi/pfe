@@ -30,6 +30,7 @@ export class PostAJobComponent implements OnInit {
   // jobs=[]
   form: FormGroup;
   autocompleteItems = ['Item1', 'item2', 'item3'];
+  selectedValue
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
 

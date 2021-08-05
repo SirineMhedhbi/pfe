@@ -36,12 +36,26 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Job Category</label>
-                            <input type="text" class="form-control" formControlName="category">
+                            <mat-form-field appearance="fill" class="col-lg-7">
+                                <mat-label>Choose an option</mat-label>
+                                <mat-select [(ngModel)]="selectedValue" name="food" formControlName="category" >
+                                    <mat-option [value]="'all'">
+                                        All
+                                    </mat-option>
+                                    <mat-option [value]="'accepted'">
+                                        Accepted
+                                    </mat-option>
+                                    <mat-option [value]="'rejected'">
+                                        Rejected
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                             <div *ngIf="f.category.invalid && f.category.errors && f.category.dirty || f.category.touched">
                                 <small class="text-danger" *ngIf="f.category.hasError('required')"> This field is required.</small>
                             </div>
                         </div>
                     </div>
+                    
 
                     <!-- <div class="col-lg-6">
                         <div class="form-group">
