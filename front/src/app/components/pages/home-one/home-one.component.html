@@ -95,6 +95,8 @@
                     font-size: 30px;
                     border-radius: 8px;
                     margin-bottom: 20px;
+                    height: 60px;
+                    width: 60px;
                 ">
                     <a routerLink="/">{{cat.name}}</a>
                 </div>
@@ -589,7 +591,8 @@
 
         <div class="companies-slider owl-theme owl-carousel">
             <div class="companies-item" *ngFor="let item of lastcompanies">
-                <img src="assets/img/home-1/companies/1.png" alt="Companies">
+                <img [src]="item.avatar? 'http://localhost:3000' + item.avatar : 'assets/img/office-building.png'"
+                        alt="icon" >
                 <h3><a routerLink="/company-details">{{item.title}}</a></h3>
                 <p><i class="icofont-location-pin"></i> {{item.location}}</p>
                 <a class="companies-btn" routerLink="/company-details/{{item.id}}">See More</a>

@@ -10,14 +10,14 @@ class CompanyController < ApplicationController
             render json: {message:"company not found"}
         else 
         @company  = Company.find(params[:id])
-        render json: { company: @company}
+        render json: @company
         end
     end
    
     
     def userCompany
         @company= current_api_user.company
-        render json: { company: @company}
+        render json:  @company
     end
 
 
@@ -44,6 +44,10 @@ class CompanyController < ApplicationController
 
      def updateCompany
         @company = current_api_user.company.update(company_params)
+        if params[ :avatar ].present?
+            current_api_user.company.avatar.attach(data: params[ :avatar ])
+		    # current_api_user.company.update(image: rails_blob_path(@company.avatar))
+        end
         render json: { company: @company}
      end
      def companylast
@@ -69,7 +73,7 @@ class CompanyController < ApplicationController
 
     private
     def company_params
-    params.require(:company).permit(:title,:category,:location, :linkedin, :github, :facebook, :instagram, :description, :gmail, :site, :twitter, :lat, :lng)
+    params.require(:company).permit(:title,:category,:location, :linkedin, :github, :facebook, :instagram, :description, :gmail, :site, :twitter, :lat, :lng, avatar: :data)
     end
     
 end
