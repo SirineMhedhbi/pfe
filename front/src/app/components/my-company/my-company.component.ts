@@ -6,6 +6,8 @@ import { JobsService } from 'src/app/services/jobs.service';
 import { UsersService } from 'src/app/services/users.service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-company',
@@ -17,7 +19,8 @@ export class MyCompanyComponent implements OnInit {
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
   company
-  constructor(private usersService: UsersService,private companyService: CompanyService,private jobsService: JobsService,private fb: FormBuilder,private router: ActivatedRoute,private route:Router) { 
+  filePath
+  constructor(private usersService: UsersService,private companyService: CompanyService,private jobsService: JobsService,private fb: FormBuilder,private router: ActivatedRoute,private route:Router, private toastr: ToastrService) { 
     this.form = this.fb.group({
       title: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
       category: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -32,6 +35,8 @@ export class MyCompanyComponent implements OnInit {
       twitter: new FormControl("", Validators.compose([Validators.required])),
       lat: new FormControl('', Validators.compose([Validators.required])),
       lng: new FormControl('', Validators.compose([Validators.required])),
+      image: new FormControl('', Validators.compose([Validators.required])),
+
 
 
 
@@ -53,21 +58,25 @@ get f() { return this.form.controls; }
     
       this.company=result
       console.log(result)
+      this.filePath = environment.baseUrl + this.company.avatar
+
 
       this.form = this.fb.group({
-        title: new FormControl(this.company.company.title, Validators.compose([Validators.required, Validators.minLength(3)])),
-        category: new FormControl(this.company.company.category, Validators.compose([Validators.required, Validators.minLength(3)])),
-        location: new FormControl(this.company.company.location, Validators.compose([Validators.required, Validators.minLength(3)])),
-        description: new FormControl(this.company.company.description, Validators.compose([Validators.required, Validators.minLength(3)])),
-        linkedin: new FormControl(this.company.company.linkedin, Validators.compose([Validators.required])),
-        github: new FormControl(this.company.company.github, Validators.compose([Validators.required])),
-        facebook: new FormControl(this.company.company.facebook, Validators.compose([Validators.required])),
-        instagram: new FormControl(this.company.company.instagram, Validators.compose([Validators.required])),
-        gmail: new FormControl(this.company.company.gmail, Validators.compose([Validators.required])),
-        site: new FormControl(this.company.company.site, Validators.compose([Validators.required])),
-        twitter: new FormControl(this.company.company.twitter, Validators.compose([Validators.required])),
-        lat: new FormControl(this.company.company.lat, Validators.compose([Validators.required])),
-        lng: new FormControl(this.company.company.lng, Validators.compose([Validators.required])),
+        title: new FormControl(this.company.title, Validators.compose([Validators.required, Validators.minLength(3)])),
+        category: new FormControl(this.company.category, Validators.compose([Validators.required, Validators.minLength(3)])),
+        location: new FormControl(this.company.location, Validators.compose([Validators.required, Validators.minLength(3)])),
+        description: new FormControl(this.company.description, Validators.compose([Validators.required, Validators.minLength(3)])),
+        linkedin: new FormControl(this.company.linkedin, Validators.compose([Validators.required])),
+        github: new FormControl(this.company.github, Validators.compose([Validators.required])),
+        facebook: new FormControl(this.company.facebook, Validators.compose([Validators.required])),
+        instagram: new FormControl(this.company.instagram, Validators.compose([Validators.required])),
+        gmail: new FormControl(this.company.gmail, Validators.compose([Validators.required])),
+        site: new FormControl(this.company.site, Validators.compose([Validators.required])),
+        twitter: new FormControl(this.company.twitter, Validators.compose([Validators.required])),
+        lat: new FormControl(this.company.lat, Validators.compose([Validators.required])),
+        lng: new FormControl(this.company.lng, Validators.compose([Validators.required])),
+        image: new FormControl('', Validators.compose([Validators.required])),
+
   
 
 
@@ -80,8 +89,7 @@ get f() { return this.form.controls; }
     console.log(this.form.value)
   this.companyService.updateCompany(this.form.value).subscribe((res:any)=>{
     console.log(res)
-    this.route.navigate(['my-jobs']);
-
+    this.toastr.success('Company Updated', '');
     
   
   })
@@ -90,6 +98,17 @@ get f() { return this.form.controls; }
     this.f.location.setValue(address.formatted_address)
     this.f.lat.setValue(address.geometry.location.lat())
     this.f.lng.setValue(address.geometry.location.lng())
+  }
+  imagePreview(files) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.filePath = reader.result
+      this.form.patchValue({
+        image: reader.result
+      });
+    }
+    reader.readAsDataURL(file)
   }
 
   }

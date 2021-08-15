@@ -26,8 +26,9 @@ export class HomeOneComponent implements OnInit {
   internoffers
   fulltimeoffers
   parttimeoffers
-  
-  constructor(private authService: AuthService, private usersService: UsersService, private router:Router,private companyService: CompanyService, private jobService: JobsService) {
+  categories
+
+  constructor(private authService: AuthService, private usersService: UsersService, private router: Router, private companyService: CompanyService, private jobService: JobsService) {
     this.usersService.candidatLast().subscribe((res: any) => {
 
       this.lastusers = res.lastusers
@@ -36,11 +37,18 @@ export class HomeOneComponent implements OnInit {
 
     })
     this.companyService.companyLast().subscribe((res: any) => {
-      this.lastcompanies = res.lastcompanies
-      console.log(this.lastcompanies)
-    
 
-  })}
+      this.lastcompanies = res
+      console.log(res)
+
+
+    })
+
+    this.companyService.getCategories().subscribe((res: any) => {
+      this.categories = res
+      console.log(this.categories)
+    })
+  }
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn;
@@ -62,21 +70,21 @@ export class HomeOneComponent implements OnInit {
 
 
     })
-    
+
 
   }
-postJob(){
-  if (this.isLoggedIn$ && this.role== 'company') {
-    this.router.navigate(['post-a-job']);
-  }
-  else {
-    this.router.navigate(['create-account']);
+  postJob() {
+    if (this.isLoggedIn$ && this.role == 'company') {
+      this.router.navigate(['post-a-job']);
+    }
+    else {
+      this.router.navigate(['create-account']);
 
+    }
   }
-}
-apply(){
+  apply() {
     this.router.navigate(['job-list']);
 
-}
+  }
 
 }

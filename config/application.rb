@@ -46,7 +46,12 @@ module Pfe
       end
     end
 
-    config.api_only = true
+    config.api_only = false
+    config.middleware.use ActionDispatch::Flash
+    config.session_store :active_record_store
+    # config.middleware.use ActionDispatch::Cookies
+    # config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+    # config.middleware.use ::Rack::MethodOverride
   end
 
   

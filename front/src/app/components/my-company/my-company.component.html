@@ -18,9 +18,19 @@
 <div class="post-job-area pt-100">
     <div class="container">
         <div class="post-job-item">
-            <div class="post-job-heading">
-                <h2>Edit Company </h2>
-            </div>
+            <input type="file" accept="image/*"  (change)="imagePreview(file.files)" #file hidden>
+                    <div class="col-lg-12" style="display: flex; margin-left: -32px; margin-bottom: 15px;">
+                        <div class="col-lg-6">
+                            <h3>My company informations</h3>
+                            <div class="create-information-btn col-lg-4" style="margin-left: -12px;">
+                                <a (click)="file.click()" style="cursor: pointer;">Upload Company logo</a>
+                                <!-- <a routerLink="/">Upload Your CV</a> -->
+                            </div>
+                        </div>
+
+                        <img [src]="filePath? filePath : 'assets/img/default-logo.png'" alt="Profile" class="offset-lg-4 ui ui small image"
+                            style="height: 150px;">
+                    </div>
             <form [formGroup]="form" (ngSubmit)="updateCompany()">
                 <div class=" row ">
                     <div class="col-lg-6 ">

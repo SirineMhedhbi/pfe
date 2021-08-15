@@ -60,6 +60,8 @@ export class CompanyService {
         "site":company.site,
         "gmail":company.gmail,
         "twitter":company.twitter,
+        "avatar":company.image,
+
 
 
 
@@ -68,4 +70,8 @@ export class CompanyService {
       })
 
       }
+
+      getCategories(){
+        return this.http.get('/categories/index/',
+        )}
 }

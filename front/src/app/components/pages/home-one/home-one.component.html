@@ -83,14 +83,26 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-3 col-lg-3 category-border">
+            <div class="col-sm-3 col-lg-3 category-border" *ngFor="let cat of categories">
                 <div class="category-item">
-                    <i class="flaticon-settings"></i>
-                    <a routerLink="/">Technical Support</a>
+                    <img [src]="cat.avatar? 'http://localhost:3000' + cat.avatar : 'assets/img/single-profile/default-user.png'"
+                        alt="icon" style="
+                    display: block;
+                    line-height: 60px;
+                    color: #cc6633;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 30px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    height: 60px;
+                    width: 60px;
+                ">
+                    <a routerLink="/">{{cat.name}}</a>
                 </div>
             </div>
 
-            <div class="col-sm-3 col-lg-3 category-border">
+            <!-- <div class="col-sm-3 col-lg-3 category-border">
                 <div class="category-item category-two">
                     <i class="flaticon-layers"></i>
                     <a routerLink="/">Business Development</a>
@@ -109,9 +121,9 @@
                     <i class="flaticon-analysis"></i>
                     <a routerLink="/">Share Maeket Analysis</a>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-sm-3 col-lg-3 category-border-three">
+            <!-- <div class="col-sm-3 col-lg-3 category-border-three">
                 <div class="category-item category-five">
                     <i class="flaticon-sun"></i>
                     <a routerLink="/">Weather & Environment</a>
@@ -130,9 +142,9 @@
                     <i class="flaticon-neural"></i>
                     <a routerLink="/">IT & Networing Sevices</a>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-sm-3 col-lg-3 category-border-two">
+            <!-- <div class="col-sm-3 col-lg-3 category-border-two">
                 <div class="category-item category-eight">
                     <i class="flaticon-dish"></i>
                     <a routerLink="/">Restaurant Services</a>
@@ -142,7 +154,7 @@
             <div class="col-sm-3 offset-sm-3 offset-lg-0 col-lg-3 category-border-two">
                 <div class="category-item category-nine">
                     <i class="icofont-fire-burn"></i>
-                    <a routerLink="/">Defence  & Fire Service</a>
+                    <a routerLink="/">Defence & Fire Service</a>
                 </div>
             </div>
 
@@ -151,7 +163,7 @@
                     <i class="flaticon-truck"></i>
                     <a routerLink="/">Home Delivery Services</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -180,7 +192,8 @@
             <div class="col-lg-6">
                 <div class="portal-item portal-right">
                     <h2>Trusted & Popular Job Portal</h2>
-                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+                        facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
                     <div class="common-btn">
                         <a class="login-btn" (click)="postJob()">Post a Job <i class="icofont-swoosh-right"></i></a>
                         <a class="sign-up-btn" (click)="apply()">Apply Now <i class="icofont-swoosh-right"></i></a>
@@ -546,7 +559,8 @@
                     <div class="section-title text-left">
                         <h2>Why We are Most Popular</h2>
                     </div>
-                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Quis ipsum suspendisse ultrices gravida</p>
+                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+                        facilisis. Quis ipsum suspendisse ultrices gravida</p>
 
                     <div class="row popular-wrap">
                         <div class="col-sm-6 col-lg-6">
@@ -577,7 +591,8 @@
 
         <div class="companies-slider owl-theme owl-carousel">
             <div class="companies-item" *ngFor="let item of lastcompanies">
-                <img src="assets/img/home-1/companies/1.png" alt="Companies">
+                <img [src]="item.avatar? 'http://localhost:3000' + item.avatar : 'assets/img/office-building.png'"
+                        alt="icon" >
                 <h3><a routerLink="/company-details">{{item.title}}</a></h3>
                 <p><i class="icofont-location-pin"></i> {{item.location}}</p>
                 <a class="companies-btn" routerLink="/company-details/{{item.id}}">See More</a>
@@ -843,7 +858,8 @@
                     <div class="section-title text-left">
                         <h2>Download The Glabe Mobile App</h2>
                     </div>
-                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+                        facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                     <div class="app-btn">
                         <a class="app-btn-one" href="#">
                             <i class="flaticon-apple"></i>

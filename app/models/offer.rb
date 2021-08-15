@@ -4,5 +4,7 @@ class Offer < ApplicationRecord
     enum job_time: [:full_time, :part_time, :intern]
     has_one :offer_test
     has_many :applies
+    belongs_to :category, class_name: "Category", foreign_key: "category_id"
+
 
 end

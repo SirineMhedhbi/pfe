@@ -16,7 +16,7 @@ export class JobsService {
     return this.http.post('/offers/create',
       {
         "title": job.offer.title,
-        "category": job.offer.category,
+        "category_id": job.offer.category_id,
         "company_name": job.offer.company_name,
         "location": job.offer.location,
         "offer_type": job.offer.offer_type,

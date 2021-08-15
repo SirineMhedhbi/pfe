@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_28_134108) do
+ActiveRecord::Schema.define(version: 2021_08_04_144734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
     t.float "note"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "title"
     t.string "category"
@@ -80,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
     t.string "twitter"
     t.string "lat"
     t.string "lng"
+    t.string "image"
   end
 
   create_table "cvs", force: :cascade do |t|
@@ -151,6 +159,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
     t.string "qualification"
     t.string "contract"
     t.string "offerSkills", default: [], array: true
+    t.integer "category_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -158,6 +167,15 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "offer_test_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -240,6 +258,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_134108) do
   add_foreign_key "infos", "cvs"
   add_foreign_key "links", "cvs"
   add_foreign_key "offer_tests", "offers"
+  add_foreign_key "offers", "categories"
   add_foreign_key "offers", "users"
   add_foreign_key "questions", "offer_tests"
   add_foreign_key "skills", "cvs"

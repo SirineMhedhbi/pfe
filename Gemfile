@@ -17,6 +17,12 @@ gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dab
 
 
 gem 'active_storage_base64'
+gem "administrate", '~> 0.14.0'
+gem 'administrate-field-active_storage'
+gem "image_processing"
+gem 'activerecord-session_store'
+gem 'administrate-materialize-theme'
+gem 'active_model_serializers'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

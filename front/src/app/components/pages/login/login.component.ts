@@ -48,7 +48,12 @@ export class LoginComponent implements OnInit {
             this.authService.loggedIn.next(true);
             this.authService.role.next(localStorage.getItem("role"));
             this.form.reset();
-            this.router.navigate(['/']);
+            if (localStorage.getItem("role") == "admin") {
+              window.location.href = 'http://localhost:3000/admin/users'
+            } else {
+              this.router.navigate(['/']);
+            }
+
             this.toastr.success('logged in succesfully', '');
           }
         },(err: any) => {

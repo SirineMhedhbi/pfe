@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
 
       this.role = value
 
-      if (this.role != "company") {
+      if (this.role != "company" && this.role != "admin") {
         this.educationService.userEducations().subscribe((res: any) => {
           this.educations = res.educations
         })
