@@ -11,7 +11,7 @@ class UserDashboard < Administrate::BaseDashboard
     company: Field::BelongsTo,
     offers: Field::HasMany,
     # test_attempts: Field::HasMany,
-    cv: Field::HasOne,
+    # cv: Field::HasOne,
     avatar: Field::ActiveStorage,
     applies: Field::HasMany,
     id: Field::Number,
@@ -49,7 +49,6 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     company
     offers
-    cv
     avatar
     applies
     name

@@ -15,6 +15,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/filter';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../common/dialog/dialog.component';
+import { CompanyService } from 'src/app/services/company.service';
 
 
 @Component({
@@ -32,9 +33,11 @@ export class PostAJobComponent implements OnInit {
   autocompleteItems = ['Item1', 'item2', 'item3'];
   selectedValue
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+  categories: any;
 
 
-  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: Router, private toastr: ToastrService, private matDialog: MatDialog) {
+  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder,
+              private router: Router, private toastr: ToastrService, private matDialog: MatDialog, private companyService: CompanyService) {
 
     this.form = this.fb.group({
       title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -62,6 +65,9 @@ export class PostAJobComponent implements OnInit {
   get f() { return this.form.controls; }
 
   ngOnInit(): void { 
+    this.companyService.getCategories().subscribe((res: any) => {
+      this.categories = res
+    })
     // const dialogRef = this.matDialog.open(DialogComponent, {
     //   data: { title: "Would you like to add a test to this job post? " }
     // });
@@ -78,7 +84,7 @@ export class PostAJobComponent implements OnInit {
     this.data = {
       offer: {
         title: this.form.get('title').value,
-        category: this.form.get('category').value,
+        category_id: this.form.get('category').value,
         description: this.form.get('description').value,
         location: this.form.get('location').value,
         company_name: this.form.get('company_name').value,
@@ -97,6 +103,7 @@ export class PostAJobComponent implements OnInit {
       }
 
     }
+    debugger
 
     this.jobsService.addJob(this.data).subscribe(
 

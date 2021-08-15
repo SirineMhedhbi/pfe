@@ -52,7 +52,6 @@ class CompanyDashboard < Administrate::BaseDashboard
     category
     name
     location
-    type
     description
     created_at
     updated_at
@@ -71,13 +70,11 @@ class CompanyDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    users
     title
     avatar
     category
     name
     location
-    type
     description
     github
     linkedin

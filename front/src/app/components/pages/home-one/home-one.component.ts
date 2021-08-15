@@ -37,14 +37,16 @@ export class HomeOneComponent implements OnInit {
 
     })
     this.companyService.companyLast().subscribe((res: any) => {
-      this.lastcompanies = res.lastcompanies
-      console.log(this.lastcompanies)
+
+      this.lastcompanies = res
+      console.log(res)
 
 
     })
 
     this.companyService.getCategories().subscribe((res: any) => {
       this.categories = res
+      console.log(this.categories)
     })
   }
 

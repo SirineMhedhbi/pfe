@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
 
     def index
-        @categories= Category.all
-        render json: @categories
+        @categories = Category.all
+        render json: @categories, include: 'avatar'
     end
 end

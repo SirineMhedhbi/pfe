@@ -48,7 +48,7 @@ class CompanyController < ApplicationController
      end
      def companylast
         @lastcompanies = Company.all.order(updated_at: :desc)
-        render json: {lastcompanies: @lastcompanies.last(12)}
+        render json: @lastcompanies.last(12)
         
     end
      
