@@ -4,4 +4,9 @@ class Apply < ApplicationRecord
     enum status: [ :pending, :rejected, :accepted ]
     #todo send email to owner of offer after create an apply 
 
+    def offer_title
+        self.offer.title
+        
+    end
+
 end

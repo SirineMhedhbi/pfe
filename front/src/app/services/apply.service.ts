@@ -18,4 +18,12 @@ export class ApplyService {
     return this.http.get('/apply/acceptorrefuse/' + id + "/" + status)
   }
 
+  getMyapplies(){
+    return this.http.get('/apply/my/applies')
+  }
+
+  removeApply(id){
+    return this.http.delete('/apply/delete/' + id)
+  }
+
 }

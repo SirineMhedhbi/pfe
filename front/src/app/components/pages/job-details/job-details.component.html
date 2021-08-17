@@ -50,11 +50,16 @@
                         </ul>
                     </div> -->
 
-                    <div class="text-center" *ngIf="(role == 'candidat')">
+                    <div class="text-center" *ngIf="(role == 'candidat' && !offer?.already_applied)">
                         <a class="job-details-btn" (click)="checkTest(offer.id)" style="cursor: pointer;">Apply Now</a>
                     </div>
                     <div class="text-center" *ngIf="(role == 'company')">
                         <a class="job-details-btn" routerLink="/apply-list/{{offer?.id}}" style="cursor: pointer;">Candidat List</a>
+
+                    </div>
+                    <div class="text-center" *ngIf="(role == 'candidat' && offer?.already_applied )">
+                        <a class="job-details-btn"  style="cursor: pointer;">Already Applied</a>
+                        
                     </div>
 
 

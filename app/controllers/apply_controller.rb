@@ -25,6 +25,22 @@ class ApplyController < ApplicationController
         render json: { apply: @apply,message:"status updated"}  
     end
 
+    def my_applies
+        @my_applies = Apply.where(user_id: current_api_user)
+        render json: @my_applies, methods: :offer_title
+        
+    end
+    def destroy
+        @apply = Apply.find(params[:id])
+        if @apply.present?
+            @apply.destroy()
+            render json: { message:"Apply deleted"}  
+        else
+            render json: { message:"Apply not found"}
+        end
+        
+    end
+
 
     
 end 

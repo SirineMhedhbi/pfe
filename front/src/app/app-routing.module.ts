@@ -38,6 +38,7 @@ import { ForgetPasswordComponent } from './components/pages/forget-password/forg
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
 import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
+import { MyAppliesComponent } from './components/pages/my-applies/my-applies.component';
 
 
 const routes: Routes = [
@@ -76,8 +77,10 @@ const routes: Routes = [
 	{ path: 'edit-test-job/:id', component: EditTestJobComponent, canActivate: [AuthGuard] },
 	{ path: 'forget/password', component: ForgetPasswordComponent },
 	{ path: 'reset/password', component: ResetPasswordComponent },
-	{path: 'candidat-test/:id', component: CandidatTestComponent},
-	{path: 'apply-list/:id', component: ApplyListComponent},
+	{ path: 'candidat-test/:id', component: CandidatTestComponent},
+	{ path: 'apply-list/:id', component: ApplyListComponent},
+	{ path: 'my/applies', component: MyAppliesComponent},
+
 
 
 

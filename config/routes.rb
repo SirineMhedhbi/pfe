@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   get "/offers/offer" => "offer#offer"
 
   get "/offers/recent" => "offer#recent_offers"
+  post "/offers/favorite/:id"  => "offer#add_remove_favorite"
+  get "/offers/favorite/jobs"  => "offer#favorite_jobs"
 
 
 
@@ -101,6 +103,8 @@ Rails.application.routes.draw do
   
   post "/apply/candidatlist/:id" => "apply#candidat_list"
   get "/apply/acceptorrefuse/:id/:status" => "apply#accept_refuse"
+  get "/apply/my/applies" => "apply#my_applies" 
+  delete "/apply/delete/:id" => "apply#destroy" 
 
 
   get "/categories/index" => "categories#index"

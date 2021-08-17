@@ -44,12 +44,16 @@
 
             <div class="col-lg-6" *ngFor="let item of offers">
                 <div class="job-item">
+                    <mat-icon *ngIf="!item.is_favorite_job" matTooltip="Add to favorite jobs" aria-hidden="false" aria-label="Example home icon" style="float: right;margin-top: -20px;margin-right: -20px;" [ngClass]="{'favorite-icon': item.is_favorite_job}" (click)="addToFavorite(item)">star</mat-icon>
+                    <mat-icon *ngIf="item.is_favorite_job" matTooltip="Remove from favorite jobs " aria-hidden="false" aria-label="Example home icon" style="float: right;margin-top: -20px;margin-right: -20px;" [ngClass]="{'favorite-icon': item.is_favorite_job}" (click)="addToFavorite(item)">star</mat-icon>
+
                     <img src="assets/img/home-1/jobs/2.png" alt="Job">
 
                     <div class="job-inner align-items-center">
                         <div class="job-inner-left">
                             <h3>{{item?.title}}</h3>
-                            <a routerLink="/company-details/{{item.id}}">{{item?.title}}.com</a>
+
+                            <a routerLink="/company-details/{{item.id}}">{{item?.company_name}}</a>
                             <ul>
                                 <li><i class="icofont-money-bag"></i>
                                     <p> {{item?.job_salary}} </p>
@@ -61,6 +65,7 @@
                         </div>
 
                         <div class="job-inner-right">
+
                             <ul>
                                 <li><a routerLink="/job-details/{{item.id}}">See More</a></li>
                                 <li><span>{{item?.job_time}}</span></li>
