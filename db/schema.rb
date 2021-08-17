@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_144734) do
+ActiveRecord::Schema.define(version: 2021_08_16_131211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -105,6 +105,13 @@ ActiveRecord::Schema.define(version: 2021_08_04_144734) do
     t.integer "cv_id"
     t.date "begin_date"
     t.date "end_date"
+  end
+
+  create_table "favorite_jobs", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "offer_id"
+    t.integer "user_id"
   end
 
   create_table "hobbies", force: :cascade do |t|
@@ -254,6 +261,8 @@ ActiveRecord::Schema.define(version: 2021_08_04_144734) do
   add_foreign_key "applies", "users"
   add_foreign_key "cvs", "users"
   add_foreign_key "educations", "cvs"
+  add_foreign_key "favorite_jobs", "offers"
+  add_foreign_key "favorite_jobs", "users"
   add_foreign_key "hobbies", "cvs"
   add_foreign_key "infos", "cvs"
   add_foreign_key "links", "cvs"

@@ -37,7 +37,7 @@ export class ApplyListComponent implements OnInit,AfterViewInit  {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private jobsService: JobsService, private router: ActivatedRoute, private applyService: ApplyService, private changeDetectorRefs: ChangeDetectorRef) { }
+  constructor(private jobsService: JobsService, private router: ActivatedRoute, private applyService: ApplyService) { }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }

@@ -11,6 +11,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -77,6 +80,7 @@ import { ForgetPasswordComponent } from './components/pages/forget-password/forg
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
 import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
+import { MyAppliesComponent } from './components/pages/my-applies/my-applies.component';
 
 
 
@@ -127,6 +131,7 @@ import { ApplyListComponent } from './components/pages/apply-list/apply-list.com
     ResetPasswordComponent,
     CandidatTestComponent,
     ApplyListComponent,
+    MyAppliesComponent,
 
   ],
   imports: [
@@ -153,7 +158,10 @@ import { ApplyListComponent } from './components/pages/apply-list/apply-list.com
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatTooltipModule
+
 
 
 

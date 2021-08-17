@@ -117,6 +117,14 @@ export class JobsService {
     return this.http.post('/test/testresult/'+ id_test, {tab});
   }
 
+  addRemoveFavoriteJobs(id, answer){
+    return this.http.post('/offers/favorite/'+ id, {answer});
+  }
+
+  getFavoriteJobs(){
+    return this.http.get('/offers/favorite/jobs');
+  }
+
 
 
 }

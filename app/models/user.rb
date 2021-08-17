@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_one :cv
   has_one_base64_attached :avatar
   has_many :applies
+  has_many :favorite_jobs
 
   devise :database_authenticatable, :registerable,:recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -20,6 +21,12 @@ class User < ApplicationRecord
   
   def role_user
     self.role
+  end
+  def self.current
+    Thread.current[:user]
+  end
+  def self.current=(user)
+    Thread.current[:user] = user
   end
 
   

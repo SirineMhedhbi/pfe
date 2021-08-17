@@ -18,7 +18,7 @@ class OfferController < ApplicationController
 
     def offer
         @offers = Offer.all
-        render json: { offers: @offers}
+        render json: @offers, methods: :is_favorite_job
     end
 
 
@@ -61,10 +61,24 @@ class OfferController < ApplicationController
             render json: {message:"offer not found"}
         else 
             @offer = Offer.find(params[:id])
-            render json: @offer.to_json(
-                :include => {:user => {:only => [:phone ,:address, :email]}})
+            render json: @offer, :include => {:user => {:only => [:phone ,:address, :email]}}, methods: :already_applied
             
         end 
+    end
+
+    def add_remove_favorite
+        if params["answer"]
+            FavoriteJob.create(offer_id: params["id"], user_id: current_api_user.id)
+            render json: {message:"Job post added to your favorite jobs"}
+        else
+            FavoriteJob.where(offer_id: params["id"], user_id: current_api_user.id).first.delete()
+            render json: {message:"Job post removed to your favorite jobs"}  
+        end
+    end
+    def favorite_jobs
+        offers_ids = FavoriteJob.where(user_id: current_api_user.id).pluck :offer_id
+        @favorite_jobs = Offer.where(id: offers_ids )
+        render json: @favorite_jobs, methods: :is_favorite_job
     end
  
     private
