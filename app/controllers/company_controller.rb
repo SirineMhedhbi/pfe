@@ -23,7 +23,7 @@ class CompanyController < ApplicationController
 
     def index  
         @companies= Company.all
-        render json: { companies: @companies}
+        render json:  @companies
 
       end
 
