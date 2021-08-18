@@ -4,6 +4,8 @@ import { EducationService } from 'src/app/services/education.service';
 import { LinksService } from 'src/app/services/links.service';
 import { SkillsService } from 'src/app/services/skills.service';
 import { UsersService } from 'src/app/services/users.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-candidate-list',
@@ -15,6 +17,7 @@ export class CandidateListComponent implements OnInit {
   educations
   skills
   link
+  filePath
   constructor(private usersService: UsersService, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private router: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
@@ -22,6 +25,9 @@ export class CandidateListComponent implements OnInit {
 
       this.users = res.users
       console.log(this.users)
+      if (this.users.users.image) {
+        this.filePath = environment.baseUrl + this.users.users.image
+      }
      
     })
     

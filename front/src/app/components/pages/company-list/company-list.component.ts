@@ -19,7 +19,7 @@ export class CompanyListComponent implements OnInit {
 
   ngOnInit(): void {
     this.companyService.showCompany().subscribe((res:any)=>{
-      this.companies=res.companies
+      this.companies=res
       console.log(res)
 
     })
