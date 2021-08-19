@@ -1,7 +1,15 @@
 <div class="banner-area banner-img-one">
+
     <div class="d-table">
-        <div class="d-table-cell">
+
+        <div class="d-table-cell" style=" background-image: url('assets/img/home.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;">
+
             <div class="container">
+                <!-- <img src="assets/img/home.jpg" > -->
+
                 <div class="banner-text">
                     <h1>Find Your <span>Desire</span> Job</h1>
                     <p>Jobs, Employment & Future Career Opportunities</p>
@@ -40,8 +48,12 @@
                     </div>
 
                     <div class="banner-btn">
-                        <a routerLink="/create-account">Create Your Profile</a>
-                        <a routerLink="/submit-resume">Upload Your CV</a>
+                        <!-- <a class="login-btn" (click)="createaccount()">Create Your Profile<i class="icofont-swoosh-right"></i></a> -->
+
+                        <a routerLink="/profile" *ngIf="(isLoggedIn$ | async)">Create Your Profile</a>
+                        <a routerLink="/create-account" *ngIf="!(isLoggedIn$ | async)">Create Your Profile</a>
+
+                        <!-- <a routerLink="/submit-resume">Upload Your CV</a> -->
                     </div>
                 </div>
             </div>
@@ -85,8 +97,7 @@
         <div class="row">
             <div class="col-sm-3 col-lg-3 category-border" *ngFor="let cat of categories">
                 <div class="category-item">
-                    <img [src]="cat.avatar? 'http://localhost:3000' + cat.avatar : 'assets/img/single-profile/default-user.png'"
-                        alt="icon" style="
+                    <img [src]="cat.avatar? 'http://localhost:3000' + cat.avatar : 'assets/img/single-profile/default-user.png'" alt="icon" style="
                     display: block;
                     line-height: 60px;
                     color: #cc6633;
@@ -175,11 +186,12 @@
                 <div class="portal-item">
                     <div class="row">
                         <div class="col-lg-7">
-                            <img src="assets/img/home-1/1.jpg" alt="Portal">
+                            <img src="assets/img/recruteur.jpg">
                         </div>
 
                         <div class="col-lg-5">
-                            <img src="assets/img/home-1/2.jpg" alt="Portal">
+                            <img src="assets/img/candidat.jpg">
+
                         </div>
                     </div>
 
@@ -192,8 +204,7 @@
             <div class="col-lg-6">
                 <div class="portal-item portal-right">
                     <h2>Trusted & Popular Job Portal</h2>
-                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-                        facilisis. Lorem ipsum dolor sit amet, consectetur.</p>
+                    <p> Post you Job Or Search for your desire Job</p>
                     <div class="common-btn">
                         <a class="login-btn" (click)="postJob()">Post a Job <i class="icofont-swoosh-right"></i></a>
                         <a class="sign-up-btn" (click)="apply()">Apply Now <i class="icofont-swoosh-right"></i></a>
@@ -224,7 +235,11 @@
             <div class="row">
                 <div class="col-lg-6 mix web ui" *ngFor="let item of newoffers">
                     <div class="job-item">
-                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+                        <!-- <img src="assets/img/home-1/jobs/1.png" alt="Job"> -->
+                        <img [src]="item.offer_company.avatar? 'http://localhost:3000' + item.offer_company.avatar : 'assets/img/office-building.png'" alt="icon" style="    max-width: 78px;
+                        margin-top: -4px;
+                        margin-left: -9px;">
+
 
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
@@ -249,7 +264,10 @@
                 </div>
                 <div class="col-lg-6 mix branding ui" *ngFor="let item of internoffers">
                     <div class="job-item">
-                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+                        <!-- <img src="assets/img/home-1/jobs/1.png" alt="Job"> -->
+                        <img [src]="item.offer_company.avatar? 'http://localhost:3000' + item.offer_company.avatar : 'assets/img/office-building.png'" alt="icon" style="    max-width: 78px;
+                        margin-top: -4px;
+                        margin-left: -9px;">
 
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
@@ -274,7 +292,10 @@
                 </div>
                 <div class="col-lg-6 mix ux ui" *ngFor="let item of fulltimeoffers">
                     <div class="job-item">
-                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+                        <!-- <img src="assets/img/home-1/jobs/1.png" alt="Job"> -->
+                        <img [src]="item.offer_company.avatar? 'http://localhost:3000' + item.offer_company.avatar : 'assets/img/office-building.png'" alt="icon" style="    max-width: 78px;
+                        margin-top: -4px;
+                        margin-left: -9px;">
 
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
@@ -299,7 +320,10 @@
                 </div>
                 <div class="col-lg-6 mix wp ui" *ngFor="let item of parttimeoffers">
                     <div class="job-item">
-                        <img src="assets/img/home-1/jobs/1.png" alt="Job">
+                        <!-- <img src="assets/img/home-1/jobs/1.png" alt="Job"> -->
+                        <img [src]="item.offer_company.avatar? 'http://localhost:3000' + item.offer_company.avatar : 'assets/img/office-building.png'" alt="icon" style="    max-width: 78px;
+                        margin-top: -4px;
+                        margin-left: -9px;">
 
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
@@ -541,13 +565,13 @@
                 <div class="popular-item">
                     <div class="row align-items-center">
                         <div class="col-lg-7">
-                            <img src="assets/img/home-1/3.jpg" alt="Popular">
+                            <img src="assets/img/pop3.jpg" alt="Popular">
                         </div>
 
                         <div class="col-lg-5">
                             <div class="practice-inner">
-                                <img src="assets/img/home-1/4.jpg" alt="Popular">
-                                <img src="assets/img/home-1/5.jpg" alt="Popular">
+                                <img src="assets/img/pop1.jpg" alt="Popular">
+                                <img src="assets/img/pop2.jpg" alt="Popular">
                             </div>
                         </div>
                     </div>
@@ -559,8 +583,7 @@
                     <div class="section-title text-left">
                         <h2>Why We are Most Popular</h2>
                     </div>
-                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-                        facilisis. Quis ipsum suspendisse ultrices gravida</p>
+                    <!-- <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Quis ipsum suspendisse ultrices gravida</p> -->
 
                     <div class="row popular-wrap">
                         <div class="col-sm-6 col-lg-6">
@@ -591,8 +614,8 @@
 
         <div class="companies-slider owl-theme owl-carousel">
             <div class="companies-item" *ngFor="let item of lastcompanies">
-                <img [src]="item.avatar? 'http://localhost:3000' + item.avatar : 'assets/img/office-building.png'"
-                        alt="icon" >
+
+                <img [src]="item.avatar? 'http://localhost:3000' + item.avatar : 'assets/img/office-building.png'" alt="icon">
                 <h3><a routerLink="/company-details">{{item.title}}</a></h3>
                 <p><i class="icofont-location-pin"></i> {{item.location}}</p>
                 <a class="companies-btn" routerLink="/company-details/{{item.id}}">See More</a>
@@ -698,7 +721,9 @@
             </div> -->
 
             <div class="profile-item" *ngFor="let item of lastusers">
-                <img src="assets/img/home-1/profile/2.jpg" alt="Profile">
+                <!-- <img src="assets/img/home-1/profile/2.jpg" alt="Profile"> -->
+                <img [src]="item.image? 'http://localhost:3000' + item.image  : 'assets/img/single-profile/default-user.png'" alt="icon">
+
                 <div class="profile-inner">
                     <h3>{{item.name}}</h3>
                     <span>{{item.nickname}}</span>
@@ -858,8 +883,7 @@
                     <div class="section-title text-left">
                         <h2>Download The Glabe Mobile App</h2>
                     </div>
-                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-                        facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                    <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                     <div class="app-btn">
                         <a class="app-btn-one" href="#">
                             <i class="flaticon-apple"></i>
@@ -878,7 +902,7 @@
     </div>
 </div>
 
-<section class="blog-area pt-100 pb-170">
+<!-- <section class="blog-area pt-100 pb-170">
     <div class="container">
         <div class="section-title">
             <h2>Our Latest Blogs</h2>
@@ -937,4 +961,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->

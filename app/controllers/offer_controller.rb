@@ -1,5 +1,5 @@
 class OfferController < ApplicationController
-    before_action :authenticate_api_user! ,except:[:offer]
+    before_action :authenticate_api_user! ,except:[:offer,:recent_offers]
 
     def create
         
@@ -11,14 +11,14 @@ class OfferController < ApplicationController
     end
 
     def index
-        @offers = current_api_user.offers.to_json(:include => [:offer_test, :applies])
-        render json: { offers: JSON(@offers), company: current_api_user.company }
+        @offers = current_api_user.offers
+        render json:  @offers, methods:[ :current_user_company , :offer_test, :applies]
 
     end
 
     def offer
         @offers = Offer.all
-        render json: @offers, methods: :is_favorite_job
+        render json: @offers, methods: [:is_favorite_job , :offer_company]
     end
 
 
@@ -27,11 +27,16 @@ class OfferController < ApplicationController
         @intern_offers = Offer.intern.order(updated_at: :desc).last(8)
         @fulltime_offers = Offer.full_time.order(updated_at: :desc).last(8)
         @parttime_offers = Offer.part_time.order(updated_at: :desc).last(8)
-        render json: {   new_offers: @new_offers,
-                         intern_offers: @intern_offers,
-                         fulltime_offers: @fulltime_offers,
-                         parttime_offers: @parttime_offers
-                    }        
+        
+
+                    render json: {   new_offers: @new_offers.as_json(methods: :offer_company),
+                        intern_offers: @intern_offers.as_json(methods: :offer_company),
+                        fulltime_offers: @fulltime_offers.as_json(methods: :offer_company),
+                        parttime_offers: @parttime_offers.as_json(methods: :offer_company)
+                   }  
+     
+
+
     end
     
 
@@ -78,7 +83,7 @@ class OfferController < ApplicationController
     def favorite_jobs
         offers_ids = FavoriteJob.where(user_id: current_api_user.id).pluck :offer_id
         @favorite_jobs = Offer.where(id: offers_ids )
-        render json: @favorite_jobs, methods: :is_favorite_job
+        render json: @favorite_jobs, methods: [:is_favorite_job, :offer_company]
     end
  
     private

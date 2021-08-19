@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_api_user!
+    before_action :authenticate_api_user!,except:[:indexlast]
 
     def destroy
         if  !User.where(id:params[:id]).present?
