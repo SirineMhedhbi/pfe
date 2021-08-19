@@ -95,8 +95,8 @@
 
                             <!-- <span>{{user?.nickname}}</span> -->
                             <p>{{user?.post}}</p>
-                            <a routerLink="/">View CV <i class="icofont-eye-alt"></i></a>
-                            <a routerLink="/">Download CV <i class="icofont-download"></i></a>
+                            <a *ngIf="this.pdfFilePath" (click)="previewCv()">View CV <i class="icofont-eye-alt"></i></a>
+                            <!-- <a routerLink="/">Download CV <i class="icofont-download"></i></a> -->
                         </div>
 
                         <div class="single-profile-textarea">

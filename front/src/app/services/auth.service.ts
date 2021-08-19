@@ -57,6 +57,7 @@ export class AuthService {
         "description": registration.description,
         "post": registration.post,
         "avatar": registration.image,
+        "uploaded_cv": registration.uploaded_cv,
 
       },
       this.jsonHeader

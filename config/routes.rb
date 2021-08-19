@@ -27,11 +27,12 @@ Rails.application.routes.draw do
 
 
   delete "/users/destroy/:id" => "users#destroy"
-  get "/users/show" => "users#show"
+  get "/users/show" => "users#show_user"
   put "/users/update/:id" => "users#update"
   get "/users/index" => "users#index"
   get "/users/indexlast" => "users#indexlast"
   get "/users/companies" => "users#companies"
+  post "/users/upload/cv" => "users#upload_cv"
 
 
 
