@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
   hobbie = {name: ""}
   hobbies = []
   filePath
+  pdfFilePath
 
   constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder, private educationService: EducationService, private skillsService: SkillsService, private linksService: LinksService, private worksService: WorkService, private authService: AuthService, private toastr: ToastrService, private hobbieService : HobbiesService) {
 
@@ -70,8 +71,12 @@ export class ProfileComponent implements OnInit {
 
     this.usersService.ShowUser().subscribe(result => {
       this.user = result
+      console.log(result)
       if (this.user.user.image) {
         this.filePath = environment.baseUrl + this.user.user.image
+      }
+      if (this.user.user.uploaded_cv_pdf) {
+        this.pdfFilePath = environment.baseUrl + this.user.user.uploaded_cv_pdf
       }
       
       this.form = this.fb.group({
@@ -306,6 +311,26 @@ export class ProfileComponent implements OnInit {
     this.f.address.setValue(address.formatted_address)
     this.f.lat.setValue(address.geometry.location.lat())
     this.f.lng.setValue(address.geometry.location.lng())
+  }
+  uploadCv(files){
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      console.log(reader.result)
+      this.usersService.uploadCV(reader.result).subscribe((res:any)=>{
+        if (res.cv) {
+          this.pdfFilePath = environment.baseUrl + res.cv
+          this.toastr.success(res.message, '');
+
+        } else {
+          this.toastr.error(res.message, '');
+        }
+      })
+    }
+    reader.readAsDataURL(file)
+  }
+  previewCv(){
+    window.open(this.pdfFilePath, "_blank");
   }
 
 }

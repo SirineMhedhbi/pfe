@@ -43,9 +43,18 @@ class UsersController < ApplicationController
         
     end
 
-    def show
-      
-        render json: { user: current_api_user}
+    def show_user
+     
+        render json: { user: current_api_user.as_json(methods: :uploaded_cv_pdf)}
+        
+    end
+    def upload_cv
+        if current_api_user.uploaded_cv.attach(data: params[:cv])
+            render json: { message: "Your CV uploaded successfully", cv: rails_blob_path(current_api_user.uploaded_cv)}  
+        else
+            render json: { message: "Sorry somthing went wrong"} 
+        end
+        
     end
     
       private

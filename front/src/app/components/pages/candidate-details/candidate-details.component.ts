@@ -34,6 +34,7 @@ export class CandidateDetailsComponent implements OnInit {
   public href: string = "";
   public candidat :string ="/candidate-details";
   test 
+  pdfFilePath
   
 
   constructor(private usersService: UsersService,private educationService: EducationService,private skillsService: SkillsService,private linksService: LinksService,private router: ActivatedRoute,private route:Router,private worksService: WorkService, private hobbiesService : HobbiesService) { }
@@ -58,6 +59,9 @@ export class CandidateDetailsComponent implements OnInit {
     if (this.user.image) {
       this.filePath = environment.baseUrl + this.user.image
     }
+    if (this.user.uploaded_cv_pdf) {
+      this.pdfFilePath = environment.baseUrl + this.user.uploaded_cv_pdf
+    }
     if (res.links) {
       this.links=res.links[0]
 
@@ -77,7 +81,9 @@ export class CandidateDetailsComponent implements OnInit {
   })
   
   }
-  
+  previewCv(){
+    window.open(this.pdfFilePath, "_blank");
+  }
 
 }
 

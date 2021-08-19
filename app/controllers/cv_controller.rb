@@ -20,7 +20,7 @@ class CvController < ApplicationController
 
 
 
-            render json: { educations: @educations, user: @user, skills: @skills, links: @links, works: @works, hobbies: @hobbies}
+            render json: { educations: @educations, user: @user.as_json(methods: :uploaded_cv_pdf), skills: @skills, links: @links, works: @works, hobbies: @hobbies}
 
         end
     private

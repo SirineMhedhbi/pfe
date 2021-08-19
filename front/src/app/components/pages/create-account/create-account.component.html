@@ -24,18 +24,27 @@
             </div>
 
             <form [formGroup]="form" (ngSubmit)="signUpUser()">
+                <input type="file" accept="application/pdf" (change)="uploadCv(pdfFile.files)" #pdfFile hidden>
+
                 <input type="file" accept="image/*" (change)="imagePreview(file.files)" #file hidden>
                 <div class="create-information">
                     <div class="col-lg-12" style="display: flex; margin-left: -32px; margin-bottom: 15px;">
-                        <div class="col-lg-5">
+                        <div class="col-lg-9">
                             <h3>Basic Information</h3>
-                            <div class="create-information-btn col-lg-4" style="margin-left: -12px;">
+                            <div class="create-information-btn" style="margin-left: -12px; display: flex;">
                                 <a (click)="file.click()" style="cursor: pointer;">Upload Cover Photo</a>
                                 <!-- <a routerLink="/">Upload Your CV</a> -->
+                                <a (click)="pdfFile.click()" *ngIf="!show">Upload Your CV</a>
+                                <div style="margin-top:14px ; margin-left: -15px;" *ngIf="this.pdfFilePath">
+                                    <mat-icon matTooltip="Your CV loaded successfully"
+                                        style="color: #4cce5b !important; cursor: pointer;">check</mat-icon>
+
+                                </div>
                             </div>
                         </div>
 
-                        <img [src]="filePath? filePath : 'assets/img/single-profile/default-user.png'" alt="Profile" class="offset-lg-5 ui medium circular image" style="height: 125px;">
+                        <img [src]="filePath? filePath : 'assets/img/single-profile/default-user.png'" alt="Profile"
+                            class="offset-lg-1 ui medium circular image" style="height: 125px;">
                     </div>
 
 
@@ -60,9 +69,11 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Your Last Name</label>
-                                <span class="text-danger" *ngIf="f.nickname.errors && f.nickname.hasError('required')">*</span>
+                                <span class="text-danger"
+                                    *ngIf="f.nickname.errors && f.nickname.hasError('required')">*</span>
                                 <input type="text" class="form-control" formControlName="nickname">
-                                <div *ngIf="f.nickname.invalid && f.nickname.errors && f.nickname.dirty || f.nickname.touched">
+                                <div
+                                    *ngIf="f.nickname.invalid && f.nickname.errors && f.nickname.dirty || f.nickname.touched">
                                     <small class="text-danger" *ngIf="f.nickname.hasError('required')"> This field is
                                         required.</small>
                                 </div>
@@ -74,7 +85,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Your Email</label>
-                                <span class="text-danger" *ngIf="f.email.errors && f.email.hasError('required')">*</span>
+                                <span class="text-danger"
+                                    *ngIf="f.email.errors && f.email.hasError('required')">*</span>
                                 <input type="email" class="form-control" formControlName="email">
                                 <div *ngIf="f.email.invalid && f.email.errors && f.email.dirty || f.email.touched">
                                     <small class="text-danger" *ngIf="f.email.hasError('required')"> This field is
@@ -86,9 +98,11 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Your Password</label>
-                                <span class="text-danger" *ngIf="f.password.errors && f.password.hasError('required')">*</span>
+                                <span class="text-danger"
+                                    *ngIf="f.password.errors && f.password.hasError('required')">*</span>
                                 <input type="password" class="form-control" formControlName="password">
-                                <div *ngIf="f.password.invalid && f.password.errors && f.password.dirty || f.password.touched">
+                                <div
+                                    *ngIf="f.password.invalid && f.password.errors && f.password.dirty || f.password.touched">
                                     <small class="text-danger" *ngIf="f.password.hasError('required')"> This field is
                                         required.</small>
                                 </div>
@@ -98,9 +112,11 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Date of Birth</label>
-                                <span class="text-danger" *ngIf="f.birthday.errors && f.birthday.hasError('required')">*</span>
+                                <span class="text-danger"
+                                    *ngIf="f.birthday.errors && f.birthday.hasError('required')">*</span>
                                 <input type="date" class="form-control" formControlName="birthday">
-                                <div *ngIf="f.birthday.invalid && f.birthday.errors && f.birthday.dirty || f.birthday.touched">
+                                <div
+                                    *ngIf="f.birthday.invalid && f.birthday.errors && f.birthday.dirty || f.birthday.touched">
                                     <small class="text-danger" *ngIf="f.birthday.hasError('required')"> This field is
                                         required.</small>
                                 </div>
@@ -110,7 +126,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Your Phone</label>
-                                <span class="text-danger" *ngIf="f.phone.errors && f.phone.hasError('required')">*</span>
+                                <span class="text-danger"
+                                    *ngIf="f.phone.errors && f.phone.hasError('required')">*</span>
                                 <input type="text" class="form-control" formControlName="phone">
                                 <div *ngIf="f.phone.invalid && f.phone.errors && f.phone.dirty || f.phone.touched">
                                     <small class="text-danger" *ngIf="f.phone.hasError('required')"> This field is
@@ -130,9 +147,11 @@
                             <div class="form-group">
                                 <div class="gender-area">
                                     <span>Profession</span>
-                                    <input type="radio" formControlName="role" id="candidat" value="candidat" (change)="changeRole($event.target)">
+                                    <input type="radio" formControlName="role" id="candidat" value="candidat"
+                                        (change)="changeRole($event.target)">
                                     <label for="candidat">Candidat</label>
-                                    <input type="radio" formControlName="role" id="recruteur" value="company" (change)="changeRole($event.target)">
+                                    <input type="radio" formControlName="role" id="recruteur" value="company"
+                                        (change)="changeRole($event.target)">
                                     <label for="recruteur">Recruiter</label>
                                 </div>
                             </div>
@@ -141,12 +160,16 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Address:</label>
-                                <span class="text-danger" *ngIf="f.address.errors && f.address.hasError('required')">*</span>
+                                <span class="text-danger"
+                                    *ngIf="f.address.errors && f.address.hasError('required')">*</span>
                                 <!-- <input type="text" class="form-control" formControlName="address"> -->
-                                <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="address" class="form-control" />
+                                <input ngx-google-places-autocomplete #placesRef="ngx-places"
+                                    (onAddressChange)="handleAddressChange($event)" formControlName="address"
+                                    class="form-control" />
 
 
-                                <div *ngIf="f.address.invalid && f.address.errors && f.address.dirty || f.address.touched">
+                                <div
+                                    *ngIf="f.address.invalid && f.address.errors && f.address.dirty || f.address.touched">
                                     <small class="text-danger" *ngIf="f.address.hasError('required')"> This field is
                                         required.</small>
                                 </div>
@@ -169,7 +192,8 @@
                             <div class="form-group">
                                 <label>Select company</label>
 
-                                <ng-select [items]="companies.companies" bindLabel="name" bindValue="id" formControlName="company_id">
+                                <ng-select [items]="companies" bindLabel="name" bindValue="id"
+                                    formControlName="company_id">
                                 </ng-select>
                             </div>
 

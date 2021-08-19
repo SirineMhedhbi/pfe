@@ -2,6 +2,8 @@ class ApplicationController < ActionController::API
 	include DeviseTokenAuth::Concerns::SetUserByToken
 	include ActionController::ImplicitRender
 	include ActiveStorageSupport::SupportForBase64
+	include Rails.application.routes.url_helpers
+
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -11,7 +13,7 @@ class ApplicationController < ActionController::API
     end
 	protected
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name, :nickname, :jobtitle, :phone, :address, :gender, :birthday, :company_id, :description, :post, avatar: :data])
+		devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name, :nickname, :jobtitle, :phone, :address, :gender, :birthday, :company_id, :description, :post, avatar: :data, uploaded_cv: :data])
 	end
 
 

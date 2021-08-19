@@ -11,6 +11,7 @@ module Overrides
 					cv = Cv.create
 					@resource.cv = cv
 					@resource.save
+					@resource.uploaded_cv.attach(data: params[ :uploaded_cv ])
 			end
 		end
 		# private

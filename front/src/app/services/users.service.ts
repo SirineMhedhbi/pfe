@@ -54,4 +54,8 @@ export class UsersService {
   candidatLast(){
     return this.http.get('/users/indexlast',)
   }
+
+  uploadCV(file){
+    return this.http.post('/users/upload/cv',{cv: file})
+  }
 }

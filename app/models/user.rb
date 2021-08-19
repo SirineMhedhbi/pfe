@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :test_attempts, class_name: "TestAttempt"
   has_one :cv
   has_one_base64_attached :avatar
+  has_one_base64_attached :uploaded_cv
+
   has_many :applies
   has_many :favorite_jobs
 
@@ -28,6 +30,10 @@ class User < ApplicationRecord
   def self.current=(user)
     Thread.current[:user] = user
   end
+  def uploaded_cv_pdf
+    rails_blob_path(self.uploaded_cv, only_path: true) if self.uploaded_cv.attached?
+  end
+  
 
   
   # def photo
