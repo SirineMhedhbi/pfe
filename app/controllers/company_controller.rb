@@ -1,6 +1,6 @@
 class CompanyController < ApplicationController
 
-    before_action :authenticate_api_user! ,except:[:index]
+    before_action :authenticate_api_user! ,except:[:index,:companylast]
 
 
 
@@ -51,7 +51,7 @@ class CompanyController < ApplicationController
         render json: { company: @company}
      end
      def companylast
-        @lastcompanies = Company.all.order(updated_at: :desc)
+        @lastcompanies = Company.all.order(updated_at: :ASC)
         render json: @lastcompanies.last(12)
         
     end

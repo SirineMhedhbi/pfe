@@ -23,7 +23,10 @@
         <div class="row">
             <div class="col-lg-6" *ngFor="let item of jobs">
                 <div class="job-item" [matBadge]="item.applies.length" matBadgeSize="large">
-                    <img src="assets/img/home-1/jobs/1.png" alt="Job">
+                    <!-- <img src="assets/img/home-1/jobs/1.png" alt="Job"> -->
+                    <img [src]="item.current_user_company.avatar? 'http://localhost:3000' + item.current_user_company.avatar : 'assets/img/office-building.png'" alt="icon" style="    max-width: 78px;
+                    margin-top: -4px;
+                    margin-left: -9px;">
 
 
                     <div class="job-inner align-items-center">
@@ -47,7 +50,7 @@
                                     <i class="icofont-location-pin"></i> </li>
 
                                 <li>
-                                    <a routerLink="/company-details/{{company.id}}">{{company.title}}.com</a>
+                                    <a routerLink="/company-details/{{item.current_user_company.company.id}}">{{item.current_user_company.company.title}}.com</a>
                                 </li>
                             </ul>
                         </div>

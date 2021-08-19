@@ -1,13 +1,13 @@
 <div class="navbar-area fixed-top">
 
     <div class="mobile-nav">
-        <a routerLink="/" class="logo"><img src="assets/img/logo.png" alt="Logo"></a>
+        <a routerLink="/" class="logo"><img src="assets/img/com.png" alt="Logo"></a>
     </div>
 
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" routerLink="/"><img src="assets/img/logo.png" alt="Logo"></a>
+                <a class="navbar-brand" routerLink="/"><img src="assets/img/com.png" alt="Logo"></a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav">
@@ -26,7 +26,7 @@
                         <li class="nav-item"><a routerLink="/about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a></li>
 
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Jobs <i class="icofont-simple-down"></i></a>
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" *ngIf="(role == 'candidat' || role == 'company' )">Jobs <i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a routerLink="/job-list" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="(role == 'candidat')">Job List</a></li>
@@ -99,7 +99,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link dropdown-toggle">Blogs <i class="icofont-simple-down"></i></a>
 
                             <ul class="dropdown-menu">
@@ -107,7 +107,7 @@
 
                                 <li class="nav-item"><a routerLink="/blog-details" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Blog Details</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item"><a routerLink="/contact" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
                     </ul>

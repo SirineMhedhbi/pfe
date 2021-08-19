@@ -23,7 +23,10 @@
                     <mat-icon *ngIf="!item.is_favorite_job" matTooltip="Add to favorite jobs" aria-hidden="false" aria-label="Example home icon" style="float: right;margin-top: -20px;margin-right: -20px;" [ngClass]="{'favorite-icon': item.is_favorite_job}" (click)="addToFavorite(item)">star</mat-icon>
                     <mat-icon *ngIf="item.is_favorite_job" matTooltip="Remove from favorite jobs " aria-hidden="false" aria-label="Example home icon" style="float: right;margin-top: -20px;margin-right: -20px;" [ngClass]="{'favorite-icon': item.is_favorite_job}" (click)="addToFavorite(item)">star</mat-icon>
 
-                    <img src="assets/img/home-1/jobs/2.png" alt="Job">
+                    <!-- <img src="assets/img/home-1/jobs/2.png" alt="Job"> -->
+                    <img [src]="item.offer_company.avatar? 'http://localhost:3000' + item.offer_company.avatar : 'assets/img/office-building.png'" alt="icon" style="    max-width: 78px;
+                    margin-top: -4px;
+                    margin-left: -9px;">
 
                     <div class="job-inner align-items-center">
                         <div class="job-inner-left">
@@ -60,8 +63,8 @@
 
             </div>
 
-           
-            
+
+
         </div>
     </div>
 </section>

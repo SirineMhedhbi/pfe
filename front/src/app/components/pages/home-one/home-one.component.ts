@@ -6,6 +6,7 @@ import { PostAJobComponent } from '../post-a-job/post-a-job.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from 'src/app/services/company.service';
 import { JobsService } from 'src/app/services/jobs.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -28,7 +29,7 @@ export class HomeOneComponent implements OnInit {
   parttimeoffers
   categories
 
-  constructor(private authService: AuthService, private usersService: UsersService, private router: Router, private companyService: CompanyService, private jobService: JobsService) {
+  constructor(private authService: AuthService, private usersService: UsersService, private router: Router, private companyService: CompanyService, private jobService: JobsService, private toastr: ToastrService) {
     this.usersService.candidatLast().subscribe((res: any) => {
 
       this.lastusers = res.lastusers
@@ -79,12 +80,32 @@ export class HomeOneComponent implements OnInit {
     }
     else {
       this.router.navigate(['create-account']);
+      this.toastr.error('You should create account or login as company to post a job');
+
 
     }
   }
   apply() {
-    this.router.navigate(['job-list']);
+    if (this.isLoggedIn$ && this.role == 'candidat') {
+      this.router.navigate(['job-list']);
 
+    }
+    else {
+      this.router.navigate(['create-account']);
+      this.toastr.error('You should create account or login as candidat to apply');
+    }
   }
+  // createaccount(){
+  //   if (this.isLoggedIn$.source._) {
+  //     console.log(this.isLoggedIn$)
+  //     // this.router.navigate(['profile']);
+
+  //   }
+  //   else {
+  //     this.router.navigate(['create-account']);
+
+  //   }
+
+  // }
 
 }

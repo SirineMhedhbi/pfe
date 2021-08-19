@@ -32,9 +32,9 @@ export class MyJobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.jobsService.userJobs().subscribe((res:any)=>{
-      this.jobs = res.offers
+      this.jobs = res
       console.log(this.jobs )
-      this.company=res.company 
+      this.company=res.company
       console.log(res)
 
     })

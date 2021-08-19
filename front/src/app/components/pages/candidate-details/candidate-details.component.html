@@ -101,7 +101,7 @@
 
                         <div class="single-profile-textarea">
                             <div class="single-profile-heading">
-                                <span></span>
+                                <span style="height: 12px;"></span>
                                 <h3>Description</h3>
                             </div>
 
@@ -116,27 +116,35 @@
 
 
                             <div class="single-profile-heading">
-                                <span></span>
+                                <span style="height: 12px;"></span>
                                 <h3>Education</h3>
                             </div>
 
-                            <div class="single-profile-paragraph" *ngFor="let item of educations">
-                                <ul style="height: 78px;">
+                            <div class="single-profile-paragraph" *ngFor="let item of educations" style="height: 105px;">
+                                <span style="height: 12px;"></span>
+
+                                <ul>
                                     <!-- <li>
                                         <h6>{{item.title}} </h6>
 
                                         <p>{{item.institute}}</p>
                                     </li> -->
 
-                                    <li>
-                                        <i class="icofont-graduate" style="font-size: 26px;"> <span style="margin-left: 14px;font-size: 21px;">{{item.institute}}</span> </i>
-
-
-                                        <p>{{item.title}}</p>
-                                    </li>
-
-
                                 </ul>
+
+                                <li>
+                                    <i class="icofont-graduate" style="font-size: 26px;"> <span style="margin-left: 14px;font-size: 21px;">{{item.institute}}</span> </i>
+                                    <br>
+                                    <i class="calendar alternate icon"></i>
+                                    <span style="color: #7c847c;">{{item.begin_date|date}} - {{item.end_date|date}}   </span>
+                                    <br>
+                                    <i class="icofont-hand-drawn-right"><span  style="color: #7c847c;">{{item.title}}</span></i>
+
+                                    <br>
+                                </li>
+
+
+
                             </div>
 
                             <!-- <div class="single-profile-heading">
@@ -150,7 +158,7 @@
 
                             <div class="single-profile-heading" style="margin-top: 19px;">
                                 <span></span>
-                                <h3>Work Experiences</h3>
+                                <h3 style=" margin-top: 55px;">Work Experiences</h3>
                             </div>
 
                             <div class="single-profile-paragraph" *ngFor="let item of works">
