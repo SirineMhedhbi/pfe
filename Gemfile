@@ -24,6 +24,11 @@ gem 'activerecord-session_store'
 gem 'administrate-materialize-theme'
 gem 'active_model_serializers'
 
+gem "pdfkit"
+gem "wkhtmltopdf-binary", '~> 0.9.9'
+gem 'wicked_pdf'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

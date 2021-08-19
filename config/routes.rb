@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   get "/users/index" => "users#index"
   get "/users/indexlast" => "users#indexlast"
   get "/users/companies" => "users#companies"
+  get "/users/downloadCv" => "users#download_cv"
+
+  
 
 
 

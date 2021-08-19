@@ -54,4 +54,7 @@ export class UsersService {
   candidatLast(){
     return this.http.get('/users/indexlast',)
   }
+  downloadCv(html){
+    return this.http.post('/users/downloadCv',{html:html})
+  }
 }

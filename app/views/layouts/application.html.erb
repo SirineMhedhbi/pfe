@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= wicked_pdf_stylesheet_link_tag 'pdf', media: 'all' %>
+    <%= wicked_pdf_stylesheet_link_tag '/assets/stylesheet/pdf.scss' %>
+  </head>
+
+  <body>
+    <h1>Hellow World</h1>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,231 @@
+h3 {
+    color: red;
+}
+.single-profile-item {
+    margin-bottom: 30px;
+    img {
+        width: 100%;
+    }
+    .single-profile-left {
+        padding: 50px 60px 20px;
+        box-shadow: 0px 0px 20px 0px #dddddd87;
+        .single-profile-contact {
+            margin-bottom: 40px;
+            h3 {
+                font-weight: 600;
+                font-size: 22px;
+                color: $black-color;
+                margin-bottom: 20px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    list-style-type: none;
+                    display: flex;
+                    font-size: $all-size;
+                    color: #858585;
+                    margin-bottom: 18px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    i {
+                        display: inline-block;
+                        background: $gradient-green;
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        position: relative;
+                        top: 2px;
+                        margin-right: 6px;
+                        font-size: 22px;
+                    }
+                    a {
+                        color: #858585;
+                        display: inline-block;
+                        &:hover {
+                            color: $main-color;
+                        }
+                    }
+                }
+            }
+        }
+        .single-profile-social {
+            margin-bottom: 40px;
+            h3 {
+                font-weight: 600;
+                font-size: 22px;
+                color: $black-color;
+                margin-bottom: 20px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    list-style-type: none;
+                    display: flex;
+                    margin-bottom: 18px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    i {
+                        display: inline-block;
+                        background: $gradient-green;
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        position: relative;
+                        top: 2px;
+                        margin-right: 6px;
+                        font-size: 22px;
+                    }
+                    a {
+                        color: #858585;
+                        display: inline-block;
+                        &:hover {
+                            color: $main-color;
+                        }
+                    }
+                }
+            }
+        }
+        .single-profile-skills {
+            h3 {
+                font-weight: 600;
+                font-size: 22px;
+                color: $black-color;
+                margin-bottom: 20px;
+            }
+            .skill {
+                margin-bottom: 30px;
+                p {
+                    color: #9a9a9a;
+                    margin-bottom: 17px;
+                }
+                .skill1 {
+                    &:before {
+                        display: none;
+                    }
+                }
+                .skill2 {
+                    width: 90%;
+                }
+                .skill3 {
+                    width: 75%;
+                }
+            }
+        }
+    }
+    .single-profile-right {
+        .single-profile-name {
+            margin-bottom: 70px;
+            h2 {
+                font-weight: 700;
+                font-size: 38px;
+                color: #51504e;
+                margin-bottom: 8px;
+            }
+            span {
+                display: block;
+                font-size: 18px;
+                color: #999897;
+                font-weight: 500;
+                margin-bottom: 5px;
+            }
+            p {
+                margin-bottom: 30px;
+                color: #838383;
+                font-size: $all-size;
+            }
+            a {
+                display: inline-block;
+                color: $white-color;
+                background: $gradient-green;
+                font-weight: 600;
+                font-size: $all-size;
+                padding: 15px 15px;
+                margin-right: 20px;
+                width: 200px;
+                text-align: center;
+                i {
+                    margin-left: 4px;
+                }
+                &:hover {
+                    background: linear-gradient(270deg, #38a745 0%, #4cce5b 63%);
+                }
+            }
+        }
+        .single-profile-textarea {
+            padding-left: 60px;
+            .single-profile-heading {
+                position: relative;
+                &:before {
+                    position: absolute;
+                    content: '';
+                    width: 18px;
+                    height: 3px;
+                    background: #dbf4de;
+                    left: -31px;
+                    top: 13px;
+                }
+                span {
+                    width: 13px;
+                    height: 13px;
+                    transform: rotate(45deg);
+                    position: absolute;
+                    top: 9px;
+                    left: -56px;
+                    display: inline-block;
+                    border: 4px solid;
+                    border-image-source: $gradient-green;
+                    border-image-slice: 1;
+                }
+                h3 {
+                    font-weight: 600;
+                    font-size: 22px;
+                    background: $gradient-green;
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    margin-bottom: 0;
+                }
+            }
+            .single-profile-paragraph {
+                position: relative;
+                &:before {
+                    position: absolute;
+                    content: '';
+                    width: 3px;
+                    height: 100%;
+                    left: -51px;
+                    top: 0;
+                    background: #d9f1dc;
+                }
+                .single-profile-p {
+                    padding-bottom: 10px;
+                }
+                p {
+                    margin-bottom: 0;
+                    color: #838383;
+                    padding-top: 10px;
+                    padding-bottom: 26px;
+                }
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    padding-top: 14px;
+                    padding-bottom: 30px;
+                    li {
+                        list-style-type: none;
+                        display: block;
+                        color: #838383;
+                        margin-bottom: 15px;
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -12,6 +12,11 @@ $black-color: #333333;
 $gradient-green: linear-gradient(90deg, rgba(56, 167, 69, 1) 0%, rgba(76, 206, 91, 1) 63%);
 $gradient-red: linear-gradient(90deg, rgb(167, 56, 56) 0%, rgb(206, 76, 76) 63%);
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@media print {
+    h3 {
+      color: blue;
+    }
+  }
 
 /*-- Default CSS --*/
 

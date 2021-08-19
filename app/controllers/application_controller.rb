@@ -2,6 +2,8 @@ class ApplicationController < ActionController::API
 	include DeviseTokenAuth::Concerns::SetUserByToken
 	include ActionController::ImplicitRender
 	include ActiveStorageSupport::SupportForBase64
+	require 'wicked_pdf'
+
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
