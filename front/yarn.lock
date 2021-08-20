@@ -1865,6 +1865,13 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.npmjs.org/alphanum-sort/-/alphanum-sort-1.0.2.tgz"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+angularx-social-login@3.5.7:
+  version "3.5.7"
+  resolved "https://registry.yarnpkg.com/angularx-social-login/-/angularx-social-login-3.5.7.tgz#a91243fdd5b8a86633b205e681da3ad70aea8317"
+  integrity sha512-KhkRzQph1mQt1BNsVhWhI2FDSo0y31sbhlFOVtJrLaaub/vhiNVB4NPeOXU7oQmiTkqKMWibp8pSOEJ92EQTbw==
+  dependencies:
+    tslib "^2.0.0"
+
 animate.css@latest:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"

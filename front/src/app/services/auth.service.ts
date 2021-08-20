@@ -76,6 +76,11 @@ export class AuthService {
 
   }
 
+  googleSignIn(user){
+    let stirng_user = JSON.stringify(user)
+    return this.http.get(`/api/v1/auth/google_oauth2/callback?user=${stirng_user}`)
+  }
+
   logout() {                            // {4}
     this.loggedIn.next(false);
     this.router.navigate(['/login']);

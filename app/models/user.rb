@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :applies
   has_many :favorite_jobs
 
-  devise :database_authenticatable, :registerable,:recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable,:recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
 
   enum role: [ :admin, :candidat, :company ]
@@ -33,7 +33,6 @@ class User < ApplicationRecord
   def uploaded_cv_pdf
     rails_blob_path(self.uploaded_cv, only_path: true) if self.uploaded_cv.attached?
   end
-  
 
   
   # def photo
