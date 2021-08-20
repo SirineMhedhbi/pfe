@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobsService } from 'src/app/services/jobs.service';
 
@@ -8,14 +9,28 @@ import { JobsService } from 'src/app/services/jobs.service';
   styleUrls: ['./favourite-job.component.scss']
 })
 export class FavouriteJobComponent implements OnInit {
+  public href: string = "";
+  public job :string ="/favourite-job";
+  test 
 
-  constructor(private jobService: JobsService, private toastr: ToastrService) { }
+  constructor(private jobService: JobsService, private toastr: ToastrService,private route:Router) { }
   favoriteJobs = []
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.href = this.route.url
+    console.log(this.href)
+    this.test=this.href.includes(this.job)
+    console.log(this.test)
+
+
     this.jobService.getFavoriteJobs().subscribe((res:any)=>{
       console.log(res)
       this.favoriteJobs = res
     })
+
+
+
+
+
   }
   addToFavorite(item){
     const offer = this.favoriteJobs.find(x=> x.id == item.id) 

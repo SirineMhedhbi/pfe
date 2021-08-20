@@ -20,13 +20,16 @@
         <div class="row align-items-center">
             <div class="col-lg-4">
                 <div class="dashboard-img">
-                    <img src="assets/img/dashboard/1.jpg" alt="Dashboard">
+                    <img src="assets/img/clic.jpg" alt="Logo" style="width: 125px;
+                    margin-top: 89px;">
                     <br>
+                    <h2>Welcome </h2>
                     <h3>
                         {{user?.user.name}} {{user?.user.nickname}}
 
                     </h3>
-                    <p>{{user?.user.post}}</p>
+                    <h2>To your candiate dashboard </h2>
+                    <!-- <p>{{user?.user.post}}</p> -->
                 </div>
             </div>
 
@@ -307,7 +310,11 @@
 
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                 <div class="dashboard-saved-job">
-                    <div class="row">
+                    <app-favourite-job [id]="id"></app-favourite-job>
+
+                    <!-- <app-candidate-details [id]="id"></app-candidate-details> -->
+
+                    <!-- <div class="row">
                         <div class="col-lg-6">
                             <div class="job-item wow fadeInUp" data-wow-delay=".3s">
                                 <img src="assets/img/home-1/jobs/1.png" alt="Job">
@@ -403,7 +410,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -475,6 +482,9 @@
 
                 </div> -->
                 <app-candidate-details [id]="id"></app-candidate-details>
+
+
+
 
             </div>
         </div>
