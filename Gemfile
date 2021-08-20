@@ -15,6 +15,7 @@ gem 'devise_token_auth'
 gem "devise"
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
+gem 'omniauth-google-oauth2', '~> 0.2.2'
 
 gem 'active_storage_base64'
 gem "administrate", '~> 0.14.0'

@@ -81,6 +81,8 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
 import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
 import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
 import { MyAppliesComponent } from './components/pages/my-applies/my-applies.component';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
+
 
 
 
@@ -135,6 +137,7 @@ import { MyAppliesComponent } from './components/pages/my-applies/my-applies.com
 
   ],
   imports: [
+    SocialLoginModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -176,6 +179,26 @@ import { MyAppliesComponent } from './components/pages/my-applies/my-applies.com
       provide: HTTP_INTERCEPTORS,
       useClass: UserRequestInterceptor,
       multi: true,
+    },{
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '884708634562-3hn1ng7oocmf6qd4iq0ml1k1amms5rm1.apps.googleusercontent.com'
+            )
+          },
+          // {
+          //   id: FacebookLoginProvider.PROVIDER_ID,
+          //   provider: new FacebookLoginProvider('clientId')
+          // }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
     },
     AuthGuard
   ],
