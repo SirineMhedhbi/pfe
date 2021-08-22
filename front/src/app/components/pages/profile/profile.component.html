@@ -28,15 +28,14 @@
                         <div class="create-information-btn" style="margin-left: -12px; display: flex;">
                             <a (click)="file.click()" style="cursor: pointer;">Upload Cover Photo</a>
                             <a (click)="pdfFile.click()" *ngIf="role != 'company'">Upload Your CV</a>
-                            <div style="margin-top:14px ; margin-left: -15px;" *ngIf="this.pdfFilePath && role != 'company'" >
+                            <div style="margin-top:14px ; margin-left: -15px;" *ngIf="this.pdfFilePath && role != 'company'">
                                 <mat-icon matTooltip="preview your CV" (click)="previewCv()" style="color: #4cce5b !important; cursor: pointer;">description</mat-icon>
 
                             </div>
                         </div>
                     </div>
 
-                    <img [src]="filePath? filePath : 'assets/img/single-profile/default-user.png'" alt="Profile"
-                        class="offset-lg-1 ui small circular image" style="height: 150px;">
+                    <img [src]="filePath? filePath : 'assets/img/single-profile/default-user.png'" alt="Profile" class="offset-lg-1 ui small circular image" style="height: 150px;">
                 </div>
 
                 <div class="row">
@@ -70,8 +69,7 @@
                         <div class="form-group">
                             <label>Date of Birth</label>
                             <input type="date" class="form-control" formControlName="birthday">
-                            <div
-                                *ngIf="f.birthday.invalid && f.birthday.errors && f.birthday.dirty || f.birthday.touched">
+                            <div *ngIf="f.birthday.invalid && f.birthday.errors && f.birthday.dirty || f.birthday.touched">
                                 <small class="text-danger" *ngIf="f.birthday.hasError('required')"> This field is
                                     required.</small>
                             </div>
@@ -107,13 +105,11 @@
                         <div class="form-group">
                             <label>Address:</label>
                             <!-- <input type="text" class="form-control" formControlName="address"> -->
-                            <input ngx-google-places-autocomplete #placesRef="ngx-places"
-                                (onAddressChange)="handleAddressChange($event)" formControlName="address"
-                                class="form-control" />
+                            <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="address" class="form-control" />
 
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" *ngIf="user?.user.role == 'candidat'">
                         <div class="form-group">
                             <label>About you</label>
                             <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
@@ -161,8 +157,7 @@
 
                     <div class="create-education-right">
                         <!-- <a routerLink="/">Edit</a> -->
-                        <button (click)="addEducation(education)"
-                            [disabled]="education.title == '' || education.degree == '' || education.begin_date == '' || education.end_date == '' || education.institute == ''">Add
+                        <button (click)="addEducation(education)" [disabled]="education.title == '' || education.degree == '' || education.begin_date == '' || education.end_date == '' || education.institute == ''">Add
                             Education</button>
                     </div>
                 </div>
@@ -209,8 +204,7 @@
                         </div>
 
                         <div class="create-education-right">
-                            <button type="submit" (click)="editEducation(item)"
-                                [disabled]="item.title == '' || item.degree == '' ">Edit </button>
+                            <button type="submit" (click)="editEducation(item)" [disabled]="item.title == '' || item.degree == '' ">Edit </button>
                             <button class="delete-btn" (click)="removeEducation(item.id)">Remove</button>
                         </div>
                     </div>
@@ -315,8 +309,7 @@
                         <div class="create-skills-right">
                             <!-- <a routerLink="/">Edit</a> -->
                             <!-- <a routerLink="/">Add Skill</a> -->
-                            <button (click)="editSkill(item)"
-                                [disabled]="item.name == '' || item.pourcentage == 0">Edit</button>
+                            <button (click)="editSkill(item)" [disabled]="item.name == '' || item.pourcentage == 0">Edit</button>
                             <button class="delete-btn" (click)="removeSkill(item.id)">Remove</button>
                         </div>
                     </div>
@@ -376,8 +369,7 @@
 
                     <div class="create-education-right">
                         <!-- <a routerLink="/">Edit</a> -->
-                        <button (click)="addWork(work)"
-                            [disabled]="work.title == '' || work.begin_date == '' || work.end_date == '' || work.company == ''">Add
+                        <button (click)="addWork(work)" [disabled]="work.title == '' || work.begin_date == '' || work.end_date == '' || work.company == ''">Add
                             Work</button>
                     </div>
                 </div>
@@ -412,8 +404,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" [(ngModel)]="work.description" rows="5"
-                                style="height: unset !important;"></textarea>
+                            <textarea class="form-control" [(ngModel)]="work.description" rows="5" style="height: unset !important;"></textarea>
 
                         </div>
                     </div>
@@ -427,8 +418,7 @@
                         </div>
 
                         <div class="create-education-right">
-                            <button type="submit" (click)="editWork(item)"
-                                [disabled]="item.title == '' || item.company == '' ">Edit </button>
+                            <button type="submit" (click)="editWork(item)" [disabled]="item.title == '' || item.company == '' ">Edit </button>
                             <button class="delete-btn" (click)="removeWork(item.id)">Remove</button>
                         </div>
                     </div>
@@ -465,8 +455,7 @@
                             <div class="form-group">
                                 <label>Description </label>
 
-                                <textarea class="form-control" [(ngModel)]="item.description" rows="5"
-                                    style="height: unset !important;"></textarea>
+                                <textarea class="form-control" [(ngModel)]="item.description" rows="5" style="height: unset !important;"></textarea>
 
                             </div>
                         </div>
@@ -499,24 +488,21 @@
                             <label>LinkedIn</label>
                             <span class="text-danger" *ngIf="link.linkedin == '' ">*</span>
 
-                            <input type="text" class="form-control" placeholder="https://www.linkedin.com"
-                                [(ngModel)]="link.linkedin">
+                            <input type="text" class="form-control" placeholder="https://www.linkedin.com" [(ngModel)]="link.linkedin">
 
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Facebook</label>
-                            <input type="text" class="form-control" placeholder="https://www.facebook.com"
-                                [(ngModel)]="link.facebook">
+                            <input type="text" class="form-control" placeholder="https://www.facebook.com" [(ngModel)]="link.facebook">
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Instagram</label>
-                            <input type="text" class="form-control" placeholder="https://www.instagram.com"
-                                [(ngModel)]="link.instagram">
+                            <input type="text" class="form-control" placeholder="https://www.instagram.com" [(ngModel)]="link.instagram">
                         </div>
                     </div>
 
@@ -525,8 +511,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Github</label>
-                            <input type="text" class="form-control" placeholder="https://www.github.com"
-                                [(ngModel)]="link.github">
+                            <input type="text" class="form-control" placeholder="https://www.github.com" [(ngModel)]="link.github">
                         </div>
                     </div>
                 </div>

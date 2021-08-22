@@ -242,7 +242,7 @@ class Overrides::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallback
         # In that case, just render in plain text the error message if there is one or otherwise
         # a generic message.
         
-        render json: data.merge(User.find_by(uid:"seddin178@gmail.com").as_json)
+        render json: data.merge(User.find_by(uid:data["uid"]).as_json)
       end
     end
 
