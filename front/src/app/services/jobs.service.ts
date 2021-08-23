@@ -35,9 +35,9 @@ export class JobsService {
 
  
 
-  userJobs() {
+  userJobs(q) {
 
-    return this.http.get('/offers/index')
+    return this.http.get('/offers/index?query=' + q)
   }
 
   deleteJob(id) {
@@ -68,8 +68,8 @@ export class JobsService {
   showJob(id) {
     return this.http.get('/offers/show/' + id);
   }
-  offersList() {
-    return this.http.get('/offers/offer',)
+  offersList(q) {
+    return this.http.get('/offers/offer?query=' + q,)
   }
   recentOffers(){
     return this.http.get('/offers/recent',)
@@ -121,8 +121,8 @@ export class JobsService {
     return this.http.post('/offers/favorite/'+ id, {answer});
   }
 
-  getFavoriteJobs(){
-    return this.http.get('/offers/favorite/jobs');
+  getFavoriteJobs(q){
+    return this.http.get('/offers/favorite/jobs?query=' + q);
   }
 
 

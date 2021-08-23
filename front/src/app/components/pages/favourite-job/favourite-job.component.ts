@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobsService } from 'src/app/services/jobs.service';
 
@@ -9,12 +10,22 @@ import { JobsService } from 'src/app/services/jobs.service';
 })
 export class FavouriteJobComponent implements OnInit {
 
-  constructor(private jobService: JobsService, private toastr: ToastrService) { }
+  constructor(private jobService: JobsService, private toastr: ToastrService,private router: ActivatedRoute) { }
   favoriteJobs = []
   ngOnInit(): void {
-    this.jobService.getFavoriteJobs().subscribe((res:any)=>{
-      console.log(res)
-      this.favoriteJobs = res
+    this.router.queryParams
+    .subscribe(params => {
+      if (params.query) {
+        this.jobService.getFavoriteJobs(params.query).subscribe((res: any) => {
+
+          this.favoriteJobs = res
+        })
+      } else {
+        this.jobService.getFavoriteJobs(null).subscribe((res: any) => {
+
+          this.favoriteJobs = res
+        })
+      }
     })
   }
   addToFavorite(item){

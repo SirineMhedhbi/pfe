@@ -103,7 +103,6 @@ export class PostAJobComponent implements OnInit {
       }
 
     }
-    debugger
 
     this.jobsService.addJob(this.data).subscribe(
 

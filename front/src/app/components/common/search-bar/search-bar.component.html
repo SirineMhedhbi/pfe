@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label><i class="icofont-search-1"></i></label>
+                <input type="text" class="form-control" placeholder="Job Title" formControlName="title">
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label><i class="icofont-location-pin"></i></label>
+                <input (change)="addressChanged($event)" (onAddressChange)="handleAddressChange($event)" type="text" class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="City or State" formControlName="address">
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                <!-- <select formControlName="category" (change)="changeCity($event)">
+                    <option  value="" disabled>Choose a state</option>
+                    <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+                    
+                </select> -->
+                <mat-form-field appearance="fill" class="">
+                    
+                    <mat-select [(ngModel)]="selectedValue" name="food" formControlName="category" >
+                        <mat-option disabled   [value]="-1">
+                            Chose a Category
+                        </mat-option>
+                        <mat-option  *ngFor="let item of categories" [value]="item.id">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- <ng-select [items]="companies" bindLabel="name" bindValue="id"
+                                    formControlName="company_id">
+                                </ng-select> -->
+            </div>
+        </div>
+    </div>
+
+    <mat-icon (click)="resetForm()" style="position: relative;top: -34px;right: -33px;float: right; cursor: pointer;" matTooltip="Clear search form ">clear</mat-icon>
+    <button type="submit" class="btn banner-form-btn">Search</button>   
+</form>
