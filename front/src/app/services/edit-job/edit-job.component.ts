@@ -7,6 +7,8 @@ import { UsersService } from '../users.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { MatDialog } from '@angular/material/dialog';
+import { CompanyService } from '../company.service';
 
 
 @Component({
@@ -21,8 +23,12 @@ export class EditJobComponent implements OnInit {
   autocompleteItems = ['Item1', 'item2', 'item3'];
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
 
+  categories: any;
+  selectedValue
 
-  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: ActivatedRoute, private route: Router, private toastr: ToastrService) {
+
+
+  constructor(private usersService: UsersService, private jobsService: JobsService, private fb: FormBuilder, private router: ActivatedRoute, private route: Router, private toastr: ToastrService, private matDialog: MatDialog, private companyService: CompanyService) {
     this.form = this.fb.group({
       title: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
       category: new FormControl("", Validators.compose([Validators.required, Validators.minLength(3)])),
@@ -45,6 +51,9 @@ export class EditJobComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.companyService.getCategories().subscribe((res: any) => {
+      this.categories = res
+    })
 
     this.jobsService.showJob(this.router.snapshot.paramMap.get('id')).subscribe(result => {
 
@@ -52,7 +61,7 @@ export class EditJobComponent implements OnInit {
 
       this.form = this.fb.group({
         title: new FormControl(this.job.title, Validators.compose([Validators.required, Validators.minLength(3)])),
-        category: new FormControl(this.job.category, Validators.compose([Validators.required, Validators.minLength(3)])),
+        category: new FormControl(this.job.category_id, Validators.compose([Validators.required, Validators.minLength(3)])),
         location: new FormControl(this.job.location, Validators.compose([Validators.required, Validators.minLength(3)])),
         description: new FormControl(this.job.description, Validators.compose([Validators.required, Validators.minLength(3)])),
         company_name: new FormControl(this.job.company_name, Validators.compose([Validators.required, Validators.minLength(3)])),
