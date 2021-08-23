@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit {
         email : data.email,
         nickname : data.lastName,
         avatar : data.photoUrl,
-        role: "candidat"
     }
     
 }

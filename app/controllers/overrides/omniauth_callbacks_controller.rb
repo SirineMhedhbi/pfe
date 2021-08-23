@@ -277,6 +277,7 @@ class Overrides::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallback
         handle_new_resource
         cv = Cv.create
         @resource.cv = cv
+        @resource.role = "candidat"
       end
 
       # sync user info with provider, update/generate auth token

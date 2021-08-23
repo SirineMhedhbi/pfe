@@ -1,0 +1,13 @@
+mat-form-field{
+    display: unset !important;
+    
+}
+::ng-deep .mat-form-field-wrapper{
+    position:unset !important;
+    padding-bottom: unset !important;
+    
+}
+::ng-deep .mat-form-field-flex{
+    padding: unset !important;
+    background-color: unset !important;
+}

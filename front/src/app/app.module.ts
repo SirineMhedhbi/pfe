@@ -82,6 +82,7 @@ import { CandidatTestComponent } from './components/pages/job-list/candidat-test
 import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
 import { MyAppliesComponent } from './components/pages/my-applies/my-applies.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
+import { SearchBarComponent } from './components/common/search-bar/search-bar.component';
 
 
 
@@ -134,6 +135,7 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from '
     CandidatTestComponent,
     ApplyListComponent,
     MyAppliesComponent,
+    SearchBarComponent,
 
   ],
   imports: [

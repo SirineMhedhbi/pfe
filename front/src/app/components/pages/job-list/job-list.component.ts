@@ -16,11 +16,23 @@ export class JobListComponent implements OnInit {
   constructor(private jobsService: JobsService, private router: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.jobsService.offersList().subscribe((res: any) => {
+    this.router.queryParams
+    .subscribe(params => {
+      if (params.query) {
+        this.jobsService.offersList(params.query).subscribe((res: any) => {
 
-      this.offers = res
-      console.log(this.offers)
+          this.offers = res
+          console.log(this.offers)
+        })
+      } else {
+        this.jobsService.offersList(null).subscribe((res: any) => {
+
+          this.offers = res
+          console.log(this.offers)
+        })
+      }
     })
+    
    
   }
   addToFavorite(item){

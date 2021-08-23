@@ -12,12 +12,38 @@ class OfferController < ApplicationController
 
     def index
         @offers = current_api_user.offers
+        if params["query"] != "null"
+            q = JSON.parse(params["query"])
+            if q["title"] != ""
+                @offers = @offers.where("title LIKE ?", "%#{ q["title"] }%" )
+            end
+            if q["category"] != -1
+                @offers = @offers.where(category_id: q["category"])
+            end
+            if q["lng"] != "" && q["lat"] != ""
+                @offers = @offers.within(10, :origin => [q["lat"], q["lng"]]) 
+            end
+            
+        end
         render json:  @offers, methods:[ :current_user_company , :offer_test, :applies]
 
     end
 
     def offer
         @offers = Offer.all
+        if params["query"] != "null"
+            q = JSON.parse(params["query"])
+            if q["title"] != ""
+                @offers = @offers.where("title LIKE ?", "%#{ q["title"] }%" )
+            end
+            if q["category"] != -1
+                @offers = @offers.where(category_id: q["category"])
+            end
+            if q["lng"] != "" && q["lat"] != ""
+                @offers = @offers.within(10, :origin => [q["lat"], q["lng"]]) 
+            end
+            
+        end
         render json: @offers, methods: [:is_favorite_job , :offer_company]
     end
 
@@ -83,12 +109,25 @@ class OfferController < ApplicationController
     def favorite_jobs
         offers_ids = FavoriteJob.where(user_id: current_api_user.id).pluck :offer_id
         @favorite_jobs = Offer.where(id: offers_ids )
+        if params["query"] != "null"
+            q = JSON.parse(params["query"])
+            if q["title"] != ""
+                @favorite_jobs = @favorite_jobs.where("title LIKE ?", "%#{ q["title"] }%" )
+            end
+            if q["category"] != -1
+                @favorite_jobs = @favorite_jobs.where(category_id: q["category"])
+            end
+            if q["lng"] != "" && q["lat"] != ""
+                @favorite_jobs = @favorite_jobs.within(10, :origin => [q["lat"], q["lng"]]) 
+            end
+            
+        end
         render json: @favorite_jobs, methods: [:is_favorite_job, :offer_company]
     end
  
     private
      def offer_params
-      params.require(:offer).permit(:title, :category_id, :company_name, :location, :job_experience, :description, :job_salary, :job_time, :qualification, :contract, offerSkills: [])
+      params.require(:offer).permit(:title, :category_id, :company_name, :location, :job_experience, :description, :job_salary, :job_time, :qualification, :lat, :lng, :contract, offerSkills: [])
      end
 
 end
