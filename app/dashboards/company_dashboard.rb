@@ -39,7 +39,6 @@ class CompanyDashboard < Administrate::BaseDashboard
     users
     location
     title
-    category
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
