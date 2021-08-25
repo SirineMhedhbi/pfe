@@ -117,6 +117,11 @@ export class AuthService {
     )
 
   }
+  linkedInSignIn(token){
+    // return this.http.post("https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=" + token + "&redirect_uri=http://localhost:4200/login&client_id=77hd3hyl8mbich&client_secret=y6dgjM3IfUxpvu8b",
+    // {})
+    return this.http.get("/user/linkedin/login?grant_type=authorization_code&code=" + token + "&redirect_uri=http://localhost:4200/login&client_id=77hd3hyl8mbich&client_secret=y6dgjM3IfUxpvu8b")
+  }
 }
 
 

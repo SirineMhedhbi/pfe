@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "src/app/services/auth.service";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/map'
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,8 +18,13 @@ import { GoogleLoginProvider } from "angularx-social-login";
 
 export class LoginComponent implements OnInit {
 
+  linkedInCredentials = {
+    clientId: "77hd3hyl8mbich",
+    redirectUrl: "http://localhost:4200/login",
+    scope: "r_liteprofile%20r_emailaddress" // To read basic user profile data and email
+  };
   form: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService, private socialAuthService: SocialAuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService, private socialAuthService: SocialAuthService, private route: ActivatedRoute) {
     this.form = this.fb.group({
       username: new FormControl('email', Validators.required),
       password: new FormControl('password', Validators.required)
@@ -27,6 +32,17 @@ export class LoginComponent implements OnInit {
   }
   get f() { return this.form.controls; }
   ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        if (params.code) {
+          console.log(params.code)
+          this.authService.linkedInSignIn(params.code).subscribe((res:any)=>{
+            console.log(res)
+          })
+          
+        }
+      })
+
     this.form = this.fb.group({
       email: new FormControl('', Validators.compose([Validators.required])),
       password: new FormControl('', Validators.compose([Validators.required])),
@@ -111,7 +127,10 @@ export class LoginComponent implements OnInit {
       //  this.sendToRestApiMethod(userData.idToken);
     });
  }
-
+ public signinWithLinkedIn () {
+  window.location.href = `https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=${this.linkedInCredentials.clientId}&redirect_uri=${this.linkedInCredentials.redirectUrl}&scope=${this.linkedInCredentials.scope}`;
+}
+ 
 
 
 }

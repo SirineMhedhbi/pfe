@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get "/users/indexlast" => "users#indexlast"
   get "/users/companies" => "users#companies"
   post "/users/upload/cv" => "users#upload_cv"
+  get "/user/linkedin/login" => "users#linkedin_login"
+  
 
 
 

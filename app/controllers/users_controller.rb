@@ -1,6 +1,8 @@
-class UsersController < ApplicationController
-    before_action :authenticate_api_user!,except:[:indexlast]
 
+class UsersController < ApplicationController
+    before_action :authenticate_api_user!,except:[:indexlast,:linkedin_login]
+    require 'net/http'
+    require 'uri'
     def destroy
         if  !User.where(id:params[:id]).present?
             render json: {message:"user not found"}
@@ -54,6 +56,22 @@ class UsersController < ApplicationController
         else
             render json: { message: "Sorry somthing went wrong"} 
         end
+        
+    end
+
+    def linkedin_login
+        
+        uri = URI.parse("https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=#{params["code"]}&redirect_uri=http://localhost:4200/login&client_id=77hd3hyl8mbich&client_secret=y6dgjM3IfUxpvu8b")
+        request = Net::HTTP::Post.new(uri)
+
+        req_options = {
+        use_ssl: uri.scheme == "https",
+        }
+
+        response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(request)
+        end
+        render json: response.body
         
     end
     
