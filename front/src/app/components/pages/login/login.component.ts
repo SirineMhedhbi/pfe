@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/map'
 import { ToastrService } from 'ngx-toastr';
 
-import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, SocialAuthService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
 
 
@@ -59,59 +59,90 @@ export class LoginComponent implements OnInit {
 
             this.toastr.success('logged in succesfully', '');
           }
-        },(err: any) => {
+        }, (err: any) => {
           this.toastr.error(err.error.errors[0], '');
         }
       )
   }
-  formmatted_data(data){
+  formmatted_data(data) {
     console.log(data)
-    return {   resource_class: 'User',
-    provider : 'google_oauth2',
-    uid : data.email  ,
-    info : {
-        name : data.firstName,
-        email : data.email,
-        nickname : data.lastName,
-        avatar : data.photoUrl,
+    return {
+      resource_class: 'User',
+      provider: data.provider,
+      uid: data.email,
+      info: {
+        name: data.firstName,
+        email: data.email,
+        nickname: data.lastName,
+        avatar: data.photoUrl,
+      }
+
     }
-    
-}
 
   }
-  public signinWithGoogle () {
+  public signinWithGoogle() {
     let socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
- 
+
     this.socialAuthService.signIn(socialPlatformProvider)
-    .then((userData) => {
-      let formatted_user = this.formmatted_data(userData)
-      console.log(formatted_user)
-      this.authService.googleSignIn(formatted_user).subscribe((res:any)=>{
+      .then((userData) => {
+        let formatted_user = this.formmatted_data(userData)
+        console.log(formatted_user)
+        this.authService.googleSignIn(formatted_user).subscribe((res: any) => {
 
-        console.log(res)
-        localStorage.setItem("cl", res.client_id)
-        localStorage.setItem("uid", res.uid);
-        localStorage.setItem("access", res.auth_token);
-        localStorage.setItem("role", res.role);
-        localStorage.setItem("id", res.id);
-        this.authService.loggedIn.next(true);
-        this.authService.role.next(localStorage.getItem("role"));
-        if (res.oauth_registration) {
-          this.toastr.success('logged in succesfully', ' You have to complete your profile informations please');
-          this.router.navigate(['/profile']);
-        } else {
-          this.toastr.success('logged in succesfully', '');
-          this.router.navigate(['/']);
-          
-        }
-        
+          console.log(res)
+          localStorage.setItem("cl", res.client_id)
+          localStorage.setItem("uid", res.uid);
+          localStorage.setItem("access", res.auth_token);
+          localStorage.setItem("role", res.role);
+          localStorage.setItem("id", res.id);
+          this.authService.loggedIn.next(true);
+          this.authService.role.next(localStorage.getItem("role"));
+          if (res.oauth_registration) {
+            this.toastr.success('logged in succesfully', ' You have to complete your profile informations please');
+            this.router.navigate(['/profile']);
+          } else {
+            this.toastr.success('logged in succesfully', '');
+            this.router.navigate(['/']);
+
+          }
+
+        })
+        //on success
+        //this will return user data from google. What you need is a user token which you will send it to the server
+        //  this.sendToRestApiMethod(userData.idToken);
+      });
+  }
+
+
+  sginInWithFB() {
+    let socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+
+    this.socialAuthService.signIn(socialPlatformProvider)
+      .then((userData) => {
+        console.log(userData)
+        let formatted_user = this.formmatted_data(userData)
+        console.log(formatted_user)
+        this.authService.googleSignIn(formatted_user).subscribe((res: any) => {
+
+          console.log(res)
+          localStorage.setItem("cl", res.client_id)
+          localStorage.setItem("uid", res.uid);
+          localStorage.setItem("access", res.auth_token);
+          localStorage.setItem("role", res.role);
+          localStorage.setItem("id", res.id);
+          this.authService.loggedIn.next(true);
+          this.authService.role.next(localStorage.getItem("role"));
+          if (res.oauth_registration) {
+            this.toastr.success('logged in succesfully', ' You have to complete your profile informations please');
+            this.router.navigate(['/profile']);
+          } else {
+            this.toastr.success('logged in succesfully', '');
+            this.router.navigate(['/']);
+
+          }
+
+        })
       })
-       //on success
-       //this will return user data from google. What you need is a user token which you will send it to the server
-      //  this.sendToRestApiMethod(userData.idToken);
-    });
- }
 
-
-
+  }
 }

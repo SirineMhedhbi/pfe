@@ -81,7 +81,7 @@ import { ResetPasswordComponent } from './components/pages/reset-password/reset-
 import { CandidatTestComponent } from './components/pages/job-list/candidat-test/candidat-test.component';
 import { ApplyListComponent } from './components/pages/apply-list/apply-list.component';
 import { MyAppliesComponent } from './components/pages/my-applies/my-applies.component';
-import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider} from 'angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
 import { SearchBarComponent } from './components/common/search-bar/search-bar.component';
 
 
@@ -192,10 +192,10 @@ import { SearchBarComponent } from './components/common/search-bar/search-bar.co
               '884708634562-3hn1ng7oocmf6qd4iq0ml1k1amms5rm1.apps.googleusercontent.com'
             )
           },
-          // {
-          //   id: FacebookLoginProvider.PROVIDER_ID,
-          //   provider: new FacebookLoginProvider('clientId')
-          // }
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1019086621968310')
+          }
         ],
         onError: (err) => {
           console.error(err);
