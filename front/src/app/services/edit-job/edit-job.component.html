@@ -35,7 +35,7 @@
                             <label>Job Category</label>
                             <mat-form-field appearance="fill" class="col-lg-7">
                                 <mat-label>Choose a category</mat-label>
-                                <mat-select [(ngModel)]="selectedValue" name="food" formControlName="category">
+                                <mat-select [(ngModel)]="selectedValue" name="food" formControlName="category" style="    height: 30px;">
                                     <mat-option *ngFor="let item of categories" [value]="item.id">
                                         {{item.name}}
                                     </mat-option>
